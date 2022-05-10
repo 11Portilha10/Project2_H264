@@ -449,31 +449,26 @@ std::tuple<int, Intra16x16Mode> intra16x16(Block16x16& block, std::experimental:
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> u,
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> l) {
 
-  ofstream myfile ("predictors.txt", ios::app);
+  ofstream myfile ("txt/predictors.txt", ios::app);
   static int predictor_cnt=0;
 
   // Get predictors
   Predictor predictor = get_intra16x16_predictor(ul, u, l);
 
+  // Print predictors to 'predictors.txt'
   myfile << "MB " << predictor_cnt << " ->";
-
   if(predictor.up_available)
     myfile << "Up_aval "; 
-
   if (predictor.left_available)
     myfile << "Left_aval ";
-  
   if (predictor.up_right_available)
     myfile << "Up_right_aval ";
-
   if (predictor.all_available)
     myfile << "All_aval ";
-
   for (int i = 0; i < 33; i++)
   {
     myfile << predictor.pred_pel[i] << ' ';
   }
-  
   myfile << endl;
   predictor_cnt++;
 
@@ -482,30 +477,27 @@ std::tuple<int, Intra16x16Mode> intra16x16(Block16x16& block, std::experimental:
   Block16x16 pred, best_pred, residual, best_residual;
   int min_sad = (1 << 15), sad;  // worst SAD is 32768 -> 16*16 pixels = 256; worst prediction = 128-0 ; 256*128 = 32768
 
-
-  // Run all modes to get least residual
-  // Checks if its possible to run prediction mode based on neighbours 
+  // Run all 16x16 pred modes to get least residual
   for (mode = 0; mode < 4; mode++) {
 
     // cast is to convert from int to enum
-    // checks for the predictors needed to perform each prediction mode. Continue jumps iteration
+    // Checks for the predictors needed to perform each prediction mode. Continue jumps iteration
     if ((!predictor.up_available   && (Intra16x16Mode::VERTICAL   == static_cast<Intra16x16Mode>(mode))) ||
         (!predictor.left_available && (Intra16x16Mode::HORIZONTAL == static_cast<Intra16x16Mode>(mode))) ||
         (!predictor.all_available  && (Intra16x16Mode::PLANE      == static_cast<Intra16x16Mode>(mode)))) {
       continue;
     }
 
-    // Runs prediction
+    // Run prediction, save in pred
     get_intra16x16(pred, predictor, static_cast<Intra16x16Mode>(mode));
 
-    // Computes SAD and gets the lowest
-    // sad = SAD(block.begin(), block.end(), pred.begin(), pred.begin());
+    // Computes SAD, save best prediction and residual
     sad = SAD(block.begin(), block.end(), pred.begin(), residual.begin());
     if (sad < min_sad) {
       min_sad = sad;
       best_mode = static_cast<Intra16x16Mode>(mode);
-      std::copy(residual.begin(), residual.end(), best_residual.begin());   // Saves best residual block
-      std::copy(pred.begin(), pred.end(), best_pred.begin());   // Save best prediction
+      std::copy(residual.begin(), residual.end(), best_residual.begin());   // save best residual block
+      std::copy(pred.begin(), pred.end(), best_pred.begin());   // save best prediction
     }
   }
 

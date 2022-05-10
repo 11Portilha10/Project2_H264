@@ -14,13 +14,11 @@ int error_16x16=0;
 int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
   
   static int mb_pred = 0;
-  ofstream pred_file ("pred_mode.txt", ios::app);
-  // ofstream neigh_file ("neighbor_mbs.txt", ios::app);
+  ofstream pred_file ("txt/pred_mode.txt", ios::app);
 
-  // Function to get neighbours MBs
+  // Get neighbours MBs pointers (ul, u, l)
   auto get_decoded_Y_block = [&](int direction) {
     int index = frame.get_neighbor_index(mb.mb_index, direction);   // works well
-    // neigh_file << "Dir: " << direction << "; Index: " << index << endl;
     if (index == -1)
       return std::experimental::optional<std::reference_wrapper<Block16x16>>(); // If there is no neighbours it doesnt return initialized mb
     else
@@ -42,6 +40,7 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   // Sets 16x16 mode
   mb.intra16x16_Y_mode = mode;
 
+  // Print prediction mode to 'pred_mode.txt'
   pred_file << "MB " << mb_pred << " ->" << (int)mode << endl;
   mb_pred++;
 
@@ -238,7 +237,7 @@ int encode_Cr_Cb_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded
 *   Function to encode 8x8 Cr and Cb blocks
 *
 */
-int encode_Cr_Cb_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
+int encode_Cb_Cr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
   
   int error_intra8x8 = encode_Cr_Cb_intra8x8_block(mb, decoded_blocks, frame);
  
@@ -303,7 +302,7 @@ void encode_I_frame(Frame& frame) {
     mb_output_file << endl;
 
     // Encoding Chroma component function
-    int error_chroma = encode_Cr_Cb_block(mb, decoded_blocks, frame);
+    int error_chroma = encode_Cb_Cr_block(mb, decoded_blocks, frame);
 
     // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
     error_file << "MB" << error_cnt << " ->";
