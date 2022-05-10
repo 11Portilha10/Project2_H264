@@ -258,27 +258,23 @@ void encode_I_frame(Frame& frame) {
   std::vector<MacroBlock> decoded_blocks;
   decoded_blocks.reserve(frame.mbs.size());
 
-  ofstream error_file ("errors.txt", ios::out);
-  ofstream mb_input_file ("mb_input.txt", ios::out);
-  ofstream mb_output_file ("mb_output.txt", ios::out);
+  ofstream error_file ("txt/errors.txt", ios::out);
+  ofstream mb_input_file ("txt/mb_input.txt", ios::out);
+  ofstream mb_output_file ("txt/mb_output.txt", ios::out);
   int error_cnt=0;
   int mb_cnt_in=0;
   int mb_cnt_out=0;
 
   cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
 
-  //MacroBlock test = frame.mbs.front();
-  //Mat mb_view; 
-
-  // Loops through all MB, in this case 703 generated from test image 
+  // Loops through all MB
   for (auto& mb : frame.mbs) {
 
     decoded_blocks.push_back(mb);   // vector to reconstruct macroblocks
     MacroBlock origin_block = mb;
 
-    mb_input_file << "Y_MB input " << mb_cnt_in << endl; 
-
     // Print all 703 Macroblock Y (16x16) component to 'mb_input.txt' 
+    mb_input_file << "Y_MB input " << mb_cnt_in << endl; 
     for(int rows=0; rows < 256; rows+=16)
     {
       for(int cols=0; cols<16; cols++)
@@ -287,29 +283,14 @@ void encode_I_frame(Frame& frame) {
       }
       mb_input_file << endl;
     }
-
     mb_cnt_in++;
     mb_input_file << endl;
 
-    // Gets the Luma and Chroma error for all 703 Macroblocks and prints to 'errors.txt' file
-    error_file << "MB" << error_cnt << " ->";
-
-    // Encode Luma 16x16 function
+    // Encode Luma component, output is in 'mb.Y vector'
     int error_luma = encode_Y_block(mb, decoded_blocks, frame);
 
-    if(error_4x4)
-      error_file << "Error type:4x4" << ' ';
-
-    else if(error_16x16)
-      error_file << "Error type:16x16" << ' ';
-
-    error_4x4=0;
-    error_16x16=0;
-
     // Print all 703 Macroblock Y (16x16) component after prediction to 'mb_output.txt' 
-
     mb_output_file << "Y_MB output " << mb_cnt_out << endl; 
-
     for(int r=0; r < 256; r+=16)
     {
       for(int c=0; c<16; c++)
@@ -318,26 +299,29 @@ void encode_I_frame(Frame& frame) {
       }
       mb_output_file << endl;
     }
-
     mb_cnt_out++;
     mb_output_file << endl;
-
-    error_file << "Luma error:" << error_luma << ' ' << ' ';
-
-    ////////////////////////////////////////////////////////////////////////////////////////
 
     // Encoding Chroma component function
     int error_chroma = encode_Cr_Cb_block(mb, decoded_blocks, frame);
 
+    // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
+    error_file << "MB" << error_cnt << " ->";
+    if(error_4x4)
+      error_file << "Error type:4x4" << ' ';
+    else if(error_16x16)
+      error_file << "Error type:16x16" << ' ';
+    error_file << "Luma error:" << error_luma << ' ' << ' ';
     error_file << "Chroma error:" << error_chroma << endl;
-
+    error_4x4=0;    // clear pred type flags and increment counter
+    error_16x16=0;
     error_cnt++;
 
-    // Defined threshold for bad predictions
+    // Defined threshold for bad predictions, if SAD is greater MB remains the same
     if (error_luma > 2000 || error_chroma > 1000) {
       mb = origin_block;
       decoded_blocks.back() = origin_block;
-      mb.is_I_PCM = true;
+      mb.is_I_PCM = true;   // what does this means?
     }
   }
 }
