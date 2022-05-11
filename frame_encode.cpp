@@ -45,7 +45,9 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   mb_pred++;
 
   // Perform QDCT
-  // Reconstruct for later prediction
+  qdct_luma16x16_intra(mb.Y);
+  
+  // Reconstruct for later prediction (not being done)
 
   return error;
 }
@@ -151,6 +153,9 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
 
   // Perform QDCT
+  qdct_luma4x4_intra(mb.get_Y_4x4_block(cur_pos));
+
+
   // Reconstruct for later prediction
 
   return error;
@@ -226,7 +231,11 @@ int encode_Cr_Cb_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded
 
   mb.intra_Cr_Cb_mode = mode;
 
-  // Perform QDCT
+  // Perform QDCT (Cr and Cb components)
+  qdct_chroma8x8_intra(mb.Cr);
+  qdct_chroma8x8_intra(mb.Cb);
+
+
   // Reconstruct for later prediction
   
   return error;
