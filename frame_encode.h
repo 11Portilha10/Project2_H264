@@ -16,6 +16,7 @@
 #include "macroblock.h"
 #include "frame.h"
 #include "intra.h"
+#include "qdct.h"
 
 using namespace cv;
 using namespace std;

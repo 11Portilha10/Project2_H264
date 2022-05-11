@@ -1,6 +1,6 @@
 CC = g++
 CPPFLAGS = -g -I. -Wall
-DEPS = block.h frame_encode.h frame.h intra.h macroblock.h
+DEPS = block.h frame_encode.h frame.h intra.h macroblock.h qdct.h
 OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 TARGET = test
 
