@@ -45,7 +45,7 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   mb_pred++;
 
   // Perform QDCT
-  qdct_luma16x16_intra(mb.Y);
+  // qdct_luma16x16_intra(mb.Y);
   
   // Reconstruct for later prediction (not being done)
 
@@ -75,8 +75,8 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
     else if (index == mb.mb_index)
       return std::experimental::optional<Block4x4>(decoded_block.get_Y_4x4_block(pos));
     else{
-      // return std::experimental::optional<Block4x4>(decoded_blocks.at(index).get_Y_4x4_block(pos));
-      return std::experimental::optional<Block4x4>(frame.mbs.at(index).get_Y_4x4_block(pos));
+      return std::experimental::optional<Block4x4>(decoded_blocks.at(index).get_Y_4x4_block(pos));
+      // return std::experimental::optional<Block4x4>(frame.mbs.at(index).get_Y_4x4_block(pos));
     }
   };
 
@@ -172,7 +172,7 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
 
   // Perform QDCT
-  qdct_luma4x4_intra(mb.get_Y_4x4_block(cur_pos));
+  // qdct_luma4x4_intra(mb.get_Y_4x4_block(cur_pos));
 
 
   // Reconstruct for later prediction
@@ -252,8 +252,8 @@ int encode_Cr_Cb_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded
   mb.intra_Cr_Cb_mode = mode;
 
   // Perform QDCT (Cr and Cb components)
-  qdct_chroma8x8_intra(mb.Cr);
-  qdct_chroma8x8_intra(mb.Cb);
+  // qdct_chroma8x8_intra(mb.Cr);
+  // qdct_chroma8x8_intra(mb.Cb);
 
 
   // Reconstruct for later prediction
@@ -298,8 +298,11 @@ void encode_I_frame(Frame& frame) {
   // Loops through all MB
   for (auto& mb : frame.mbs) {
 
-    decoded_blocks.push_back(mb);   // vector to reconstruct macroblocks
     MacroBlock origin_block = mb;
+
+    decoded_blocks.push_back(mb);   // vector to reconstruct macroblocks
+    if(mb.mb_index < ((int)frame.mbs.size() - 1))
+      decoded_blocks.push_back(*(&mb + 1));   // next mb to predict UR (except for the last one)
 
     // Print all 703 Macroblock Y (16x16) component to 'mb_input.txt' 
     mb_input_file << "Y_MB input " << mb_cnt_in << endl; 
@@ -316,6 +319,9 @@ void encode_I_frame(Frame& frame) {
 
     // Encode Luma component, output is in 'mb.Y vector'
     int error_luma = encode_Y_block(mb, decoded_blocks, frame);
+
+    // Pop aditional mb
+    decoded_blocks.pop_back();
 
     // Print all 703 Macroblock Y (16x16) component after prediction to 'mb_output.txt' 
     mb_output_file << "Y_MB output " << mb_cnt_out << endl; 
@@ -349,7 +355,7 @@ void encode_I_frame(Frame& frame) {
     if (error_luma > 2000 || error_chroma > 1000) {
       mb = origin_block;
       decoded_blocks.back() = origin_block;
-      mb.is_I_PCM = true;   // what does this means?
+      mb.is_I_PCM = true;   // not predicted
     }
   }
 }
