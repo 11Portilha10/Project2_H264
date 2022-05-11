@@ -1,703 +1,703 @@
-MB0 ->Error type:4x4 Luma error:1744  Chroma error:318
-MB1 ->Error type:4x4 Luma error:43  Chroma error:53
-MB2 ->Error type:4x4 Luma error:30  Chroma error:7
-MB3 ->Error type:4x4 Luma error:52  Chroma error:49
-MB4 ->Error type:4x4 Luma error:46  Chroma error:38
-MB5 ->Error type:4x4 Luma error:45  Chroma error:61
-MB6 ->Error type:4x4 Luma error:42  Chroma error:43
-MB7 ->Error type:4x4 Luma error:42  Chroma error:29
-MB8 ->Error type:4x4 Luma error:44  Chroma error:49
-MB9 ->Error type:4x4 Luma error:53  Chroma error:34
-MB10 ->Error type:4x4 Luma error:39  Chroma error:7
-MB11 ->Error type:4x4 Luma error:27  Chroma error:7
-MB12 ->Error type:4x4 Luma error:38  Chroma error:27
-MB13 ->Error type:4x4 Luma error:42  Chroma error:29
-MB14 ->Error type:4x4 Luma error:44  Chroma error:40
-MB15 ->Error type:4x4 Luma error:34  Chroma error:69
-MB16 ->Error type:4x4 Luma error:45  Chroma error:94
-MB17 ->Error type:4x4 Luma error:42  Chroma error:111
-MB18 ->Error type:4x4 Luma error:34  Chroma error:61
-MB19 ->Error type:4x4 Luma error:25  Chroma error:73
-MB20 ->Error type:4x4 Luma error:42  Chroma error:66
-MB21 ->Error type:4x4 Luma error:32  Chroma error:91
-MB22 ->Error type:4x4 Luma error:39  Chroma error:54
-MB23 ->Error type:4x4 Luma error:44  Chroma error:42
-MB24 ->Error type:4x4 Luma error:41  Chroma error:45
-MB25 ->Error type:4x4 Luma error:43  Chroma error:60
-MB26 ->Error type:4x4 Luma error:36  Chroma error:114
-MB27 ->Error type:4x4 Luma error:33  Chroma error:155
-MB28 ->Error type:4x4 Luma error:32  Chroma error:223
-MB29 ->Error type:4x4 Luma error:34  Chroma error:285
-MB30 ->Error type:4x4 Luma error:49  Chroma error:263
-MB31 ->Error type:4x4 Luma error:47  Chroma error:358
-MB32 ->Error type:4x4 Luma error:43  Chroma error:196
-MB33 ->Error type:4x4 Luma error:41  Chroma error:112
-MB34 ->Error type:4x4 Luma error:44  Chroma error:66
-MB35 ->Error type:4x4 Luma error:32  Chroma error:41
-MB36 ->Error type:4x4 Luma error:13  Chroma error:20
-MB37 ->Error type:4x4 Luma error:100  Chroma error:250
-MB38 ->Error type:4x4 Luma error:45  Chroma error:37
-MB39 ->Error type:4x4 Luma error:37  Chroma error:28
-MB40 ->Error type:4x4 Luma error:46  Chroma error:43
-MB41 ->Error type:4x4 Luma error:50  Chroma error:34
-MB42 ->Error type:4x4 Luma error:53  Chroma error:27
-MB43 ->Error type:4x4 Luma error:48  Chroma error:40
-MB44 ->Error type:4x4 Luma error:62  Chroma error:74
-MB45 ->Error type:4x4 Luma error:54  Chroma error:35
-MB46 ->Error type:4x4 Luma error:64  Chroma error:29
-MB47 ->Error type:4x4 Luma error:38  Chroma error:43
-MB48 ->Error type:4x4 Luma error:52  Chroma error:34
-MB49 ->Error type:4x4 Luma error:46  Chroma error:31
-MB50 ->Error type:4x4 Luma error:53  Chroma error:42
-MB51 ->Error type:4x4 Luma error:34  Chroma error:53
-MB52 ->Error type:4x4 Luma error:61  Chroma error:76
-MB53 ->Error type:4x4 Luma error:50  Chroma error:84
-MB54 ->Error type:4x4 Luma error:59  Chroma error:100
-MB55 ->Error type:4x4 Luma error:53  Chroma error:54
-MB56 ->Error type:4x4 Luma error:46  Chroma error:93
-MB57 ->Error type:4x4 Luma error:52  Chroma error:107
-MB58 ->Error type:4x4 Luma error:45  Chroma error:37
-MB59 ->Error type:4x4 Luma error:39  Chroma error:48
-MB60 ->Error type:4x4 Luma error:33  Chroma error:84
-MB61 ->Error type:4x4 Luma error:30  Chroma error:41
-MB62 ->Error type:4x4 Luma error:33  Chroma error:82
-MB63 ->Error type:4x4 Luma error:29  Chroma error:52
-MB64 ->Error type:4x4 Luma error:30  Chroma error:118
-MB65 ->Error type:4x4 Luma error:47  Chroma error:186
-MB66 ->Error type:4x4 Luma error:46  Chroma error:210
-MB67 ->Error type:4x4 Luma error:49  Chroma error:443
-MB68 ->Error type:4x4 Luma error:58  Chroma error:404
-MB69 ->Error type:4x4 Luma error:56  Chroma error:196
-MB70 ->Error type:4x4 Luma error:68  Chroma error:99
-MB71 ->Error type:4x4 Luma error:39  Chroma error:56
-MB72 ->Error type:4x4 Luma error:39  Chroma error:30
-MB73 ->Error type:4x4 Luma error:6  Chroma error:20
-MB74 ->Error type:4x4 Luma error:115  Chroma error:305
-MB75 ->Error type:4x4 Luma error:47  Chroma error:45
-MB76 ->Error type:4x4 Luma error:60  Chroma error:67
-MB77 ->Error type:4x4 Luma error:53  Chroma error:51
-MB78 ->Error type:4x4 Luma error:68  Chroma error:53
-MB79 ->Error type:4x4 Luma error:64  Chroma error:56
-MB80 ->Error type:4x4 Luma error:58  Chroma error:72
-MB81 ->Error type:4x4 Luma error:51  Chroma error:58
-MB82 ->Error type:4x4 Luma error:59  Chroma error:39
-MB83 ->Error type:4x4 Luma error:67  Chroma error:42
-MB84 ->Error type:4x4 Luma error:74  Chroma error:59
-MB85 ->Error type:4x4 Luma error:49  Chroma error:65
-MB86 ->Error type:4x4 Luma error:60  Chroma error:43
-MB87 ->Error type:4x4 Luma error:77  Chroma error:62
-MB88 ->Error type:4x4 Luma error:60  Chroma error:49
-MB89 ->Error type:4x4 Luma error:51  Chroma error:68
-MB90 ->Error type:4x4 Luma error:56  Chroma error:95
-MB91 ->Error type:4x4 Luma error:71  Chroma error:141
-MB92 ->Error type:4x4 Luma error:50  Chroma error:62
-MB93 ->Error type:4x4 Luma error:51  Chroma error:180
-MB94 ->Error type:4x4 Luma error:51  Chroma error:58
-MB95 ->Error type:4x4 Luma error:50  Chroma error:112
-MB96 ->Error type:4x4 Luma error:56  Chroma error:96
-MB97 ->Error type:4x4 Luma error:60  Chroma error:56
-MB98 ->Error type:4x4 Luma error:30  Chroma error:42
-MB99 ->Error type:4x4 Luma error:47  Chroma error:76
-MB100 ->Error type:4x4 Luma error:26  Chroma error:93
-MB101 ->Error type:4x4 Luma error:62  Chroma error:135
-MB102 ->Error type:4x4 Luma error:44  Chroma error:186
-MB103 ->Error type:4x4 Luma error:42  Chroma error:315
-MB104 ->Error type:4x4 Luma error:56  Chroma error:649
-MB105 ->Error type:4x4 Luma error:69  Chroma error:451
-MB106 ->Error type:4x4 Luma error:70  Chroma error:259
-MB107 ->Error type:4x4 Luma error:67  Chroma error:134
-MB108 ->Error type:4x4 Luma error:72  Chroma error:70
-MB109 ->Error type:4x4 Luma error:42  Chroma error:42
-MB110 ->Error type:4x4 Luma error:11  Chroma error:46
-MB111 ->Error type:4x4 Luma error:150  Chroma error:364
-MB112 ->Error type:4x4 Luma error:73  Chroma error:37
-MB113 ->Error type:4x4 Luma error:74  Chroma error:64
-MB114 ->Error type:4x4 Luma error:75  Chroma error:54
-MB115 ->Error type:4x4 Luma error:66  Chroma error:61
-MB116 ->Error type:4x4 Luma error:68  Chroma error:45
-MB117 ->Error type:4x4 Luma error:72  Chroma error:34
-MB118 ->Error type:4x4 Luma error:64  Chroma error:45
-MB119 ->Error type:4x4 Luma error:55  Chroma error:61
-MB120 ->Error type:4x4 Luma error:59  Chroma error:59
-MB121 ->Error type:4x4 Luma error:59  Chroma error:54
-MB122 ->Error type:4x4 Luma error:60  Chroma error:56
-MB123 ->Error type:4x4 Luma error:69  Chroma error:36
-MB124 ->Error type:4x4 Luma error:74  Chroma error:48
-MB125 ->Error type:4x4 Luma error:67  Chroma error:40
-MB126 ->Error type:4x4 Luma error:59  Chroma error:54
-MB127 ->Error type:4x4 Luma error:66  Chroma error:86
-MB128 ->Error type:4x4 Luma error:62  Chroma error:171
-MB129 ->Error type:4x4 Luma error:39  Chroma error:124
-MB130 ->Error type:4x4 Luma error:50  Chroma error:109
-MB131 ->Error type:4x4 Luma error:58  Chroma error:75
-MB132 ->Error type:4x4 Luma error:54  Chroma error:119
-MB133 ->Error type:4x4 Luma error:52  Chroma error:75
-MB134 ->Error type:4x4 Luma error:52  Chroma error:64
-MB135 ->Error type:4x4 Luma error:40  Chroma error:80
-MB136 ->Error type:4x4 Luma error:38  Chroma error:72
-MB137 ->Error type:4x4 Luma error:47  Chroma error:101
-MB138 ->Error type:4x4 Luma error:41  Chroma error:105
-MB139 ->Error type:4x4 Luma error:44  Chroma error:212
-MB140 ->Error type:4x4 Luma error:70  Chroma error:507
-MB141 ->Error type:4x4 Luma error:58  Chroma error:355
-MB142 ->Error type:4x4 Luma error:76  Chroma error:452
-MB143 ->Error type:4x4 Luma error:73  Chroma error:318
-MB144 ->Error type:4x4 Luma error:61  Chroma error:140
-MB145 ->Error type:4x4 Luma error:62  Chroma error:92
-MB146 ->Error type:4x4 Luma error:56  Chroma error:44
-MB147 ->Error type:4x4 Luma error:12  Chroma error:19
-MB148 ->Error type:4x4 Luma error:142  Chroma error:395
-MB149 ->Error type:4x4 Luma error:76  Chroma error:58
-MB150 ->Error type:4x4 Luma error:65  Chroma error:51
-MB151 ->Error type:4x4 Luma error:61  Chroma error:106
-MB152 ->Error type:4x4 Luma error:76  Chroma error:27
-MB153 ->Error type:4x4 Luma error:66  Chroma error:82
-MB154 ->Error type:4x4 Luma error:64  Chroma error:31
-MB155 ->Error type:4x4 Luma error:62  Chroma error:40
-MB156 ->Error type:4x4 Luma error:83  Chroma error:38
-MB157 ->Error type:4x4 Luma error:69  Chroma error:50
-MB158 ->Error type:4x4 Luma error:73  Chroma error:42
-MB159 ->Error type:4x4 Luma error:76  Chroma error:26
-MB160 ->Error type:4x4 Luma error:66  Chroma error:25
-MB161 ->Error type:4x4 Luma error:79  Chroma error:41
-MB162 ->Error type:4x4 Luma error:64  Chroma error:43
-MB163 ->Error type:4x4 Luma error:62  Chroma error:82
-MB164 ->Error type:4x4 Luma error:73  Chroma error:106
-MB165 ->Error type:4x4 Luma error:61  Chroma error:245
-MB166 ->Error type:4x4 Luma error:49  Chroma error:67
-MB167 ->Error type:4x4 Luma error:45  Chroma error:99
-MB168 ->Error type:4x4 Luma error:47  Chroma error:104
-MB169 ->Error type:4x4 Luma error:57  Chroma error:102
-MB170 ->Error type:4x4 Luma error:49  Chroma error:144
-MB171 ->Error type:4x4 Luma error:49  Chroma error:86
-MB172 ->Error type:4x4 Luma error:45  Chroma error:34
-MB173 ->Error type:4x4 Luma error:46  Chroma error:57
-MB174 ->Error type:4x4 Luma error:43  Chroma error:89
-MB175 ->Error type:4x4 Luma error:41  Chroma error:144
-MB176 ->Error type:4x4 Luma error:42  Chroma error:621
-MB177 ->Error type:4x4 Luma error:80  Chroma error:46
-MB178 ->Error type:4x4 Luma error:75  Chroma error:59
-MB179 ->Error type:4x4 Luma error:66  Chroma error:595
-MB180 ->Error type:4x4 Luma error:76  Chroma error:391
-MB181 ->Error type:4x4 Luma error:72  Chroma error:177
-MB182 ->Error type:4x4 Luma error:55  Chroma error:112
-MB183 ->Error type:4x4 Luma error:72  Chroma error:81
-MB184 ->Error type:4x4 Luma error:10  Chroma error:52
-MB185 ->Error type:4x4 Luma error:157  Chroma error:408
-MB186 ->Error type:4x4 Luma error:82  Chroma error:46
-MB187 ->Error type:4x4 Luma error:74  Chroma error:53
-MB188 ->Error type:4x4 Luma error:71  Chroma error:67
-MB189 ->Error type:4x4 Luma error:62  Chroma error:64
-MB190 ->Error type:4x4 Luma error:73  Chroma error:114
-MB191 ->Error type:4x4 Luma error:79  Chroma error:66
-MB192 ->Error type:4x4 Luma error:62  Chroma error:37
-MB193 ->Error type:4x4 Luma error:46  Chroma error:66
-MB194 ->Error type:4x4 Luma error:65  Chroma error:55
-MB195 ->Error type:4x4 Luma error:80  Chroma error:39
-MB196 ->Error type:4x4 Luma error:87  Chroma error:51
-MB197 ->Error type:4x4 Luma error:74  Chroma error:30
-MB198 ->Error type:4x4 Luma error:82  Chroma error:38
-MB199 ->Error type:4x4 Luma error:67  Chroma error:68
-MB200 ->Error type:4x4 Luma error:79  Chroma error:48
-MB201 ->Error type:4x4 Luma error:88  Chroma error:121
-MB202 ->Error type:4x4 Luma error:72  Chroma error:291
-MB203 ->Error type:4x4 Luma error:73  Chroma error:60
-MB204 ->Error type:4x4 Luma error:51  Chroma error:80
-MB205 ->Error type:4x4 Luma error:46  Chroma error:131
-MB206 ->Error type:4x4 Luma error:48  Chroma error:167
-MB207 ->Error type:4x4 Luma error:53  Chroma error:112
-MB208 ->Error type:4x4 Luma error:59  Chroma error:71
-MB209 ->Error type:4x4 Luma error:46  Chroma error:46
-MB210 ->Error type:4x4 Luma error:49  Chroma error:63
-MB211 ->Error type:4x4 Luma error:34  Chroma error:104
-MB212 ->Error type:4x4 Luma error:63  Chroma error:581
-MB213 ->Error type:4x4 Luma error:86  Chroma error:47
-MB214 ->Error type:4x4 Luma error:59  Chroma error:32
-MB215 ->Error type:4x4 Luma error:68  Chroma error:59
-MB216 ->Error type:4x4 Luma error:77  Chroma error:267
-MB217 ->Error type:4x4 Luma error:84  Chroma error:794
-MB218 ->Error type:4x4 Luma error:43  Chroma error:180
-MB219 ->Error type:4x4 Luma error:63  Chroma error:138
-MB220 ->Error type:4x4 Luma error:52  Chroma error:55
-MB221 ->Error type:4x4 Luma error:12  Chroma error:43
-MB222 ->Error type:4x4 Luma error:169  Chroma error:460
-MB223 ->Error type:4x4 Luma error:60  Chroma error:43
-MB224 ->Error type:4x4 Luma error:53  Chroma error:77
-MB225 ->Error type:4x4 Luma error:58  Chroma error:51
-MB226 ->Error type:4x4 Luma error:60  Chroma error:81
-MB227 ->Error type:4x4 Luma error:55  Chroma error:160
-MB228 ->Error type:4x4 Luma error:76  Chroma error:53
-MB229 ->Error type:4x4 Luma error:63  Chroma error:94
-MB230 ->Error type:4x4 Luma error:55  Chroma error:49
-MB231 ->Error type:4x4 Luma error:48  Chroma error:81
-MB232 ->Error type:4x4 Luma error:52  Chroma error:47
-MB233 ->Error type:4x4 Luma error:54  Chroma error:56
-MB234 ->Error type:4x4 Luma error:52  Chroma error:18
-MB235 ->Error type:4x4 Luma error:66  Chroma error:34
-MB236 ->Error type:4x4 Luma error:61  Chroma error:77
-MB237 ->Error type:4x4 Luma error:45  Chroma error:111
-MB238 ->Error type:4x4 Luma error:71  Chroma error:126
-MB239 ->Error type:4x4 Luma error:81  Chroma error:390
-MB240 ->Error type:4x4 Luma error:75  Chroma error:382
-MB241 ->Error type:4x4 Luma error:61  Chroma error:400
-MB242 ->Error type:4x4 Luma error:40  Chroma error:234
-MB243 ->Error type:4x4 Luma error:76  Chroma error:157
-MB244 ->Error type:4x4 Luma error:36  Chroma error:84
-MB245 ->Error type:4x4 Luma error:63  Chroma error:68
-MB246 ->Error type:4x4 Luma error:43  Chroma error:39
-MB247 ->Error type:4x4 Luma error:44  Chroma error:78
-MB248 ->Error type:4x4 Luma error:58  Chroma error:543
-MB249 ->Error type:4x4 Luma error:73  Chroma error:44
-MB250 ->Error type:4x4 Luma error:73  Chroma error:31
-MB251 ->Error type:4x4 Luma error:64  Chroma error:31
-MB252 ->Error type:4x4 Luma error:73  Chroma error:38
-MB253 ->Error type:4x4 Luma error:57  Chroma error:81
-MB254 ->Error type:4x4 Luma error:72  Chroma error:589
-MB255 ->Error type:4x4 Luma error:68  Chroma error:251
-MB256 ->Error type:4x4 Luma error:76  Chroma error:97
-MB257 ->Error type:4x4 Luma error:69  Chroma error:77
-MB258 ->Error type:4x4 Luma error:14  Chroma error:37
-MB259 ->Error type:4x4 Luma error:190  Chroma error:470
-MB260 ->Error type:4x4 Luma error:63  Chroma error:50
-MB261 ->Error type:4x4 Luma error:74  Chroma error:45
-MB262 ->Error type:4x4 Luma error:78  Chroma error:55
-MB263 ->Error type:4x4 Luma error:66  Chroma error:121
-MB264 ->Error type:4x4 Luma error:75  Chroma error:168
-MB265 ->Error type:4x4 Luma error:65  Chroma error:74
-MB266 ->Error type:4x4 Luma error:74  Chroma error:55
-MB267 ->Error type:4x4 Luma error:75  Chroma error:54
-MB268 ->Error type:4x4 Luma error:63  Chroma error:56
-MB269 ->Error type:4x4 Luma error:79  Chroma error:49
-MB270 ->Error type:4x4 Luma error:86  Chroma error:47
-MB271 ->Error type:4x4 Luma error:49  Chroma error:23
-MB272 ->Error type:4x4 Luma error:62  Chroma error:37
-MB273 ->Error type:4x4 Luma error:36  Chroma error:71
-MB274 ->Error type:4x4 Luma error:75  Chroma error:116
-MB275 ->Error type:4x4 Luma error:57  Chroma error:212
-MB276 ->Error type:4x4 Luma error:69  Chroma error:128
-MB277 ->Error type:4x4 Luma error:52  Chroma error:51
-MB278 ->Error type:4x4 Luma error:64  Chroma error:104
-MB279 ->Error type:4x4 Luma error:74  Chroma error:174
-MB280 ->Error type:4x4 Luma error:48  Chroma error:241
-MB281 ->Error type:4x4 Luma error:49  Chroma error:516
-MB282 ->Error type:4x4 Luma error:81  Chroma error:378
-MB283 ->Error type:4x4 Luma error:67  Chroma error:85
-MB284 ->Error type:4x4 Luma error:60  Chroma error:436
-MB285 ->Error type:4x4 Luma error:56  Chroma error:62
-MB286 ->Error type:4x4 Luma error:69  Chroma error:48
-MB287 ->Error type:4x4 Luma error:81  Chroma error:55
-MB288 ->Error type:4x4 Luma error:71  Chroma error:31
-MB289 ->Error type:4x4 Luma error:51  Chroma error:52
-MB290 ->Error type:4x4 Luma error:75  Chroma error:78
-MB291 ->Error type:4x4 Luma error:66  Chroma error:195
-MB292 ->Error type:4x4 Luma error:96  Chroma error:686
-MB293 ->Error type:4x4 Luma error:45  Chroma error:147
-MB294 ->Error type:4x4 Luma error:62  Chroma error:90
-MB295 ->Error type:4x4 Luma error:20  Chroma error:68
-MB296 ->Error type:4x4 Luma error:198  Chroma error:499
-MB297 ->Error type:4x4 Luma error:82  Chroma error:66
-MB298 ->Error type:4x4 Luma error:78  Chroma error:50
-MB299 ->Error type:4x4 Luma error:66  Chroma error:103
-MB300 ->Error type:4x4 Luma error:80  Chroma error:104
-MB301 ->Error type:4x4 Luma error:68  Chroma error:182
-MB302 ->Error type:4x4 Luma error:60  Chroma error:35
-MB303 ->Error type:4x4 Luma error:77  Chroma error:91
-MB304 ->Error type:4x4 Luma error:71  Chroma error:82
-MB305 ->Error type:4x4 Luma error:82  Chroma error:78
-MB306 ->Error type:4x4 Luma error:72  Chroma error:89
-MB307 ->Error type:4x4 Luma error:61  Chroma error:50
-MB308 ->Error type:4x4 Luma error:65  Chroma error:59
-MB309 ->Error type:4x4 Luma error:73  Chroma error:53
-MB310 ->Error type:4x4 Luma error:75  Chroma error:82
-MB311 ->Error type:4x4 Luma error:56  Chroma error:83
-MB312 ->Error type:4x4 Luma error:67  Chroma error:488
-MB313 ->Error type:4x4 Luma error:64  Chroma error:64
-MB314 ->Error type:4x4 Luma error:75  Chroma error:99
-MB315 ->Error type:4x4 Luma error:75  Chroma error:84
-MB316 ->Error type:4x4 Luma error:57  Chroma error:80
-MB317 ->Error type:4x4 Luma error:67  Chroma error:65
-MB318 ->Error type:4x4 Luma error:77  Chroma error:51
-MB319 ->Error type:4x4 Luma error:64  Chroma error:76
-MB320 ->Error type:4x4 Luma error:91  Chroma error:223
-MB321 ->Error type:4x4 Luma error:47  Chroma error:65
-MB322 ->Error type:4x4 Luma error:65  Chroma error:52
-MB323 ->Error type:4x4 Luma error:54  Chroma error:57
-MB324 ->Error type:4x4 Luma error:85  Chroma error:45
-MB325 ->Error type:4x4 Luma error:49  Chroma error:32
-MB326 ->Error type:4x4 Luma error:73  Chroma error:21
-MB327 ->Error type:4x4 Luma error:77  Chroma error:41
-MB328 ->Error type:4x4 Luma error:82  Chroma error:132
-MB329 ->Error type:4x4 Luma error:74  Chroma error:538
-MB330 ->Error type:4x4 Luma error:51  Chroma error:195
-MB331 ->Error type:4x4 Luma error:60  Chroma error:112
-MB332 ->Error type:4x4 Luma error:28  Chroma error:68
-MB333 ->Error type:4x4 Luma error:194  Chroma error:469
-MB334 ->Error type:4x4 Luma error:59  Chroma error:52
-MB335 ->Error type:4x4 Luma error:48  Chroma error:79
-MB336 ->Error type:4x4 Luma error:56  Chroma error:91
-MB337 ->Error type:4x4 Luma error:60  Chroma error:69
-MB338 ->Error type:4x4 Luma error:83  Chroma error:210
-MB339 ->Error type:4x4 Luma error:78  Chroma error:47
-MB340 ->Error type:4x4 Luma error:66  Chroma error:60
-MB341 ->Error type:4x4 Luma error:55  Chroma error:101
-MB342 ->Error type:4x4 Luma error:62  Chroma error:77
-MB343 ->Error type:4x4 Luma error:63  Chroma error:70
-MB344 ->Error type:4x4 Luma error:84  Chroma error:88
-MB345 ->Error type:4x4 Luma error:66  Chroma error:52
-MB346 ->Error type:4x4 Luma error:76  Chroma error:50
-MB347 ->Error type:4x4 Luma error:57  Chroma error:45
-MB348 ->Error type:4x4 Luma error:61  Chroma error:427
-MB349 ->Error type:4x4 Luma error:87  Chroma error:71
-MB350 ->Error type:4x4 Luma error:72  Chroma error:51
-MB351 ->Error type:4x4 Luma error:72  Chroma error:90
-MB352 ->Error type:4x4 Luma error:58  Chroma error:30
-MB353 ->Error type:4x4 Luma error:62  Chroma error:79
-MB354 ->Error type:4x4 Luma error:43  Chroma error:58
-MB355 ->Error type:4x4 Luma error:45  Chroma error:65
-MB356 ->Error type:4x4 Luma error:71  Chroma error:49
-MB357 ->Error type:4x4 Luma error:66  Chroma error:211
-MB358 ->Error type:4x4 Luma error:83  Chroma error:96
-MB359 ->Error type:4x4 Luma error:59  Chroma error:52
-MB360 ->Error type:4x4 Luma error:71  Chroma error:49
-MB361 ->Error type:4x4 Luma error:68  Chroma error:29
-MB362 ->Error type:4x4 Luma error:66  Chroma error:32
-MB363 ->Error type:4x4 Luma error:73  Chroma error:66
-MB364 ->Error type:4x4 Luma error:75  Chroma error:140
-MB365 ->Error type:4x4 Luma error:91  Chroma error:85
-MB366 ->Error type:4x4 Luma error:67  Chroma error:153
-MB367 ->Error type:4x4 Luma error:54  Chroma error:511
-MB368 ->Error type:4x4 Luma error:53  Chroma error:108
-MB369 ->Error type:4x4 Luma error:16  Chroma error:54
-MB370 ->Error type:4x4 Luma error:186  Chroma error:502
-MB371 ->Error type:4x4 Luma error:75  Chroma error:53
-MB372 ->Error type:4x4 Luma error:64  Chroma error:68
-MB373 ->Error type:4x4 Luma error:71  Chroma error:52
-MB374 ->Error type:4x4 Luma error:66  Chroma error:86
-MB375 ->Error type:4x4 Luma error:79  Chroma error:344
-MB376 ->Error type:4x4 Luma error:58  Chroma error:74
-MB377 ->Error type:4x4 Luma error:36  Chroma error:72
-MB378 ->Error type:4x4 Luma error:59  Chroma error:77
-MB379 ->Error type:4x4 Luma error:77  Chroma error:59
-MB380 ->Error type:4x4 Luma error:75  Chroma error:56
-MB381 ->Error type:4x4 Luma error:55  Chroma error:48
-MB382 ->Error type:4x4 Luma error:44  Chroma error:31
-MB383 ->Error type:4x4 Luma error:68  Chroma error:32
-MB384 ->Error type:4x4 Luma error:76  Chroma error:56
-MB385 ->Error type:4x4 Luma error:57  Chroma error:533
-MB386 ->Error type:4x4 Luma error:61  Chroma error:59
-MB387 ->Error type:4x4 Luma error:69  Chroma error:68
-MB388 ->Error type:4x4 Luma error:55  Chroma error:52
-MB389 ->Error type:4x4 Luma error:53  Chroma error:77
-MB390 ->Error type:4x4 Luma error:51  Chroma error:44
-MB391 ->Error type:4x4 Luma error:68  Chroma error:63
-MB392 ->Error type:4x4 Luma error:71  Chroma error:49
-MB393 ->Error type:4x4 Luma error:77  Chroma error:45
-MB394 ->Error type:4x4 Luma error:81  Chroma error:167
-MB395 ->Error type:4x4 Luma error:84  Chroma error:75
-MB396 ->Error type:4x4 Luma error:80  Chroma error:61
-MB397 ->Error type:4x4 Luma error:58  Chroma error:60
-MB398 ->Error type:4x4 Luma error:61  Chroma error:73
-MB399 ->Error type:4x4 Luma error:64  Chroma error:47
-MB400 ->Error type:4x4 Luma error:67  Chroma error:79
-MB401 ->Error type:4x4 Luma error:67  Chroma error:93
-MB402 ->Error type:4x4 Luma error:64  Chroma error:123
-MB403 ->Error type:4x4 Luma error:69  Chroma error:126
-MB404 ->Error type:4x4 Luma error:64  Chroma error:527
-MB405 ->Error type:4x4 Luma error:63  Chroma error:129
-MB406 ->Error type:4x4 Luma error:22  Chroma error:96
-MB407 ->Error type:4x4 Luma error:182  Chroma error:446
-MB408 ->Error type:4x4 Luma error:64  Chroma error:55
-MB409 ->Error type:4x4 Luma error:55  Chroma error:165
-MB410 ->Error type:4x4 Luma error:69  Chroma error:287
-MB411 ->Error type:4x4 Luma error:48  Chroma error:146
-MB412 ->Error type:4x4 Luma error:48  Chroma error:43
-MB413 ->Error type:4x4 Luma error:46  Chroma error:417
-MB414 ->Error type:4x4 Luma error:68  Chroma error:449
-MB415 ->Error type:4x4 Luma error:65  Chroma error:40
-MB416 ->Error type:4x4 Luma error:60  Chroma error:50
-MB417 ->Error type:4x4 Luma error:86  Chroma error:71
-MB418 ->Error type:4x4 Luma error:88  Chroma error:72
-MB419 ->Error type:4x4 Luma error:68  Chroma error:24
-MB420 ->Error type:4x4 Luma error:79  Chroma error:51
-MB421 ->Error type:4x4 Luma error:76  Chroma error:503
-MB422 ->Error type:4x4 Luma error:54  Chroma error:79
-MB423 ->Error type:4x4 Luma error:54  Chroma error:55
-MB424 ->Error type:4x4 Luma error:59  Chroma error:48
-MB425 ->Error type:4x4 Luma error:65  Chroma error:69
-MB426 ->Error type:4x4 Luma error:62  Chroma error:67
-MB427 ->Error type:4x4 Luma error:54  Chroma error:103
-MB428 ->Error type:4x4 Luma error:69  Chroma error:68
-MB429 ->Error type:4x4 Luma error:61  Chroma error:54
-MB430 ->Error type:4x4 Luma error:70  Chroma error:43
-MB431 ->Error type:4x4 Luma error:69  Chroma error:186
-MB432 ->Error type:4x4 Luma error:70  Chroma error:76
-MB433 ->Error type:4x4 Luma error:50  Chroma error:78
-MB434 ->Error type:4x4 Luma error:56  Chroma error:80
-MB435 ->Error type:4x4 Luma error:67  Chroma error:48
-MB436 ->Error type:4x4 Luma error:77  Chroma error:61
-MB437 ->Error type:4x4 Luma error:58  Chroma error:42
-MB438 ->Error type:4x4 Luma error:62  Chroma error:100
-MB439 ->Error type:4x4 Luma error:83  Chroma error:97
-MB440 ->Error type:4x4 Luma error:48  Chroma error:146
-MB441 ->Error type:4x4 Luma error:56  Chroma error:220
-MB442 ->Error type:4x4 Luma error:74  Chroma error:448
-MB443 ->Error type:4x4 Luma error:20  Chroma error:130
-MB444 ->Error type:4x4 Luma error:157  Chroma error:335
-MB445 ->Error type:4x4 Luma error:62  Chroma error:246
-MB446 ->Error type:4x4 Luma error:47  Chroma error:159
-MB447 ->Error type:4x4 Luma error:23  Chroma error:79
-MB448 ->Error type:4x4 Luma error:38  Chroma error:67
-MB449 ->Error type:4x4 Luma error:52  Chroma error:63
-MB450 ->Error type:4x4 Luma error:38  Chroma error:119
-MB451 ->Error type:4x4 Luma error:59  Chroma error:539
-MB452 ->Error type:4x4 Luma error:70  Chroma error:343
-MB453 ->Error type:4x4 Luma error:85  Chroma error:32
-MB454 ->Error type:4x4 Luma error:74  Chroma error:47
-MB455 ->Error type:4x4 Luma error:77  Chroma error:35
-MB456 ->Error type:4x4 Luma error:85  Chroma error:44
-MB457 ->Error type:4x4 Luma error:81  Chroma error:94
-MB458 ->Error type:4x4 Luma error:66  Chroma error:516
-MB459 ->Error type:4x4 Luma error:83  Chroma error:78
-MB460 ->Error type:4x4 Luma error:58  Chroma error:69
-MB461 ->Error type:4x4 Luma error:68  Chroma error:37
-MB462 ->Error type:4x4 Luma error:71  Chroma error:43
-MB463 ->Error type:4x4 Luma error:80  Chroma error:81
-MB464 ->Error type:4x4 Luma error:59  Chroma error:60
-MB465 ->Error type:4x4 Luma error:54  Chroma error:63
-MB466 ->Error type:4x4 Luma error:77  Chroma error:34
-MB467 ->Error type:4x4 Luma error:71  Chroma error:56
-MB468 ->Error type:4x4 Luma error:57  Chroma error:110
-MB469 ->Error type:4x4 Luma error:67  Chroma error:102
-MB470 ->Error type:4x4 Luma error:61  Chroma error:101
-MB471 ->Error type:4x4 Luma error:81  Chroma error:86
-MB472 ->Error type:4x4 Luma error:78  Chroma error:72
-MB473 ->Error type:4x4 Luma error:69  Chroma error:47
-MB474 ->Error type:4x4 Luma error:68  Chroma error:34
-MB475 ->Error type:4x4 Luma error:57  Chroma error:46
-MB476 ->Error type:4x4 Luma error:69  Chroma error:102
-MB477 ->Error type:4x4 Luma error:88  Chroma error:158
-MB478 ->Error type:4x4 Luma error:56  Chroma error:179
-MB479 ->Error type:4x4 Luma error:63  Chroma error:215
-MB480 ->Error type:4x4 Luma error:20  Chroma error:250
-MB481 ->Error type:4x4 Luma error:162  Chroma error:1000
-MB482 ->Error type:4x4 Luma error:44  Chroma error:130
-MB483 ->Error type:4x4 Luma error:37  Chroma error:100
-MB484 ->Error type:4x4 Luma error:34  Chroma error:130
-MB485 ->Error type:4x4 Luma error:62  Chroma error:54
-MB486 ->Error type:4x4 Luma error:41  Chroma error:39
-MB487 ->Error type:4x4 Luma error:39  Chroma error:112
-MB488 ->Error type:4x4 Luma error:54  Chroma error:162
-MB489 ->Error type:4x4 Luma error:39  Chroma error:340
-MB490 ->Error type:4x4 Luma error:80  Chroma error:289
-MB491 ->Error type:4x4 Luma error:92  Chroma error:81
-MB492 ->Error type:4x4 Luma error:77  Chroma error:65
-MB493 ->Error type:4x4 Luma error:57  Chroma error:75
-MB494 ->Error type:4x4 Luma error:81  Chroma error:546
-MB495 ->Error type:4x4 Luma error:70  Chroma error:144
-MB496 ->Error type:4x4 Luma error:59  Chroma error:76
-MB497 ->Error type:4x4 Luma error:58  Chroma error:54
-MB498 ->Error type:4x4 Luma error:66  Chroma error:43
-MB499 ->Error type:4x4 Luma error:61  Chroma error:29
-MB500 ->Error type:4x4 Luma error:56  Chroma error:38
-MB501 ->Error type:4x4 Luma error:63  Chroma error:57
-MB502 ->Error type:4x4 Luma error:61  Chroma error:39
-MB503 ->Error type:4x4 Luma error:66  Chroma error:63
-MB504 ->Error type:4x4 Luma error:88  Chroma error:59
-MB505 ->Error type:4x4 Luma error:70  Chroma error:127
-MB506 ->Error type:4x4 Luma error:78  Chroma error:72
-MB507 ->Error type:4x4 Luma error:72  Chroma error:69
-MB508 ->Error type:4x4 Luma error:65  Chroma error:34
-MB509 ->Error type:4x4 Luma error:56  Chroma error:34
-MB510 ->Error type:4x4 Luma error:80  Chroma error:75
-MB511 ->Error type:4x4 Luma error:75  Chroma error:26
-MB512 ->Error type:4x4 Luma error:66  Chroma error:51
-MB513 ->Error type:4x4 Luma error:67  Chroma error:82
-MB514 ->Error type:4x4 Luma error:45  Chroma error:96
-MB515 ->Error type:4x4 Luma error:48  Chroma error:148
-MB516 ->Error type:4x4 Luma error:53  Chroma error:175
-MB517 ->Error type:4x4 Luma error:13  Chroma error:146
-MB518 ->Error type:4x4 Luma error:165  Chroma error:930
-MB519 ->Error type:4x4 Luma error:44  Chroma error:127
-MB520 ->Error type:4x4 Luma error:63  Chroma error:136
-MB521 ->Error type:4x4 Luma error:57  Chroma error:120
-MB522 ->Error type:4x4 Luma error:51  Chroma error:51
-MB523 ->Error type:4x4 Luma error:52  Chroma error:63
-MB524 ->Error type:4x4 Luma error:39  Chroma error:99
-MB525 ->Error type:4x4 Luma error:39  Chroma error:141
-MB526 ->Error type:4x4 Luma error:37  Chroma error:211
-MB527 ->Error type:4x4 Luma error:62  Chroma error:219
-MB528 ->Error type:4x4 Luma error:66  Chroma error:271
-MB529 ->Error type:4x4 Luma error:81  Chroma error:43
-MB530 ->Error type:4x4 Luma error:70  Chroma error:99
-MB531 ->Error type:4x4 Luma error:72  Chroma error:379
-MB532 ->Error type:4x4 Luma error:79  Chroma error:135
-MB533 ->Error type:4x4 Luma error:62  Chroma error:76
-MB534 ->Error type:4x4 Luma error:60  Chroma error:32
-MB535 ->Error type:4x4 Luma error:57  Chroma error:31
-MB536 ->Error type:4x4 Luma error:65  Chroma error:69
-MB537 ->Error type:4x4 Luma error:51  Chroma error:59
-MB538 ->Error type:4x4 Luma error:60  Chroma error:55
-MB539 ->Error type:4x4 Luma error:62  Chroma error:50
-MB540 ->Error type:4x4 Luma error:63  Chroma error:69
-MB541 ->Error type:4x4 Luma error:70  Chroma error:64
-MB542 ->Error type:4x4 Luma error:58  Chroma error:109
-MB543 ->Error type:4x4 Luma error:51  Chroma error:97
-MB544 ->Error type:4x4 Luma error:65  Chroma error:54
-MB545 ->Error type:4x4 Luma error:74  Chroma error:85
-MB546 ->Error type:4x4 Luma error:77  Chroma error:87
-MB547 ->Error type:4x4 Luma error:95  Chroma error:45
-MB548 ->Error type:4x4 Luma error:69  Chroma error:38
-MB549 ->Error type:4x4 Luma error:60  Chroma error:32
-MB550 ->Error type:4x4 Luma error:62  Chroma error:96
-MB551 ->Error type:4x4 Luma error:61  Chroma error:90
-MB552 ->Error type:4x4 Luma error:61  Chroma error:175
-MB553 ->Error type:4x4 Luma error:51  Chroma error:173
-MB554 ->Error type:4x4 Luma error:11  Chroma error:113
-MB555 ->Error type:4x4 Luma error:148  Chroma error:850
-MB556 ->Error type:4x4 Luma error:29  Chroma error:120
-MB557 ->Error type:4x4 Luma error:45  Chroma error:125
-MB558 ->Error type:4x4 Luma error:56  Chroma error:70
-MB559 ->Error type:4x4 Luma error:54  Chroma error:89
-MB560 ->Error type:4x4 Luma error:45  Chroma error:25
-MB561 ->Error type:4x4 Luma error:55  Chroma error:102
-MB562 ->Error type:4x4 Luma error:49  Chroma error:83
-MB563 ->Error type:4x4 Luma error:49  Chroma error:197
-MB564 ->Error type:4x4 Luma error:37  Chroma error:333
-MB565 ->Error type:4x4 Luma error:42  Chroma error:202
-MB566 ->Error type:4x4 Luma error:59  Chroma error:378
-MB567 ->Error type:4x4 Luma error:67  Chroma error:831
-MB568 ->Error type:4x4 Luma error:67  Chroma error:190
-MB569 ->Error type:4x4 Luma error:54  Chroma error:114
-MB570 ->Error type:4x4 Luma error:56  Chroma error:70
-MB571 ->Error type:4x4 Luma error:59  Chroma error:59
-MB572 ->Error type:4x4 Luma error:51  Chroma error:56
-MB573 ->Error type:4x4 Luma error:51  Chroma error:80
-MB574 ->Error type:4x4 Luma error:52  Chroma error:47
-MB575 ->Error type:4x4 Luma error:58  Chroma error:59
-MB576 ->Error type:4x4 Luma error:59  Chroma error:54
-MB577 ->Error type:4x4 Luma error:60  Chroma error:55
-MB578 ->Error type:4x4 Luma error:63  Chroma error:54
-MB579 ->Error type:4x4 Luma error:68  Chroma error:78
-MB580 ->Error type:4x4 Luma error:71  Chroma error:36
-MB581 ->Error type:4x4 Luma error:63  Chroma error:71
-MB582 ->Error type:4x4 Luma error:49  Chroma error:61
-MB583 ->Error type:4x4 Luma error:60  Chroma error:49
-MB584 ->Error type:4x4 Luma error:49  Chroma error:33
-MB585 ->Error type:4x4 Luma error:50  Chroma error:48
-MB586 ->Error type:4x4 Luma error:60  Chroma error:60
-MB587 ->Error type:4x4 Luma error:87  Chroma error:42
-MB588 ->Error type:4x4 Luma error:76  Chroma error:94
-MB589 ->Error type:4x4 Luma error:75  Chroma error:139
-MB590 ->Error type:4x4 Luma error:68  Chroma error:118
-MB591 ->Error type:4x4 Luma error:9  Chroma error:71
-MB592 ->Error type:4x4 Luma error:125  Chroma error:751
-MB593 ->Error type:4x4 Luma error:48  Chroma error:71
-MB594 ->Error type:4x4 Luma error:31  Chroma error:115
-MB595 ->Error type:4x4 Luma error:43  Chroma error:106
-MB596 ->Error type:4x4 Luma error:29  Chroma error:50
-MB597 ->Error type:4x4 Luma error:36  Chroma error:45
-MB598 ->Error type:4x4 Luma error:42  Chroma error:53
-MB599 ->Error type:4x4 Luma error:36  Chroma error:120
-MB600 ->Error type:4x4 Luma error:27  Chroma error:186
-MB601 ->Error type:4x4 Luma error:34  Chroma error:224
-MB602 ->Error type:4x4 Luma error:42  Chroma error:392
-MB603 ->Error type:4x4 Luma error:46  Chroma error:392
-MB604 ->Error type:4x4 Luma error:58  Chroma error:400
-MB605 ->Error type:4x4 Luma error:75  Chroma error:193
-MB606 ->Error type:4x4 Luma error:56  Chroma error:96
-MB607 ->Error type:4x4 Luma error:65  Chroma error:79
-MB608 ->Error type:4x4 Luma error:59  Chroma error:42
-MB609 ->Error type:4x4 Luma error:40  Chroma error:51
-MB610 ->Error type:4x4 Luma error:46  Chroma error:23
-MB611 ->Error type:4x4 Luma error:64  Chroma error:51
-MB612 ->Error type:4x4 Luma error:68  Chroma error:57
-MB613 ->Error type:4x4 Luma error:65  Chroma error:52
-MB614 ->Error type:4x4 Luma error:48  Chroma error:33
-MB615 ->Error type:4x4 Luma error:65  Chroma error:40
-MB616 ->Error type:4x4 Luma error:57  Chroma error:32
-MB617 ->Error type:4x4 Luma error:54  Chroma error:52
-MB618 ->Error type:4x4 Luma error:68  Chroma error:30
-MB619 ->Error type:4x4 Luma error:57  Chroma error:38
-MB620 ->Error type:4x4 Luma error:79  Chroma error:27
-MB621 ->Error type:4x4 Luma error:60  Chroma error:35
-MB622 ->Error type:4x4 Luma error:60  Chroma error:34
-MB623 ->Error type:4x4 Luma error:63  Chroma error:52
-MB624 ->Error type:4x4 Luma error:63  Chroma error:56
-MB625 ->Error type:4x4 Luma error:53  Chroma error:94
-MB626 ->Error type:4x4 Luma error:52  Chroma error:81
-MB627 ->Error type:4x4 Luma error:64  Chroma error:130
-MB628 ->Error type:4x4 Luma error:20  Chroma error:65
-MB629 ->Error type:4x4 Luma error:119  Chroma error:641
-MB630 ->Error type:4x4 Luma error:26  Chroma error:74
-MB631 ->Error type:4x4 Luma error:30  Chroma error:94
-MB632 ->Error type:4x4 Luma error:39  Chroma error:56
-MB633 ->Error type:4x4 Luma error:34  Chroma error:36
-MB634 ->Error type:4x4 Luma error:20  Chroma error:65
-MB635 ->Error type:4x4 Luma error:31  Chroma error:63
-MB636 ->Error type:4x4 Luma error:28  Chroma error:74
-MB637 ->Error type:4x4 Luma error:20  Chroma error:134
-MB638 ->Error type:4x4 Luma error:29  Chroma error:186
-MB639 ->Error type:4x4 Luma error:50  Chroma error:258
-MB640 ->Error type:4x4 Luma error:32  Chroma error:320
-MB641 ->Error type:4x4 Luma error:73  Chroma error:376
-MB642 ->Error type:4x4 Luma error:60  Chroma error:162
-MB643 ->Error type:4x4 Luma error:58  Chroma error:110
-MB644 ->Error type:4x4 Luma error:39  Chroma error:71
-MB645 ->Error type:4x4 Luma error:60  Chroma error:56
-MB646 ->Error type:4x4 Luma error:27  Chroma error:29
-MB647 ->Error type:4x4 Luma error:60  Chroma error:24
-MB648 ->Error type:4x4 Luma error:46  Chroma error:56
-MB649 ->Error type:4x4 Luma error:37  Chroma error:21
-MB650 ->Error type:4x4 Luma error:44  Chroma error:33
-MB651 ->Error type:4x4 Luma error:31  Chroma error:39
-MB652 ->Error type:4x4 Luma error:30  Chroma error:46
-MB653 ->Error type:4x4 Luma error:40  Chroma error:33
-MB654 ->Error type:4x4 Luma error:48  Chroma error:43
-MB655 ->Error type:4x4 Luma error:44  Chroma error:39
-MB656 ->Error type:4x4 Luma error:49  Chroma error:35
-MB657 ->Error type:4x4 Luma error:46  Chroma error:37
-MB658 ->Error type:4x4 Luma error:35  Chroma error:14
-MB659 ->Error type:4x4 Luma error:36  Chroma error:25
-MB660 ->Error type:4x4 Luma error:46  Chroma error:36
-MB661 ->Error type:4x4 Luma error:51  Chroma error:41
-MB662 ->Error type:4x4 Luma error:64  Chroma error:38
-MB663 ->Error type:4x4 Luma error:51  Chroma error:106
-MB664 ->Error type:4x4 Luma error:57  Chroma error:68
-MB665 ->Error type:4x4 Luma error:12  Chroma error:33
-MB666 ->Error type:4x4 Luma error:62  Chroma error:507
-MB667 ->Error type:4x4 Luma error:37  Chroma error:27
-MB668 ->Error type:4x4 Luma error:25  Chroma error:23
-MB669 ->Error type:4x4 Luma error:36  Chroma error:38
-MB670 ->Error type:4x4 Luma error:17  Chroma error:29
-MB671 ->Error type:4x4 Luma error:20  Chroma error:16
-MB672 ->Error type:4x4 Luma error:22  Chroma error:18
-MB673 ->Error type:4x4 Luma error:28  Chroma error:17
-MB674 ->Error type:4x4 Luma error:32  Chroma error:52
-MB675 ->Error type:4x4 Luma error:43  Chroma error:57
-MB676 ->Error type:4x4 Luma error:31  Chroma error:76
-MB677 ->Error type:4x4 Luma error:23  Chroma error:133
-MB678 ->Error type:4x4 Luma error:32  Chroma error:165
-MB679 ->Error type:4x4 Luma error:23  Chroma error:107
-MB680 ->Error type:4x4 Luma error:25  Chroma error:38
-MB681 ->Error type:4x4 Luma error:29  Chroma error:30
-MB682 ->Error type:4x4 Luma error:21  Chroma error:18
-MB683 ->Error type:4x4 Luma error:27  Chroma error:11
-MB684 ->Error type:4x4 Luma error:24  Chroma error:22
-MB685 ->Error type:4x4 Luma error:19  Chroma error:30
-MB686 ->Error type:4x4 Luma error:32  Chroma error:3
-MB687 ->Error type:4x4 Luma error:34  Chroma error:18
-MB688 ->Error type:4x4 Luma error:34  Chroma error:24
-MB689 ->Error type:4x4 Luma error:19  Chroma error:22
-MB690 ->Error type:4x4 Luma error:31  Chroma error:46
-MB691 ->Error type:4x4 Luma error:30  Chroma error:18
-MB692 ->Error type:4x4 Luma error:35  Chroma error:26
-MB693 ->Error type:4x4 Luma error:19  Chroma error:23
-MB694 ->Error type:4x4 Luma error:35  Chroma error:11
-MB695 ->Error type:4x4 Luma error:13  Chroma error:3
-MB696 ->Error type:4x4 Luma error:10  Chroma error:8
-MB697 ->Error type:4x4 Luma error:22  Chroma error:24
-MB698 ->Error type:4x4 Luma error:26  Chroma error:27
-MB699 ->Error type:4x4 Luma error:33  Chroma error:46
-MB700 ->Error type:4x4 Luma error:34  Chroma error:46
-MB701 ->Error type:4x4 Luma error:31  Chroma error:35
-MB702 ->Error type:4x4 Luma error:12  Chroma error:29
+MB 0 (4x4) -> Y = 1744 | CbCr = 318
+MB 1 (4x4) -> Y = 43 | CbCr = 53
+MB 2 (4x4) -> Y = 30 | CbCr = 7
+MB 3 (4x4) -> Y = 52 | CbCr = 49
+MB 4 (4x4) -> Y = 46 | CbCr = 38
+MB 5 (4x4) -> Y = 45 | CbCr = 61
+MB 6 (4x4) -> Y = 42 | CbCr = 43
+MB 7 (4x4) -> Y = 42 | CbCr = 29
+MB 8 (4x4) -> Y = 44 | CbCr = 49
+MB 9 (4x4) -> Y = 53 | CbCr = 34
+MB 10 (4x4) -> Y = 39 | CbCr = 7
+MB 11 (4x4) -> Y = 27 | CbCr = 7
+MB 12 (4x4) -> Y = 38 | CbCr = 27
+MB 13 (4x4) -> Y = 42 | CbCr = 29
+MB 14 (4x4) -> Y = 44 | CbCr = 40
+MB 15 (4x4) -> Y = 34 | CbCr = 69
+MB 16 (4x4) -> Y = 45 | CbCr = 94
+MB 17 (4x4) -> Y = 42 | CbCr = 111
+MB 18 (4x4) -> Y = 34 | CbCr = 61
+MB 19 (4x4) -> Y = 25 | CbCr = 73
+MB 20 (4x4) -> Y = 42 | CbCr = 66
+MB 21 (4x4) -> Y = 32 | CbCr = 91
+MB 22 (4x4) -> Y = 39 | CbCr = 54
+MB 23 (16x16) -> Y = 32 | CbCr = 42
+MB 24 (4x4) -> Y = 41 | CbCr = 45
+MB 25 (4x4) -> Y = 43 | CbCr = 60
+MB 26 (4x4) -> Y = 36 | CbCr = 114
+MB 27 (4x4) -> Y = 33 | CbCr = 155
+MB 28 (4x4) -> Y = 32 | CbCr = 223
+MB 29 (4x4) -> Y = 34 | CbCr = 285
+MB 30 (4x4) -> Y = 49 | CbCr = 263
+MB 31 (4x4) -> Y = 47 | CbCr = 358
+MB 32 (4x4) -> Y = 43 | CbCr = 196
+MB 33 (4x4) -> Y = 41 | CbCr = 112
+MB 34 (4x4) -> Y = 44 | CbCr = 66
+MB 35 (4x4) -> Y = 32 | CbCr = 41
+MB 36 (4x4) -> Y = 13 | CbCr = 20
+MB 37 (4x4) -> Y = 100 | CbCr = 250
+MB 38 (4x4) -> Y = 45 | CbCr = 37
+MB 39 (16x16) -> Y = 35 | CbCr = 28
+MB 40 (4x4) -> Y = 46 | CbCr = 43
+MB 41 (4x4) -> Y = 50 | CbCr = 34
+MB 42 (4x4) -> Y = 53 | CbCr = 27
+MB 43 (16x16) -> Y = 46 | CbCr = 40
+MB 44 (4x4) -> Y = 62 | CbCr = 74
+MB 45 (4x4) -> Y = 54 | CbCr = 35
+MB 46 (4x4) -> Y = 64 | CbCr = 29
+MB 47 (4x4) -> Y = 38 | CbCr = 43
+MB 48 (4x4) -> Y = 52 | CbCr = 34
+MB 49 (4x4) -> Y = 46 | CbCr = 31
+MB 50 (4x4) -> Y = 53 | CbCr = 42
+MB 51 (16x16) -> Y = 34 | CbCr = 53
+MB 52 (4x4) -> Y = 61 | CbCr = 76
+MB 53 (4x4) -> Y = 50 | CbCr = 84
+MB 54 (16x16) -> Y = 36 | CbCr = 100
+MB 55 (4x4) -> Y = 53 | CbCr = 54
+MB 56 (16x16) -> Y = 40 | CbCr = 93
+MB 57 (4x4) -> Y = 52 | CbCr = 107
+MB 58 (16x16) -> Y = 43 | CbCr = 37
+MB 59 (16x16) -> Y = 39 | CbCr = 48
+MB 60 (16x16) -> Y = 23 | CbCr = 84
+MB 61 (4x4) -> Y = 30 | CbCr = 41
+MB 62 (4x4) -> Y = 33 | CbCr = 82
+MB 63 (16x16) -> Y = 27 | CbCr = 52
+MB 64 (16x16) -> Y = 26 | CbCr = 118
+MB 65 (4x4) -> Y = 47 | CbCr = 186
+MB 66 (4x4) -> Y = 46 | CbCr = 210
+MB 67 (16x16) -> Y = 49 | CbCr = 443
+MB 68 (4x4) -> Y = 58 | CbCr = 404
+MB 69 (4x4) -> Y = 56 | CbCr = 196
+MB 70 (16x16) -> Y = 58 | CbCr = 99
+MB 71 (4x4) -> Y = 39 | CbCr = 56
+MB 72 (4x4) -> Y = 39 | CbCr = 30
+MB 73 (4x4) -> Y = 6 | CbCr = 20
+MB 74 (4x4) -> Y = 115 | CbCr = 305
+MB 75 (16x16) -> Y = 41 | CbCr = 45
+MB 76 (16x16) -> Y = 52 | CbCr = 67
+MB 77 (16x16) -> Y = 47 | CbCr = 51
+MB 78 (16x16) -> Y = 64 | CbCr = 53
+MB 79 (4x4) -> Y = 64 | CbCr = 56
+MB 80 (4x4) -> Y = 58 | CbCr = 72
+MB 81 (16x16) -> Y = 51 | CbCr = 58
+MB 82 (16x16) -> Y = 45 | CbCr = 39
+MB 83 (4x4) -> Y = 67 | CbCr = 42
+MB 84 (4x4) -> Y = 74 | CbCr = 59
+MB 85 (4x4) -> Y = 49 | CbCr = 65
+MB 86 (4x4) -> Y = 60 | CbCr = 43
+MB 87 (16x16) -> Y = 59 | CbCr = 62
+MB 88 (16x16) -> Y = 53 | CbCr = 49
+MB 89 (4x4) -> Y = 51 | CbCr = 68
+MB 90 (4x4) -> Y = 56 | CbCr = 95
+MB 91 (4x4) -> Y = 71 | CbCr = 141
+MB 92 (16x16) -> Y = 47 | CbCr = 62
+MB 93 (4x4) -> Y = 51 | CbCr = 180
+MB 94 (4x4) -> Y = 51 | CbCr = 58
+MB 95 (4x4) -> Y = 50 | CbCr = 112
+MB 96 (16x16) -> Y = 48 | CbCr = 96
+MB 97 (16x16) -> Y = 44 | CbCr = 56
+MB 98 (4x4) -> Y = 30 | CbCr = 42
+MB 99 (4x4) -> Y = 47 | CbCr = 76
+MB 100 (4x4) -> Y = 26 | CbCr = 93
+MB 101 (16x16) -> Y = 38 | CbCr = 135
+MB 102 (16x16) -> Y = 44 | CbCr = 186
+MB 103 (16x16) -> Y = 38 | CbCr = 315
+MB 104 (16x16) -> Y = 56 | CbCr = 649
+MB 105 (4x4) -> Y = 69 | CbCr = 451
+MB 106 (4x4) -> Y = 70 | CbCr = 259
+MB 107 (16x16) -> Y = 65 | CbCr = 134
+MB 108 (16x16) -> Y = 58 | CbCr = 70
+MB 109 (4x4) -> Y = 42 | CbCr = 42
+MB 110 (4x4) -> Y = 11 | CbCr = 46
+MB 111 (4x4) -> Y = 150 | CbCr = 364
+MB 112 (16x16) -> Y = 61 | CbCr = 37
+MB 113 (16x16) -> Y = 61 | CbCr = 64
+MB 114 (16x16) -> Y = 71 | CbCr = 54
+MB 115 (4x4) -> Y = 66 | CbCr = 61
+MB 116 (4x4) -> Y = 68 | CbCr = 45
+MB 117 (4x4) -> Y = 72 | CbCr = 34
+MB 118 (16x16) -> Y = 48 | CbCr = 45
+MB 119 (4x4) -> Y = 55 | CbCr = 61
+MB 120 (4x4) -> Y = 59 | CbCr = 59
+MB 121 (4x4) -> Y = 59 | CbCr = 54
+MB 122 (16x16) -> Y = 54 | CbCr = 56
+MB 123 (16x16) -> Y = 51 | CbCr = 36
+MB 124 (4x4) -> Y = 74 | CbCr = 48
+MB 125 (4x4) -> Y = 67 | CbCr = 40
+MB 126 (16x16) -> Y = 57 | CbCr = 54
+MB 127 (16x16) -> Y = 64 | CbCr = 86
+MB 128 (4x4) -> Y = 62 | CbCr = 171
+MB 129 (16x16) -> Y = 30 | CbCr = 124
+MB 130 (4x4) -> Y = 50 | CbCr = 109
+MB 131 (4x4) -> Y = 58 | CbCr = 75
+MB 132 (16x16) -> Y = 46 | CbCr = 119
+MB 133 (4x4) -> Y = 52 | CbCr = 75
+MB 134 (4x4) -> Y = 52 | CbCr = 64
+MB 135 (4x4) -> Y = 40 | CbCr = 80
+MB 136 (4x4) -> Y = 38 | CbCr = 72
+MB 137 (4x4) -> Y = 47 | CbCr = 101
+MB 138 (16x16) -> Y = 25 | CbCr = 105
+MB 139 (4x4) -> Y = 44 | CbCr = 212
+MB 140 (4x4) -> Y = 70 | CbCr = 507
+MB 141 (4x4) -> Y = 58 | CbCr = 355
+MB 142 (4x4) -> Y = 76 | CbCr = 452
+MB 143 (4x4) -> Y = 73 | CbCr = 318
+MB 144 (16x16) -> Y = 56 | CbCr = 140
+MB 145 (16x16) -> Y = 54 | CbCr = 92
+MB 146 (16x16) -> Y = 52 | CbCr = 44
+MB 147 (4x4) -> Y = 12 | CbCr = 19
+MB 148 (4x4) -> Y = 142 | CbCr = 395
+MB 149 (16x16) -> Y = 56 | CbCr = 58
+MB 150 (16x16) -> Y = 51 | CbCr = 51
+MB 151 (4x4) -> Y = 61 | CbCr = 106
+MB 152 (16x16) -> Y = 74 | CbCr = 27
+MB 153 (4x4) -> Y = 66 | CbCr = 82
+MB 154 (4x4) -> Y = 64 | CbCr = 31
+MB 155 (16x16) -> Y = 58 | CbCr = 40
+MB 156 (16x16) -> Y = 71 | CbCr = 38
+MB 157 (4x4) -> Y = 69 | CbCr = 50
+MB 158 (4x4) -> Y = 73 | CbCr = 42
+MB 159 (16x16) -> Y = 70 | CbCr = 26
+MB 160 (4x4) -> Y = 66 | CbCr = 25
+MB 161 (4x4) -> Y = 79 | CbCr = 41
+MB 162 (16x16) -> Y = 62 | CbCr = 43
+MB 163 (4x4) -> Y = 62 | CbCr = 82
+MB 164 (16x16) -> Y = 73 | CbCr = 106
+MB 165 (16x16) -> Y = 58 | CbCr = 245
+MB 166 (16x16) -> Y = 38 | CbCr = 67
+MB 167 (4x4) -> Y = 45 | CbCr = 99
+MB 168 (4x4) -> Y = 47 | CbCr = 104
+MB 169 (16x16) -> Y = 53 | CbCr = 102
+MB 170 (16x16) -> Y = 37 | CbCr = 144
+MB 171 (16x16) -> Y = 39 | CbCr = 86
+MB 172 (4x4) -> Y = 45 | CbCr = 34
+MB 173 (16x16) -> Y = 40 | CbCr = 57
+MB 174 (16x16) -> Y = 37 | CbCr = 89
+MB 175 (4x4) -> Y = 41 | CbCr = 144
+MB 176 (4x4) -> Y = 42 | CbCr = 621
+MB 177 (4x4) -> Y = 80 | CbCr = 46
+MB 178 (16x16) -> Y = 57 | CbCr = 59
+MB 179 (4x4) -> Y = 66 | CbCr = 595
+MB 180 (4x4) -> Y = 76 | CbCr = 391
+MB 181 (16x16) -> Y = 67 | CbCr = 177
+MB 182 (16x16) -> Y = 47 | CbCr = 112
+MB 183 (16x16) -> Y = 46 | CbCr = 81
+MB 184 (4x4) -> Y = 10 | CbCr = 52
+MB 185 (4x4) -> Y = 157 | CbCr = 408
+MB 186 (16x16) -> Y = 60 | CbCr = 46
+MB 187 (16x16) -> Y = 58 | CbCr = 53
+MB 188 (16x16) -> Y = 59 | CbCr = 67
+MB 189 (16x16) -> Y = 52 | CbCr = 64
+MB 190 (4x4) -> Y = 73 | CbCr = 114
+MB 191 (16x16) -> Y = 78 | CbCr = 66
+MB 192 (4x4) -> Y = 62 | CbCr = 37
+MB 193 (16x16) -> Y = 40 | CbCr = 66
+MB 194 (4x4) -> Y = 65 | CbCr = 55
+MB 195 (16x16) -> Y = 78 | CbCr = 39
+MB 196 (16x16) -> Y = 55 | CbCr = 51
+MB 197 (16x16) -> Y = 50 | CbCr = 30
+MB 198 (4x4) -> Y = 82 | CbCr = 38
+MB 199 (4x4) -> Y = 67 | CbCr = 68
+MB 200 (4x4) -> Y = 79 | CbCr = 48
+MB 201 (16x16) -> Y = 72 | CbCr = 121
+MB 202 (4x4) -> Y = 72 | CbCr = 291
+MB 203 (16x16) -> Y = 69 | CbCr = 60
+MB 204 (16x16) -> Y = 47 | CbCr = 80
+MB 205 (4x4) -> Y = 46 | CbCr = 131
+MB 206 (16x16) -> Y = 46 | CbCr = 167
+MB 207 (16x16) -> Y = 43 | CbCr = 112
+MB 208 (16x16) -> Y = 47 | CbCr = 71
+MB 209 (16x16) -> Y = 35 | CbCr = 46
+MB 210 (16x16) -> Y = 41 | CbCr = 63
+MB 211 (16x16) -> Y = 34 | CbCr = 104
+MB 212 (16x16) -> Y = 56 | CbCr = 581
+MB 213 (16x16) -> Y = 58 | CbCr = 47
+MB 214 (4x4) -> Y = 59 | CbCr = 32
+MB 215 (16x16) -> Y = 64 | CbCr = 59
+MB 216 (16x16) -> Y = 60 | CbCr = 267
+MB 217 (4x4) -> Y = 84 | CbCr = 794
+MB 218 (16x16) -> Y = 43 | CbCr = 180
+MB 219 (4x4) -> Y = 63 | CbCr = 138
+MB 220 (16x16) -> Y = 52 | CbCr = 55
+MB 221 (4x4) -> Y = 12 | CbCr = 43
+MB 222 (4x4) -> Y = 169 | CbCr = 460
+MB 223 (4x4) -> Y = 60 | CbCr = 43
+MB 224 (4x4) -> Y = 53 | CbCr = 77
+MB 225 (16x16) -> Y = 58 | CbCr = 51
+MB 226 (16x16) -> Y = 46 | CbCr = 81
+MB 227 (4x4) -> Y = 55 | CbCr = 160
+MB 228 (16x16) -> Y = 70 | CbCr = 53
+MB 229 (16x16) -> Y = 45 | CbCr = 94
+MB 230 (16x16) -> Y = 39 | CbCr = 49
+MB 231 (16x16) -> Y = 32 | CbCr = 81
+MB 232 (16x16) -> Y = 50 | CbCr = 47
+MB 233 (16x16) -> Y = 42 | CbCr = 56
+MB 234 (4x4) -> Y = 52 | CbCr = 18
+MB 235 (16x16) -> Y = 59 | CbCr = 34
+MB 236 (4x4) -> Y = 61 | CbCr = 77
+MB 237 (4x4) -> Y = 45 | CbCr = 111
+MB 238 (16x16) -> Y = 66 | CbCr = 126
+MB 239 (16x16) -> Y = 62 | CbCr = 390
+MB 240 (16x16) -> Y = 69 | CbCr = 382
+MB 241 (4x4) -> Y = 61 | CbCr = 400
+MB 242 (16x16) -> Y = 30 | CbCr = 234
+MB 243 (16x16) -> Y = 76 | CbCr = 157
+MB 244 (4x4) -> Y = 36 | CbCr = 84
+MB 245 (16x16) -> Y = 45 | CbCr = 68
+MB 246 (16x16) -> Y = 38 | CbCr = 39
+MB 247 (16x16) -> Y = 40 | CbCr = 78
+MB 248 (4x4) -> Y = 58 | CbCr = 543
+MB 249 (4x4) -> Y = 73 | CbCr = 44
+MB 250 (4x4) -> Y = 73 | CbCr = 31
+MB 251 (16x16) -> Y = 62 | CbCr = 31
+MB 252 (4x4) -> Y = 73 | CbCr = 38
+MB 253 (4x4) -> Y = 57 | CbCr = 81
+MB 254 (4x4) -> Y = 72 | CbCr = 589
+MB 255 (16x16) -> Y = 59 | CbCr = 251
+MB 256 (16x16) -> Y = 54 | CbCr = 97
+MB 257 (16x16) -> Y = 62 | CbCr = 77
+MB 258 (4x4) -> Y = 14 | CbCr = 37
+MB 259 (4x4) -> Y = 190 | CbCr = 470
+MB 260 (16x16) -> Y = 59 | CbCr = 50
+MB 261 (16x16) -> Y = 50 | CbCr = 45
+MB 262 (16x16) -> Y = 53 | CbCr = 55
+MB 263 (16x16) -> Y = 52 | CbCr = 121
+MB 264 (16x16) -> Y = 64 | CbCr = 168
+MB 265 (4x4) -> Y = 65 | CbCr = 74
+MB 266 (16x16) -> Y = 55 | CbCr = 55
+MB 267 (16x16) -> Y = 65 | CbCr = 54
+MB 268 (16x16) -> Y = 61 | CbCr = 56
+MB 269 (4x4) -> Y = 79 | CbCr = 49
+MB 270 (16x16) -> Y = 58 | CbCr = 47
+MB 271 (4x4) -> Y = 49 | CbCr = 23
+MB 272 (4x4) -> Y = 62 | CbCr = 37
+MB 273 (4x4) -> Y = 36 | CbCr = 71
+MB 274 (16x16) -> Y = 55 | CbCr = 116
+MB 275 (4x4) -> Y = 57 | CbCr = 212
+MB 276 (16x16) -> Y = 69 | CbCr = 128
+MB 277 (4x4) -> Y = 52 | CbCr = 51
+MB 278 (16x16) -> Y = 58 | CbCr = 104
+MB 279 (4x4) -> Y = 74 | CbCr = 174
+MB 280 (4x4) -> Y = 48 | CbCr = 241
+MB 281 (4x4) -> Y = 49 | CbCr = 516
+MB 282 (16x16) -> Y = 72 | CbCr = 378
+MB 283 (16x16) -> Y = 65 | CbCr = 85
+MB 284 (4x4) -> Y = 60 | CbCr = 436
+MB 285 (4x4) -> Y = 56 | CbCr = 62
+MB 286 (4x4) -> Y = 69 | CbCr = 48
+MB 287 (16x16) -> Y = 69 | CbCr = 55
+MB 288 (16x16) -> Y = 65 | CbCr = 31
+MB 289 (16x16) -> Y = 49 | CbCr = 52
+MB 290 (16x16) -> Y = 61 | CbCr = 78
+MB 291 (4x4) -> Y = 66 | CbCr = 195
+MB 292 (16x16) -> Y = 68 | CbCr = 686
+MB 293 (4x4) -> Y = 45 | CbCr = 147
+MB 294 (16x16) -> Y = 59 | CbCr = 90
+MB 295 (4x4) -> Y = 20 | CbCr = 68
+MB 296 (4x4) -> Y = 198 | CbCr = 499
+MB 297 (16x16) -> Y = 80 | CbCr = 66
+MB 298 (4x4) -> Y = 78 | CbCr = 50
+MB 299 (16x16) -> Y = 60 | CbCr = 103
+MB 300 (4x4) -> Y = 80 | CbCr = 104
+MB 301 (4x4) -> Y = 68 | CbCr = 182
+MB 302 (4x4) -> Y = 60 | CbCr = 35
+MB 303 (16x16) -> Y = 77 | CbCr = 91
+MB 304 (16x16) -> Y = 67 | CbCr = 82
+MB 305 (4x4) -> Y = 82 | CbCr = 78
+MB 306 (4x4) -> Y = 72 | CbCr = 89
+MB 307 (16x16) -> Y = 41 | CbCr = 50
+MB 308 (16x16) -> Y = 45 | CbCr = 59
+MB 309 (16x16) -> Y = 67 | CbCr = 53
+MB 310 (4x4) -> Y = 75 | CbCr = 82
+MB 311 (16x16) -> Y = 55 | CbCr = 83
+MB 312 (4x4) -> Y = 67 | CbCr = 488
+MB 313 (16x16) -> Y = 62 | CbCr = 64
+MB 314 (16x16) -> Y = 67 | CbCr = 99
+MB 315 (4x4) -> Y = 75 | CbCr = 84
+MB 316 (16x16) -> Y = 53 | CbCr = 80
+MB 317 (16x16) -> Y = 61 | CbCr = 65
+MB 318 (16x16) -> Y = 77 | CbCr = 51
+MB 319 (4x4) -> Y = 64 | CbCr = 76
+MB 320 (16x16) -> Y = 48 | CbCr = 223
+MB 321 (4x4) -> Y = 47 | CbCr = 65
+MB 322 (16x16) -> Y = 58 | CbCr = 52
+MB 323 (4x4) -> Y = 54 | CbCr = 57
+MB 324 (16x16) -> Y = 61 | CbCr = 45
+MB 325 (4x4) -> Y = 49 | CbCr = 32
+MB 326 (16x16) -> Y = 50 | CbCr = 21
+MB 327 (4x4) -> Y = 77 | CbCr = 41
+MB 328 (4x4) -> Y = 82 | CbCr = 132
+MB 329 (4x4) -> Y = 74 | CbCr = 538
+MB 330 (16x16) -> Y = 41 | CbCr = 195
+MB 331 (16x16) -> Y = 50 | CbCr = 112
+MB 332 (4x4) -> Y = 28 | CbCr = 68
+MB 333 (4x4) -> Y = 194 | CbCr = 469
+MB 334 (16x16) -> Y = 55 | CbCr = 52
+MB 335 (16x16) -> Y = 48 | CbCr = 79
+MB 336 (16x16) -> Y = 54 | CbCr = 91
+MB 337 (4x4) -> Y = 60 | CbCr = 69
+MB 338 (16x16) -> Y = 79 | CbCr = 210
+MB 339 (4x4) -> Y = 78 | CbCr = 47
+MB 340 (4x4) -> Y = 66 | CbCr = 60
+MB 341 (4x4) -> Y = 55 | CbCr = 101
+MB 342 (16x16) -> Y = 60 | CbCr = 77
+MB 343 (4x4) -> Y = 63 | CbCr = 70
+MB 344 (16x16) -> Y = 64 | CbCr = 88
+MB 345 (4x4) -> Y = 66 | CbCr = 52
+MB 346 (4x4) -> Y = 76 | CbCr = 50
+MB 347 (16x16) -> Y = 50 | CbCr = 45
+MB 348 (4x4) -> Y = 61 | CbCr = 427
+MB 349 (16x16) -> Y = 66 | CbCr = 71
+MB 350 (4x4) -> Y = 72 | CbCr = 51
+MB 351 (16x16) -> Y = 71 | CbCr = 90
+MB 352 (16x16) -> Y = 56 | CbCr = 30
+MB 353 (16x16) -> Y = 48 | CbCr = 79
+MB 354 (16x16) -> Y = 33 | CbCr = 58
+MB 355 (4x4) -> Y = 45 | CbCr = 65
+MB 356 (16x16) -> Y = 69 | CbCr = 49
+MB 357 (16x16) -> Y = 62 | CbCr = 211
+MB 358 (4x4) -> Y = 83 | CbCr = 96
+MB 359 (4x4) -> Y = 59 | CbCr = 52
+MB 360 (16x16) -> Y = 65 | CbCr = 49
+MB 361 (16x16) -> Y = 62 | CbCr = 29
+MB 362 (16x16) -> Y = 59 | CbCr = 32
+MB 363 (16x16) -> Y = 55 | CbCr = 66
+MB 364 (16x16) -> Y = 63 | CbCr = 140
+MB 365 (4x4) -> Y = 91 | CbCr = 85
+MB 366 (16x16) -> Y = 54 | CbCr = 153
+MB 367 (16x16) -> Y = 52 | CbCr = 511
+MB 368 (4x4) -> Y = 53 | CbCr = 108
+MB 369 (4x4) -> Y = 16 | CbCr = 54
+MB 370 (4x4) -> Y = 186 | CbCr = 502
+MB 371 (16x16) -> Y = 59 | CbCr = 53
+MB 372 (16x16) -> Y = 60 | CbCr = 68
+MB 373 (16x16) -> Y = 63 | CbCr = 52
+MB 374 (4x4) -> Y = 66 | CbCr = 86
+MB 375 (16x16) -> Y = 57 | CbCr = 344
+MB 376 (16x16) -> Y = 52 | CbCr = 74
+MB 377 (4x4) -> Y = 36 | CbCr = 72
+MB 378 (16x16) -> Y = 49 | CbCr = 77
+MB 379 (16x16) -> Y = 60 | CbCr = 59
+MB 380 (4x4) -> Y = 75 | CbCr = 56
+MB 381 (4x4) -> Y = 55 | CbCr = 48
+MB 382 (16x16) -> Y = 42 | CbCr = 31
+MB 383 (4x4) -> Y = 68 | CbCr = 32
+MB 384 (16x16) -> Y = 57 | CbCr = 56
+MB 385 (4x4) -> Y = 57 | CbCr = 533
+MB 386 (16x16) -> Y = 57 | CbCr = 59
+MB 387 (16x16) -> Y = 59 | CbCr = 68
+MB 388 (4x4) -> Y = 55 | CbCr = 52
+MB 389 (4x4) -> Y = 53 | CbCr = 77
+MB 390 (4x4) -> Y = 51 | CbCr = 44
+MB 391 (16x16) -> Y = 58 | CbCr = 63
+MB 392 (16x16) -> Y = 55 | CbCr = 49
+MB 393 (16x16) -> Y = 74 | CbCr = 45
+MB 394 (16x16) -> Y = 78 | CbCr = 167
+MB 395 (16x16) -> Y = 73 | CbCr = 75
+MB 396 (16x16) -> Y = 54 | CbCr = 61
+MB 397 (4x4) -> Y = 58 | CbCr = 60
+MB 398 (16x16) -> Y = 41 | CbCr = 73
+MB 399 (4x4) -> Y = 64 | CbCr = 47
+MB 400 (16x16) -> Y = 65 | CbCr = 79
+MB 401 (16x16) -> Y = 65 | CbCr = 93
+MB 402 (4x4) -> Y = 64 | CbCr = 123
+MB 403 (16x16) -> Y = 66 | CbCr = 126
+MB 404 (16x16) -> Y = 58 | CbCr = 527
+MB 405 (16x16) -> Y = 53 | CbCr = 129
+MB 406 (4x4) -> Y = 22 | CbCr = 96
+MB 407 (4x4) -> Y = 182 | CbCr = 446
+MB 408 (16x16) -> Y = 58 | CbCr = 55
+MB 409 (4x4) -> Y = 55 | CbCr = 165
+MB 410 (4x4) -> Y = 69 | CbCr = 287
+MB 411 (4x4) -> Y = 48 | CbCr = 146
+MB 412 (16x16) -> Y = 46 | CbCr = 43
+MB 413 (4x4) -> Y = 46 | CbCr = 417
+MB 414 (4x4) -> Y = 68 | CbCr = 449
+MB 415 (4x4) -> Y = 65 | CbCr = 40
+MB 416 (4x4) -> Y = 60 | CbCr = 50
+MB 417 (16x16) -> Y = 78 | CbCr = 71
+MB 418 (16x16) -> Y = 68 | CbCr = 72
+MB 419 (4x4) -> Y = 68 | CbCr = 24
+MB 420 (4x4) -> Y = 79 | CbCr = 51
+MB 421 (16x16) -> Y = 65 | CbCr = 503
+MB 422 (4x4) -> Y = 54 | CbCr = 79
+MB 423 (16x16) -> Y = 50 | CbCr = 55
+MB 424 (4x4) -> Y = 59 | CbCr = 48
+MB 425 (16x16) -> Y = 60 | CbCr = 69
+MB 426 (16x16) -> Y = 48 | CbCr = 67
+MB 427 (16x16) -> Y = 54 | CbCr = 103
+MB 428 (16x16) -> Y = 63 | CbCr = 68
+MB 429 (16x16) -> Y = 48 | CbCr = 54
+MB 430 (4x4) -> Y = 70 | CbCr = 43
+MB 431 (4x4) -> Y = 69 | CbCr = 186
+MB 432 (4x4) -> Y = 70 | CbCr = 76
+MB 433 (16x16) -> Y = 48 | CbCr = 78
+MB 434 (16x16) -> Y = 52 | CbCr = 80
+MB 435 (16x16) -> Y = 61 | CbCr = 48
+MB 436 (4x4) -> Y = 77 | CbCr = 61
+MB 437 (4x4) -> Y = 58 | CbCr = 42
+MB 438 (16x16) -> Y = 58 | CbCr = 100
+MB 439 (4x4) -> Y = 83 | CbCr = 97
+MB 440 (16x16) -> Y = 48 | CbCr = 146
+MB 441 (16x16) -> Y = 48 | CbCr = 220
+MB 442 (16x16) -> Y = 66 | CbCr = 448
+MB 443 (4x4) -> Y = 20 | CbCr = 130
+MB 444 (4x4) -> Y = 157 | CbCr = 335
+MB 445 (16x16) -> Y = 52 | CbCr = 246
+MB 446 (4x4) -> Y = 47 | CbCr = 159
+MB 447 (4x4) -> Y = 23 | CbCr = 79
+MB 448 (4x4) -> Y = 38 | CbCr = 67
+MB 449 (16x16) -> Y = 30 | CbCr = 63
+MB 450 (16x16) -> Y = 32 | CbCr = 119
+MB 451 (16x16) -> Y = 47 | CbCr = 539
+MB 452 (16x16) -> Y = 50 | CbCr = 343
+MB 453 (4x4) -> Y = 85 | CbCr = 32
+MB 454 (4x4) -> Y = 74 | CbCr = 47
+MB 455 (16x16) -> Y = 58 | CbCr = 35
+MB 456 (16x16) -> Y = 65 | CbCr = 44
+MB 457 (4x4) -> Y = 81 | CbCr = 94
+MB 458 (4x4) -> Y = 66 | CbCr = 516
+MB 459 (16x16) -> Y = 65 | CbCr = 78
+MB 460 (4x4) -> Y = 58 | CbCr = 69
+MB 461 (16x16) -> Y = 60 | CbCr = 37
+MB 462 (16x16) -> Y = 54 | CbCr = 43
+MB 463 (4x4) -> Y = 80 | CbCr = 81
+MB 464 (4x4) -> Y = 59 | CbCr = 60
+MB 465 (16x16) -> Y = 53 | CbCr = 63
+MB 466 (16x16) -> Y = 52 | CbCr = 34
+MB 467 (16x16) -> Y = 53 | CbCr = 56
+MB 468 (16x16) -> Y = 57 | CbCr = 110
+MB 469 (16x16) -> Y = 59 | CbCr = 102
+MB 470 (16x16) -> Y = 53 | CbCr = 101
+MB 471 (16x16) -> Y = 61 | CbCr = 86
+MB 472 (4x4) -> Y = 78 | CbCr = 72
+MB 473 (4x4) -> Y = 69 | CbCr = 47
+MB 474 (16x16) -> Y = 46 | CbCr = 34
+MB 475 (4x4) -> Y = 57 | CbCr = 46
+MB 476 (4x4) -> Y = 69 | CbCr = 102
+MB 477 (16x16) -> Y = 70 | CbCr = 158
+MB 478 (16x16) -> Y = 50 | CbCr = 179
+MB 479 (16x16) -> Y = 61 | CbCr = 215
+MB 480 (4x4) -> Y = 20 | CbCr = 250
+MB 481 (4x4) -> Y = 162 | CbCr = 1000
+MB 482 (16x16) -> Y = 36 | CbCr = 130
+MB 483 (16x16) -> Y = 29 | CbCr = 100
+MB 484 (16x16) -> Y = 30 | CbCr = 130
+MB 485 (16x16) -> Y = 44 | CbCr = 54
+MB 486 (16x16) -> Y = 35 | CbCr = 39
+MB 487 (16x16) -> Y = 33 | CbCr = 112
+MB 488 (4x4) -> Y = 54 | CbCr = 162
+MB 489 (4x4) -> Y = 39 | CbCr = 340
+MB 490 (16x16) -> Y = 80 | CbCr = 289
+MB 491 (16x16) -> Y = 63 | CbCr = 81
+MB 492 (16x16) -> Y = 70 | CbCr = 65
+MB 493 (4x4) -> Y = 57 | CbCr = 75
+MB 494 (4x4) -> Y = 81 | CbCr = 546
+MB 495 (16x16) -> Y = 55 | CbCr = 144
+MB 496 (16x16) -> Y = 50 | CbCr = 76
+MB 497 (4x4) -> Y = 58 | CbCr = 54
+MB 498 (16x16) -> Y = 55 | CbCr = 43
+MB 499 (4x4) -> Y = 61 | CbCr = 29
+MB 500 (16x16) -> Y = 48 | CbCr = 38
+MB 501 (16x16) -> Y = 49 | CbCr = 57
+MB 502 (4x4) -> Y = 61 | CbCr = 39
+MB 503 (16x16) -> Y = 56 | CbCr = 63
+MB 504 (16x16) -> Y = 76 | CbCr = 59
+MB 505 (16x16) -> Y = 55 | CbCr = 127
+MB 506 (16x16) -> Y = 66 | CbCr = 72
+MB 507 (4x4) -> Y = 72 | CbCr = 69
+MB 508 (4x4) -> Y = 65 | CbCr = 34
+MB 509 (16x16) -> Y = 42 | CbCr = 34
+MB 510 (16x16) -> Y = 70 | CbCr = 75
+MB 511 (16x16) -> Y = 63 | CbCr = 26
+MB 512 (4x4) -> Y = 66 | CbCr = 51
+MB 513 (4x4) -> Y = 67 | CbCr = 82
+MB 514 (4x4) -> Y = 45 | CbCr = 96
+MB 515 (16x16) -> Y = 44 | CbCr = 148
+MB 516 (4x4) -> Y = 53 | CbCr = 175
+MB 517 (4x4) -> Y = 13 | CbCr = 146
+MB 518 (4x4) -> Y = 165 | CbCr = 930
+MB 519 (16x16) -> Y = 36 | CbCr = 127
+MB 520 (16x16) -> Y = 35 | CbCr = 136
+MB 521 (4x4) -> Y = 57 | CbCr = 120
+MB 522 (4x4) -> Y = 51 | CbCr = 51
+MB 523 (4x4) -> Y = 52 | CbCr = 63
+MB 524 (4x4) -> Y = 39 | CbCr = 99
+MB 525 (4x4) -> Y = 39 | CbCr = 141
+MB 526 (16x16) -> Y = 33 | CbCr = 211
+MB 527 (16x16) -> Y = 44 | CbCr = 219
+MB 528 (4x4) -> Y = 66 | CbCr = 271
+MB 529 (4x4) -> Y = 81 | CbCr = 43
+MB 530 (4x4) -> Y = 70 | CbCr = 99
+MB 531 (4x4) -> Y = 72 | CbCr = 379
+MB 532 (4x4) -> Y = 79 | CbCr = 135
+MB 533 (16x16) -> Y = 58 | CbCr = 76
+MB 534 (16x16) -> Y = 44 | CbCr = 32
+MB 535 (16x16) -> Y = 51 | CbCr = 31
+MB 536 (4x4) -> Y = 65 | CbCr = 69
+MB 537 (16x16) -> Y = 51 | CbCr = 59
+MB 538 (4x4) -> Y = 60 | CbCr = 55
+MB 539 (4x4) -> Y = 62 | CbCr = 50
+MB 540 (16x16) -> Y = 59 | CbCr = 69
+MB 541 (4x4) -> Y = 70 | CbCr = 64
+MB 542 (4x4) -> Y = 58 | CbCr = 109
+MB 543 (4x4) -> Y = 51 | CbCr = 97
+MB 544 (16x16) -> Y = 61 | CbCr = 54
+MB 545 (16x16) -> Y = 48 | CbCr = 85
+MB 546 (4x4) -> Y = 77 | CbCr = 87
+MB 547 (4x4) -> Y = 95 | CbCr = 45
+MB 548 (4x4) -> Y = 69 | CbCr = 38
+MB 549 (16x16) -> Y = 48 | CbCr = 32
+MB 550 (4x4) -> Y = 62 | CbCr = 96
+MB 551 (16x16) -> Y = 53 | CbCr = 90
+MB 552 (16x16) -> Y = 47 | CbCr = 175
+MB 553 (16x16) -> Y = 39 | CbCr = 173
+MB 554 (4x4) -> Y = 11 | CbCr = 113
+MB 555 (4x4) -> Y = 148 | CbCr = 850
+MB 556 (4x4) -> Y = 29 | CbCr = 120
+MB 557 (4x4) -> Y = 45 | CbCr = 125
+MB 558 (4x4) -> Y = 56 | CbCr = 70
+MB 559 (16x16) -> Y = 36 | CbCr = 89
+MB 560 (16x16) -> Y = 43 | CbCr = 25
+MB 561 (16x16) -> Y = 36 | CbCr = 102
+MB 562 (16x16) -> Y = 37 | CbCr = 83
+MB 563 (16x16) -> Y = 35 | CbCr = 197
+MB 564 (4x4) -> Y = 37 | CbCr = 333
+MB 565 (4x4) -> Y = 42 | CbCr = 202
+MB 566 (4x4) -> Y = 59 | CbCr = 378
+MB 567 (4x4) -> Y = 67 | CbCr = 831
+MB 568 (4x4) -> Y = 67 | CbCr = 190
+MB 569 (4x4) -> Y = 54 | CbCr = 114
+MB 570 (16x16) -> Y = 48 | CbCr = 70
+MB 571 (16x16) -> Y = 43 | CbCr = 59
+MB 572 (16x16) -> Y = 43 | CbCr = 56
+MB 573 (4x4) -> Y = 51 | CbCr = 80
+MB 574 (16x16) -> Y = 52 | CbCr = 47
+MB 575 (4x4) -> Y = 58 | CbCr = 59
+MB 576 (4x4) -> Y = 59 | CbCr = 54
+MB 577 (4x4) -> Y = 60 | CbCr = 55
+MB 578 (16x16) -> Y = 55 | CbCr = 54
+MB 579 (16x16) -> Y = 59 | CbCr = 78
+MB 580 (16x16) -> Y = 58 | CbCr = 36
+MB 581 (4x4) -> Y = 63 | CbCr = 71
+MB 582 (16x16) -> Y = 45 | CbCr = 61
+MB 583 (4x4) -> Y = 60 | CbCr = 49
+MB 584 (4x4) -> Y = 49 | CbCr = 33
+MB 585 (4x4) -> Y = 50 | CbCr = 48
+MB 586 (4x4) -> Y = 60 | CbCr = 60
+MB 587 (16x16) -> Y = 69 | CbCr = 42
+MB 588 (16x16) -> Y = 76 | CbCr = 94
+MB 589 (4x4) -> Y = 75 | CbCr = 139
+MB 590 (4x4) -> Y = 68 | CbCr = 118
+MB 591 (16x16) -> Y = 9 | CbCr = 71
+MB 592 (4x4) -> Y = 125 | CbCr = 751
+MB 593 (4x4) -> Y = 48 | CbCr = 71
+MB 594 (16x16) -> Y = 31 | CbCr = 115
+MB 595 (16x16) -> Y = 34 | CbCr = 106
+MB 596 (4x4) -> Y = 29 | CbCr = 50
+MB 597 (16x16) -> Y = 32 | CbCr = 45
+MB 598 (4x4) -> Y = 42 | CbCr = 53
+MB 599 (4x4) -> Y = 36 | CbCr = 120
+MB 600 (16x16) -> Y = 25 | CbCr = 186
+MB 601 (16x16) -> Y = 26 | CbCr = 224
+MB 602 (4x4) -> Y = 42 | CbCr = 392
+MB 603 (4x4) -> Y = 46 | CbCr = 392
+MB 604 (4x4) -> Y = 58 | CbCr = 400
+MB 605 (16x16) -> Y = 52 | CbCr = 193
+MB 606 (16x16) -> Y = 48 | CbCr = 96
+MB 607 (4x4) -> Y = 65 | CbCr = 79
+MB 608 (16x16) -> Y = 56 | CbCr = 42
+MB 609 (4x4) -> Y = 40 | CbCr = 51
+MB 610 (4x4) -> Y = 46 | CbCr = 23
+MB 611 (4x4) -> Y = 64 | CbCr = 51
+MB 612 (16x16) -> Y = 61 | CbCr = 57
+MB 613 (16x16) -> Y = 63 | CbCr = 52
+MB 614 (4x4) -> Y = 48 | CbCr = 33
+MB 615 (4x4) -> Y = 65 | CbCr = 40
+MB 616 (16x16) -> Y = 43 | CbCr = 32
+MB 617 (4x4) -> Y = 54 | CbCr = 52
+MB 618 (4x4) -> Y = 68 | CbCr = 30
+MB 619 (4x4) -> Y = 57 | CbCr = 38
+MB 620 (16x16) -> Y = 62 | CbCr = 27
+MB 621 (4x4) -> Y = 60 | CbCr = 35
+MB 622 (4x4) -> Y = 60 | CbCr = 34
+MB 623 (16x16) -> Y = 55 | CbCr = 52
+MB 624 (16x16) -> Y = 50 | CbCr = 56
+MB 625 (4x4) -> Y = 53 | CbCr = 94
+MB 626 (16x16) -> Y = 48 | CbCr = 81
+MB 627 (16x16) -> Y = 62 | CbCr = 130
+MB 628 (4x4) -> Y = 20 | CbCr = 65
+MB 629 (4x4) -> Y = 119 | CbCr = 641
+MB 630 (4x4) -> Y = 26 | CbCr = 74
+MB 631 (16x16) -> Y = 30 | CbCr = 94
+MB 632 (4x4) -> Y = 39 | CbCr = 56
+MB 633 (4x4) -> Y = 34 | CbCr = 36
+MB 634 (16x16) -> Y = 14 | CbCr = 65
+MB 635 (4x4) -> Y = 31 | CbCr = 63
+MB 636 (4x4) -> Y = 28 | CbCr = 74
+MB 637 (4x4) -> Y = 20 | CbCr = 134
+MB 638 (16x16) -> Y = 26 | CbCr = 186
+MB 639 (16x16) -> Y = 43 | CbCr = 258
+MB 640 (16x16) -> Y = 16 | CbCr = 320
+MB 641 (4x4) -> Y = 73 | CbCr = 376
+MB 642 (4x4) -> Y = 60 | CbCr = 162
+MB 643 (16x16) -> Y = 48 | CbCr = 110
+MB 644 (4x4) -> Y = 39 | CbCr = 71
+MB 645 (4x4) -> Y = 60 | CbCr = 56
+MB 646 (4x4) -> Y = 27 | CbCr = 29
+MB 647 (4x4) -> Y = 60 | CbCr = 24
+MB 648 (4x4) -> Y = 46 | CbCr = 56
+MB 649 (16x16) -> Y = 35 | CbCr = 21
+MB 650 (4x4) -> Y = 44 | CbCr = 33
+MB 651 (4x4) -> Y = 31 | CbCr = 39
+MB 652 (4x4) -> Y = 30 | CbCr = 46
+MB 653 (16x16) -> Y = 35 | CbCr = 33
+MB 654 (4x4) -> Y = 48 | CbCr = 43
+MB 655 (4x4) -> Y = 44 | CbCr = 39
+MB 656 (4x4) -> Y = 49 | CbCr = 35
+MB 657 (4x4) -> Y = 46 | CbCr = 37
+MB 658 (16x16) -> Y = 32 | CbCr = 14
+MB 659 (4x4) -> Y = 36 | CbCr = 25
+MB 660 (4x4) -> Y = 46 | CbCr = 36
+MB 661 (4x4) -> Y = 51 | CbCr = 41
+MB 662 (4x4) -> Y = 64 | CbCr = 38
+MB 663 (4x4) -> Y = 51 | CbCr = 106
+MB 664 (4x4) -> Y = 57 | CbCr = 68
+MB 665 (4x4) -> Y = 12 | CbCr = 33
+MB 666 (4x4) -> Y = 62 | CbCr = 507
+MB 667 (4x4) -> Y = 37 | CbCr = 27
+MB 668 (16x16) -> Y = 23 | CbCr = 23
+MB 669 (16x16) -> Y = 26 | CbCr = 38
+MB 670 (4x4) -> Y = 17 | CbCr = 29
+MB 671 (4x4) -> Y = 20 | CbCr = 16
+MB 672 (4x4) -> Y = 22 | CbCr = 18
+MB 673 (4x4) -> Y = 28 | CbCr = 17
+MB 674 (4x4) -> Y = 32 | CbCr = 52
+MB 675 (16x16) -> Y = 38 | CbCr = 57
+MB 676 (4x4) -> Y = 31 | CbCr = 76
+MB 677 (16x16) -> Y = 19 | CbCr = 133
+MB 678 (4x4) -> Y = 32 | CbCr = 165
+MB 679 (4x4) -> Y = 23 | CbCr = 107
+MB 680 (4x4) -> Y = 25 | CbCr = 38
+MB 681 (4x4) -> Y = 29 | CbCr = 30
+MB 682 (4x4) -> Y = 21 | CbCr = 18
+MB 683 (4x4) -> Y = 27 | CbCr = 11
+MB 684 (4x4) -> Y = 24 | CbCr = 22
+MB 685 (4x4) -> Y = 19 | CbCr = 30
+MB 686 (4x4) -> Y = 32 | CbCr = 3
+MB 687 (4x4) -> Y = 34 | CbCr = 18
+MB 688 (4x4) -> Y = 34 | CbCr = 24
+MB 689 (4x4) -> Y = 19 | CbCr = 22
+MB 690 (4x4) -> Y = 31 | CbCr = 46
+MB 691 (4x4) -> Y = 30 | CbCr = 18
+MB 692 (4x4) -> Y = 35 | CbCr = 26
+MB 693 (4x4) -> Y = 19 | CbCr = 23
+MB 694 (4x4) -> Y = 35 | CbCr = 11
+MB 695 (16x16) -> Y = 11 | CbCr = 3
+MB 696 (4x4) -> Y = 10 | CbCr = 8
+MB 697 (4x4) -> Y = 22 | CbCr = 24
+MB 698 (4x4) -> Y = 26 | CbCr = 27
+MB 699 (4x4) -> Y = 33 | CbCr = 46
+MB 700 (4x4) -> Y = 34 | CbCr = 46
+MB 701 (16x16) -> Y = 26 | CbCr = 35
+MB 702 (4x4) -> Y = 12 | CbCr = 29

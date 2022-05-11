@@ -1,10 +1,5 @@
 #include "frame_encode.h"
 
-// aux flags
-
-int error_4x4=0;
-int error_16x16=0;
-
 ///////////////////////////////////////////////// 16X16 ///////////////////////////////////////////7
 
 /*
@@ -13,7 +8,6 @@ int error_16x16=0;
 */
 int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
   
-  static int mb_pred = 0;
   ofstream pred_file ("txt/16x16_pred_mode.txt", ios::app);
 
   // Get neighbours MBs pointers (ul, u, l)
@@ -41,8 +35,7 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   mb.intra16x16_Y_mode = mode;
 
   // Print prediction mode to 'pred_mode.txt'
-  pred_file << "MB " << mb_pred << " ->" << (int)mode << endl;
-  mb_pred++;
+  pred_file << "MB " << mb.mb_index << " ->" << (int)mode << endl;
 
   // Perform QDCT
   // qdct_luma16x16_intra(mb.Y);
@@ -60,7 +53,6 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
 */
 int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_block, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
   
-  static int mb_pred = 0;
   ofstream pred_file ("txt/4x4_pred_mode.txt", ios::app);
   // Convert input position (see macroblock.cpp)
   int temp_pos = MacroBlock::convert_table[cur_pos];    // is this necessary? Two times?
@@ -165,8 +157,7 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
                                    get_L_4x4_block());
 
   // Print prediction mode to 'pred_mode.txt'
-  pred_file << "MB " << mb_pred/16 << " (" << mb_pred%16 << ") ->" << (int)mode << endl;
-  mb_pred++;
+  pred_file << "MB " << mb.mb_index << " (" << cur_pos << ") ->" << (int)mode << endl;
 
   mb.is_intra16x16 = false;
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
@@ -186,13 +177,13 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
 *
 */
 int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
+
   // Temp marcoblock for choosing two predicitons
   MacroBlock temp_block = mb;
   MacroBlock temp_decoded_block = mb;
 
   // Perform intra16x16 prediction
-  int error_intra16x16 = 0;
-  // int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
+  int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
 
   // Perform intra4x4 prediction
   int error_intra4x4 = 0;
@@ -200,18 +191,14 @@ int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Fram
     error_intra4x4 += encode_Y_intra4x4_block(i, temp_block, temp_decoded_block, decoded_blocks, frame);
 
   // compare the error of two predictions
-  // if (error_intra4x4 < error_intra16x16) -> condiçao sempre falsa?
-  if (true || (error_intra4x4 < error_intra16x16)){
+  if (error_intra4x4 < error_intra16x16){
     mb = temp_block;
     decoded_blocks.at(mb.mb_index) = temp_decoded_block;
 
-    error_4x4=1;
     return error_intra4x4;
   }
-  
   else 
   {
-    error_16x16=1;
     return error_intra16x16;
   }
 }
@@ -282,16 +269,15 @@ int encode_Cb_Cr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, 
 */
 
 void encode_I_frame(Frame& frame) {
+
+  int cnt16x16 = 0, cnt4x4 = 0;
   // decoded Y blocks for intra prediction
   std::vector<MacroBlock> decoded_blocks;
   decoded_blocks.reserve(frame.mbs.size());
 
   ofstream error_file ("txt/errors.txt", ios::out);
-  ofstream mb_input_file ("txt/mb_input.txt", ios::out);
-  ofstream mb_output_file ("txt/mb_output.txt", ios::out);
-  int error_cnt=0;
-  int mb_cnt_in=0;
-  int mb_cnt_out=0;
+  ofstream mb_input_file ("txt/mb_Y_input.txt", ios::out);
+  ofstream mb_output_file ("txt/mb_Y_output.txt", ios::out);
 
   cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
 
@@ -305,7 +291,7 @@ void encode_I_frame(Frame& frame) {
       decoded_blocks.push_back(*(&mb + 1));   // next mb to predict UR (except for the last one)
 
     // Print all 703 Macroblock Y (16x16) component to 'mb_input.txt' 
-    mb_input_file << "Y_MB input " << mb_cnt_in << endl; 
+    mb_input_file << "Y_MB input " << mb.mb_index << endl; 
     for(int rows=0; rows < 256; rows+=16)
     {
       for(int cols=0; cols<16; cols++)
@@ -314,7 +300,6 @@ void encode_I_frame(Frame& frame) {
       }
       mb_input_file << endl;
     }
-    mb_cnt_in++;
     mb_input_file << endl;
 
     // Encode Luma component, output is in 'mb.Y vector'
@@ -323,8 +308,18 @@ void encode_I_frame(Frame& frame) {
     // Pop aditional mb
     decoded_blocks.pop_back();
 
-    // Print all 703 Macroblock Y (16x16) component after prediction to 'mb_output.txt' 
-    mb_output_file << "Y_MB output " << mb_cnt_out << endl; 
+    // Print all Macroblock Y (16x16) component after prediction to 'mb_output.txt' 
+    mb_output_file << "Y_MB output " << mb.mb_index << "(";
+    if(mb.is_intra16x16)
+    {
+      mb_output_file << "16x16)" << endl;
+      cnt16x16++;
+    }
+    else
+    {
+      mb_output_file << "4x4)" << endl;
+      cnt4x4++;
+    }
     for(int r=0; r < 256; r+=16)
     {
       for(int c=0; c<16; c++)
@@ -333,23 +328,19 @@ void encode_I_frame(Frame& frame) {
       }
       mb_output_file << endl;
     }
-    mb_cnt_out++;
     mb_output_file << endl;
 
     // Encoding Chroma component function
     int error_chroma = encode_Cb_Cr_block(mb, decoded_blocks, frame);
 
     // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
-    error_file << "MB" << error_cnt << " ->";
-    if(error_4x4)
-      error_file << "Error type:4x4" << ' ';
-    else if(error_16x16)
-      error_file << "Error type:16x16" << ' ';
-    error_file << "Luma error:" << error_luma << ' ' << ' ';
-    error_file << "Chroma error:" << error_chroma << endl;
-    error_4x4=0;    // clear pred type flags and increment counter
-    error_16x16=0;
-    error_cnt++;
+    error_file << "MB " << mb.mb_index;
+    if(!mb.is_intra16x16)
+      error_file << " (4x4) ";
+    else
+      error_file << " (16x16) ";
+    error_file << "-> Y = " << error_luma << " | ";
+    error_file << "CbCr = " << error_chroma << endl;
 
     // Defined threshold for bad predictions, if SAD is greater MB remains the same
     if (error_luma > 2000 || error_chroma > 1000) {
@@ -358,4 +349,7 @@ void encode_I_frame(Frame& frame) {
       mb.is_I_PCM = true;   // not predicted
     }
   }
+
+  std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
+  std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
 }
