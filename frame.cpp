@@ -94,18 +94,21 @@ int Frame::get_neighbor_index(const int curr_index, const int neighbor_type) {
 
   switch(neighbor_type) {
     case MB_NEIGHBOR_UL: // Upper left neighbor
-      if (curr_index % this->nb_mb_cols == 0)
+      if ((curr_index % this->nb_mb_cols == 0) || (curr_index < this->nb_mb_cols))
         neighbor_index = -1;
       else
         neighbor_index = curr_index - this->nb_mb_cols - 1;
       break;
 
     case MB_NEIGHBOR_U: // Upper neighbor
-      neighbor_index = curr_index - this->nb_mb_cols;
+      if(curr_index < this->nb_mb_cols)
+        neighbor_index = -1;
+      else
+        neighbor_index = curr_index - this->nb_mb_cols;
       break;
 
     case MB_NEIGHBOR_UR: // Upper right neighbor
-      if ((curr_index + 1) % this->nb_mb_cols == 0)
+      if (((curr_index + 1) % this->nb_mb_cols == 0) || (curr_index < this->nb_mb_cols))
         neighbor_index = -1;
       else
         neighbor_index = curr_index - this->nb_mb_cols + 1;
@@ -116,6 +119,13 @@ int Frame::get_neighbor_index(const int curr_index, const int neighbor_type) {
         neighbor_index = -1;
       else
         neighbor_index = curr_index - 1;
+      break;
+
+    case MB_NEIGHBOR_R: // Right neighbor
+      if ((curr_index + 1) % this->nb_mb_cols == 0)
+        neighbor_index = -1;
+      else
+        neighbor_index = curr_index + 1;
       break;
 
     default:

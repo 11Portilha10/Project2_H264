@@ -8,6 +8,11 @@
  */
 const std::array<int, 16> MacroBlock::convert_table = {{0, 1, 4, 5, 2, 3, 6, 7, 8, 9, 12, 13, 10, 11, 14, 15}};
 
+/**
+ * @brief Returns the correspondent 4x4 block according to pos and the reference order
+ * 
+ * @param pos Block index (see reference order)
+ */
 Block4x4 MacroBlock::get_Y_4x4_block(int pos) {
   pos = convert_table[pos];
   int origin = (pos / 4) * 64 + (pos % 4) * 4;

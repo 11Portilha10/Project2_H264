@@ -13,8 +13,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    remove("txt/predictors.txt");
-    remove("txt/pred_mode.txt");
+    remove("txt/16x16_predictors.txt");
+    remove("txt/4x4_predictors.txt");
+    remove("txt/16x16_pred_mode.txt");
+    remove("txt/4x4_pred_mode.txt");
 
     // The default setting with cv::imread will create a CV_8UC3 matrix
     // 8-bit 3-channel color image

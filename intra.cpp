@@ -40,17 +40,36 @@ int SAD(InputIt1 first1, InputIt1 last1, InputIt2 first2, OutputIt result)
 std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::optional<Block4x4> ul, std::experimental::optional<Block4x4> u,
                                                        std::experimental::optional<Block4x4> ur, std::experimental::optional<Block4x4> l) {
 
+  ofstream myfile ("txt/4x4_predictors.txt", ios::app);
+  static int predictor_cnt=0;
+
   // Get predictors
   Predictor predictor = get_intra4x4_predictor(ul, u, ur, l);
 
+  // Print predictors to '16x16predictors.txt'
+  myfile << "MB " << predictor_cnt/16 << " (" << predictor_cnt%16 << ") ->";
+  // if(predictor.up_available)
+  //   myfile << "Up_aval "; 
+  // if (predictor.left_available)
+  //   myfile << "Left_aval ";
+  // if (predictor.up_right_available)
+  //   myfile << "Up_right_aval ";
+  // if (predictor.all_available)
+  //   myfile << "All_aval ";
+  for (int i = 0; i < 13; i++)
+  {
+    myfile << predictor.pred_pel[i] << ' ';
+  }
+  myfile << endl;
+  predictor_cnt++;
+
   int mode;
   Intra4x4Mode best_mode;
-  CopyBlock4x4 pred, residual;
+  CopyBlock4x4 pred, best_pred, residual, best_residual;
   int min_sad = (1 << 15), sad;   // worst SAD is 32768 -> 16*16 pixels = 256; worst prediction = 128-0 ; 256*128 = 32768
 
   // Run all modes to get least residual
   // Checks if its possible to run prediction mode based on neighbours 
-  // e.g, its no possible to run vertical predicion without up predictor avaliable (A,B,C,D)
   for (mode = 0; mode < 9; mode++) {
 
     if ((!predictor.up_available   && (Intra4x4Mode::VERTICAL   == static_cast<Intra4x4Mode>(mode))) ||
@@ -68,18 +87,24 @@ std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::option
     get_intra4x4(pred, predictor, static_cast<Intra4x4Mode>(mode));
 
     // Computes SAD and gets best mode
-    sad = SAD(block.begin(), block.end(), pred.begin(), pred.begin());
+    sad = SAD(block.begin(), block.end(), pred.begin(), residual.begin());
     if (sad < min_sad) {
       min_sad = sad;
       best_mode = static_cast<Intra4x4Mode>(mode);
-      std::copy(pred.begin(), pred.end(), residual.begin());  // Copies prediction block to residual block 
+      std::copy(pred.begin(), pred.end(), best_pred.begin());  // save best predicted block
+      std::copy(residual.begin(), residual.end(), best_residual.begin());   // save best residual
     }
   }
 
   // use operator = instead of std::copy which use *iter to deal with assignment
   for (int i = 0; i < 16; i++) {
-    block[i] = residual[i];                                 // Overwirte input block with residual
+    block[i] = best_pred[i];             // Overwirte input block with best predicted
   }
+
+  // // use operator = instead of std::copy which use *iter to deal with assignment
+  // for (int i = 0; i < 16; i++) {
+  //   block[i] = best_residual[i];        // Overwirte input block with residual
+  // }
 
   // Creates tuple with min SAD and best prediction mode for current MB
   return std::make_tuple(min_sad, best_mode);
@@ -375,8 +400,8 @@ void intra4x4_horizontalup(CopyBlock4x4& pred, const Predictor& predictor) {
 Predictor get_intra4x4_predictor(std::experimental::optional<Block4x4> ul, std::experimental::optional<Block4x4> u,
                                  std::experimental::optional<Block4x4> ur, std::experimental::optional<Block4x4> l)
 {
-  
-  Predictor predictor(4);       // Predictor for a 4x4 size block
+  // 4x4 block predictor (ul, 4xU, 4xUR, 4xL)
+  Predictor predictor(4);
   std::vector<int>& p = predictor.pred_pel;
   
   // Check whether neighbors are available, check image get_predictors_neighbours
@@ -388,9 +413,9 @@ Predictor get_intra4x4_predictor(std::experimental::optional<Block4x4> ul, std::
     std::copy_n(tmp.begin()+4*3, 4, p.begin()+1);
     predictor.up_available = true;
   }
-  else        // If predictor not avaliable assumes A,B,C,D at 128
+  else
   {
-    std::fill_n(p.begin()+1, 4, 128);
+    std::fill_n(p.begin()+1, 4, 128);   // if not avaliable assumes A,B,C,D at 128
   }
 
 
@@ -401,7 +426,7 @@ Predictor get_intra4x4_predictor(std::experimental::optional<Block4x4> ul, std::
     std::copy_n(tmp.begin()+4*3, 4, p.begin()+5);
     predictor.up_right_available = true;
   }
-  else      // If predictor not avaliable assumes E,F,G,H at D
+  else      // If predictor not avaliable assumes E,F,G,H as D
   {
     std::fill_n(p.begin()+5, 4, p[4]);
   }
@@ -418,7 +443,7 @@ Predictor get_intra4x4_predictor(std::experimental::optional<Block4x4> ul, std::
   }
   else 
   {
-    std::fill_n(p.begin()+9, 4, 128);   // If predictor not avaliable assumes I,J,K,L at 128
+    std::fill_n(p.begin()+9, 4, 128);   // If predictor not avaliable assumes I,J,K,L as 128
   }
 
   // If both up and left predictors are avaliable -> up-left predictor is avaliable, copies bit 15 (bottom-right) to Q predictor
@@ -449,13 +474,13 @@ std::tuple<int, Intra16x16Mode> intra16x16(Block16x16& block, std::experimental:
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> u,
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> l) {
 
-  ofstream myfile ("txt/predictors.txt", ios::app);
+  ofstream myfile ("txt/16x16_predictors.txt", ios::app);
   static int predictor_cnt=0;
 
   // Get predictors
   Predictor predictor = get_intra16x16_predictor(ul, u, l);
 
-  // Print predictors to 'predictors.txt'
+  // Print predictors to '16x16predictors.txt'
   myfile << "MB " << predictor_cnt << " ->";
   if(predictor.up_available)
     myfile << "Up_aval "; 

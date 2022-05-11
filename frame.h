@@ -16,7 +16,8 @@ enum {
   MB_NEIGHBOR_UL,
   MB_NEIGHBOR_U,
   MB_NEIGHBOR_UR,
-  MB_NEIGHBOR_L
+  MB_NEIGHBOR_L,
+  MB_NEIGHBOR_R
 };
 
 enum {
@@ -32,8 +33,8 @@ public:
   uint16_t height;       // height in pixels with padding
   uint16_t raw_width;    // width in pixels without padding
   uint16_t raw_height;   // height in pixels without padding
-  uint16_t nb_mb_rows;   // number of MB rows
-  uint16_t nb_mb_cols;   // number of MB cols
+  int nb_mb_rows;   // number of MB rows
+  int nb_mb_cols;   // number of MB cols
 
   std::vector<MacroBlock> mbs;
 

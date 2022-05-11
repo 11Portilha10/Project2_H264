@@ -14,7 +14,7 @@ int error_16x16=0;
 int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
   
   static int mb_pred = 0;
-  ofstream pred_file ("txt/pred_mode.txt", ios::app);
+  ofstream pred_file ("txt/16x16_pred_mode.txt", ios::app);
 
   // Get neighbours MBs pointers (ul, u, l)
   auto get_decoded_Y_block = [&](int direction) {
@@ -57,28 +57,38 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
 *
 */
 int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_block, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
-  int temp_pos = MacroBlock::convert_table[cur_pos];
+  
+  static int mb_pred = 0;
+  ofstream pred_file ("txt/4x4_pred_mode.txt", ios::app);
+  // Convert input position (see macroblock.cpp)
+  int temp_pos = MacroBlock::convert_table[cur_pos];    // is this necessary? Two times?
 
+  /**
+   * @brief Returns the 4x4 Block of the MB referred by 'index', at the position referred by 'pos'
+   * 
+   */
   auto get_4x4_block = [&](int index, int pos) {
     if (index == -1)
       return std::experimental::optional<Block4x4>();
     else if (index == mb.mb_index)
       return std::experimental::optional<Block4x4>(decoded_block.get_Y_4x4_block(pos));
-    else
-      return std::experimental::optional<Block4x4>(decoded_blocks.at(index).get_Y_4x4_block(pos));
+    else{
+      // return std::experimental::optional<Block4x4>(decoded_blocks.at(index).get_Y_4x4_block(pos));
+      return std::experimental::optional<Block4x4>(frame.mbs.at(index).get_Y_4x4_block(pos));
+    }
   };
 
   // Gets upper left 4x4 block
   auto get_UL_4x4_block = [&]() {
     int index, pos;
-    if (temp_pos == 0) {
-      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_UL);
+    if (temp_pos == 0) {    // temp_pos or cur_pos?
+      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_UL);  // get external UL MB index
       pos = 15;
     } else if (1 <= temp_pos && temp_pos <= 3) {
-      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);
+      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);   // get external U MB index
       pos = 11 + temp_pos;
     } else if (temp_pos % 4 == 0) {
-      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_L);
+      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_L);   // get external L MB index
       pos = temp_pos - 1;
     } else {
       index = mb.mb_index;
@@ -91,7 +101,7 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   // Gets upper 4x4 block
   auto get_U_4x4_block = [&]() {
     int index, pos;
-    if (0 <= temp_pos && temp_pos <= 3) {
+    if (0 <= temp_pos && temp_pos <= 3) {   // upper 4 pixels
       index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);
       pos = 12 + temp_pos;
     } else {
@@ -102,21 +112,26 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
     return get_4x4_block(index, MacroBlock::convert_table[pos]);
   };
 
-  // Gets upper right 4x4 block
+  // Gets upper right 4x4 block (SOMETHING IS NOT CORRECT HERE)
   auto get_UR_4x4_block = [&]() {
     int index, pos;
     if (temp_pos == 3) {
       index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_UR);
       pos = 12;
-    } else if (temp_pos == 5 || temp_pos == 13) {
-      index = -1;
-      pos = 0;
-    } else if (0 <= temp_pos && temp_pos <= 2) {
+    } 
+    // else if (temp_pos == 5 || temp_pos == 13) {    MODIFIED
+    //   index = -1;
+    //   pos = 0;
+    // } 
+    else if (0 <= temp_pos && temp_pos <= 2) {
       index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);
-      pos = 1 + temp_pos;
+      // pos = 1 + temp_pos;    MODIFIED
+      pos = 13 + temp_pos;
     } else if ((temp_pos + 1) % 4 == 0) {
-      index = -1;
-      pos = 0;
+      // index = -1;    MODIFIED
+      // pos = 0;
+      index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_R);
+      pos = temp_pos - 7;
     } else {
       index = mb.mb_index;
       pos = temp_pos - 3;
@@ -128,7 +143,7 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   // Gets left 4x4 block
   auto get_L_4x4_block = [&]() {
     int index, pos;
-    if (temp_pos % 4 == 0) {
+    if (temp_pos % 4 == 0) {    // first column at the left
       index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_L);
       pos = temp_pos + 3;
     } else {
@@ -146,6 +161,10 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
                                    get_U_4x4_block(),
                                    get_UR_4x4_block(),
                                    get_L_4x4_block());
+
+  // Print prediction mode to 'pred_mode.txt'
+  pred_file << "MB " << mb_pred/16 << " (" << mb_pred%16 << ") ->" << (int)mode << endl;
+  mb_pred++;
 
   mb.is_intra16x16 = false;
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
@@ -167,16 +186,17 @@ int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Fram
   MacroBlock temp_decoded_block = mb;
 
   // Perform intra16x16 prediction
-  int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
+  int error_intra16x16 = 0;
+  // int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
 
   // Perform intra4x4 prediction
   int error_intra4x4 = 0;
-  for (int i = 0; i != 16; i++)
+  for (int i = 0; i < 16; i++)
     error_intra4x4 += encode_Y_intra4x4_block(i, temp_block, temp_decoded_block, decoded_blocks, frame);
 
   // compare the error of two predictions
   // if (error_intra4x4 < error_intra16x16) -> condiçao sempre falsa?
-  if (false && error_intra4x4 < error_intra16x16){
+  if (true || (error_intra4x4 < error_intra16x16)){
     mb = temp_block;
     decoded_blocks.at(mb.mb_index) = temp_decoded_block;
 
