@@ -27,9 +27,9 @@ int encode_Y_intra4x4_block(int, MacroBlock&, MacroBlock&, std::vector<MacroBloc
 
 int encode_Y_block(MacroBlock&, std::vector<MacroBlock>&, Frame&);
 
-int encode_Cr_Cb_intra8x8_block(MacroBlock&, std::vector<MacroBlock>&, Frame&);
+int encode_CbCr_intra8x8_block(MacroBlock&, std::vector<MacroBlock>&, Frame&);
 
-int encode_Cb_Cr_block(MacroBlock&, std::vector<MacroBlock>&, Frame&);
+int encode_CbCr_block(MacroBlock&, std::vector<MacroBlock>&, Frame&);
 
 void encode_I_frame(Frame&);
 

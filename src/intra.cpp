@@ -40,7 +40,7 @@ int SAD(InputIt1 first1, InputIt1 last1, InputIt2 first2, OutputIt result)
 std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::optional<Block4x4> ul, std::experimental::optional<Block4x4> u,
                                                        std::experimental::optional<Block4x4> ur, std::experimental::optional<Block4x4> l) {
 
-  ofstream myfile ("txt/4x4_predictors.txt", ios::app);
+  ofstream myfile ("txt/4x4_Y_predictors.txt", ios::app);
   static int predictor_cnt=0;
 
   // Get predictors
@@ -48,14 +48,6 @@ std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::option
 
   // Print predictors to '16x16predictors.txt'
   myfile << "MB " << predictor_cnt/16 << " (" << predictor_cnt%16 << ") ->";
-  // if(predictor.up_available)
-  //   myfile << "Up_aval "; 
-  // if (predictor.left_available)
-  //   myfile << "Left_aval ";
-  // if (predictor.up_right_available)
-  //   myfile << "Up_right_aval ";
-  // if (predictor.all_available)
-  //   myfile << "All_aval ";
   for (int i = 0; i < 13; i++)
   {
     myfile << predictor.pred_pel[i] << ' ';
@@ -98,7 +90,7 @@ std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::option
 
   // use operator = instead of std::copy which use *iter to deal with assignment
   for (int i = 0; i < 16; i++) {
-    block[i] = best_pred[i];             // Overwirte input block with best predicted
+    block[i] = best_pred[i];             // Overwirte input block with best predicted (TESTING)
   }
 
   // // use operator = instead of std::copy which use *iter to deal with assignment
@@ -474,7 +466,7 @@ std::tuple<int, Intra16x16Mode> intra16x16(Block16x16& block, std::experimental:
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> u,
                                                               std::experimental::optional<std::reference_wrapper<Block16x16>> l) {
 
-  ofstream myfile ("txt/16x16_predictors.txt", ios::app);
+  ofstream myfile ("txt/16x16_Y_predictors.txt", ios::app);
   static int predictor_cnt=0;
 
   // Get predictors
@@ -706,22 +698,41 @@ void intra16x16_plane(Block16x16& pred, const Predictor& predictor) {
  * overwrite residual on input block
  * return the least cost mode
  */
-std::tuple<int, IntraChromaMode> intra8x8_chroma(Block8x8& cr_block,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cr_ul,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cr_u,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cr_l,
-  Block8x8& cb_block,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cb_ul,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cb_u,
-  std::experimental::optional<std::reference_wrapper<Block8x8>> cb_l) {
+std::tuple<int, IntraChromaMode> intra8x8_chroma(Block8x8& cr_block, std::experimental::optional<std::reference_wrapper<Block8x8>> cr_ul,
+  std::experimental::optional<std::reference_wrapper<Block8x8>> cr_u, std::experimental::optional<std::reference_wrapper<Block8x8>> cr_l,
+  Block8x8& cb_block, std::experimental::optional<std::reference_wrapper<Block8x8>> cb_ul,
+  std::experimental::optional<std::reference_wrapper<Block8x8>> cb_u, std::experimental::optional<std::reference_wrapper<Block8x8>> cb_l) {
+
+  ofstream Cb_pred_file ("txt/8x8_Cb_predictors.txt", ios::app);
+  ofstream Cr_pred_file ("txt/8x8_Cr_predictors.txt", ios::app);
+  static int predictor_cnt=0;
 
   // Get Cr, Cb predictors
   Predictor cr_predictor = get_intra8x8_chroma_predictor(cr_ul, cr_u, cr_l);
   Predictor cb_predictor = get_intra8x8_chroma_predictor(cb_ul, cb_u, cb_l);
 
+  // Print Cb predictors to '8x8_Cb_predictors.txt'
+  Cb_pred_file << "MB " << predictor_cnt << " -> ";
+  for (int i = 0; i < 17; i++)
+  {
+    Cb_pred_file << cb_predictor.pred_pel[i] << ' ';
+  }
+  Cb_pred_file << endl;
+
+  // Print Cr predictors to '8x8_Cr_predictors.txt'
+  Cr_pred_file << "MB " << predictor_cnt << " -> ";
+  for (int i = 0; i < 17; i++)
+  {
+    Cr_pred_file << cr_predictor.pred_pel[i] << ' ';
+  }
+  Cr_pred_file << endl;
+
+  predictor_cnt++;
+
   int mode;
   IntraChromaMode best_mode;
   Block8x8 cr_pred, cb_pred, cr_residual, cb_residual;
+  Block8x8 cr_best_pred, cb_best_pred, cr_best_residual, cb_best_residual;
   int min_sad = (1 << 15), cr_sad, cb_sad, sad;
   // Run all modes to get least residual
   for (mode = 0; mode < 4; mode++) {
@@ -734,18 +745,24 @@ std::tuple<int, IntraChromaMode> intra8x8_chroma(Block8x8& cr_block,
     get_intra8x8_chroma(cr_pred, cr_predictor, static_cast<IntraChromaMode>(mode));
     get_intra8x8_chroma(cb_pred, cb_predictor, static_cast<IntraChromaMode>(mode));
 
-    cr_sad = SAD(cr_block.begin(), cr_block.end(), cr_pred.begin(), cr_pred.begin());
-    cb_sad = SAD(cb_block.begin(), cb_block.end(), cb_pred.begin(), cb_pred.begin());
+    // According to the standard, prediction mode must be the same for both Cb and Cr blocks
+    // NOTE: after testing, performance should be improved copying the residual to the pred block
+    cr_sad = SAD(cr_block.begin(), cr_block.end(), cr_pred.begin(), cr_residual.begin()); // <- //
+    cb_sad = SAD(cb_block.begin(), cb_block.end(), cb_pred.begin(), cb_residual.begin()); // <- //
     sad = cr_sad + cb_sad;
     if (sad < min_sad) {
       min_sad = sad;
       best_mode = static_cast<IntraChromaMode>(mode);
-      std::copy(cr_pred.begin(), cr_pred.end(), cr_residual.begin());
-      std::copy(cb_pred.begin(), cb_pred.end(), cb_residual.begin());
+      std::copy(cr_pred.begin(), cr_pred.end(), cr_best_pred.begin());  // save best predicted Cr
+      std::copy(cb_pred.begin(), cb_pred.end(), cb_best_pred.begin());  // save best predicted Cb
+      std::copy(cr_residual.begin(), cr_residual.end(), cr_best_residual.begin());    // save best Cr residual
+      std::copy(cb_residual.begin(), cb_residual.end(), cb_best_residual.begin());    // save best Cb residual
     }
   }
-  std::copy(cr_residual.begin(), cr_residual.end(), cr_block.begin());
-  std::copy(cb_residual.begin(), cb_residual.end(), cb_block.begin());
+  
+  // copy best pred to original block (TESTING !!!)
+  std::copy(cr_best_pred.begin(), cr_best_pred.end(), cr_block.begin());
+  std::copy(cb_best_pred.begin(), cb_best_pred.end(), cb_block.begin());
 
   return std::make_tuple(min_sad, best_mode);
 }

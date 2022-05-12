@@ -15,7 +15,7 @@
 
 #################################################################################
 
-COMPILER = g++
+CC = g++
 
 SRC_DIR = ./src
 OBJ_DIR = ./obj
@@ -38,10 +38,10 @@ LDLIBS += -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -lopencv_highgui
 all: clean $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(COMPILER) -o $(TARGET) $(OBJS) $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(COMPILER) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
 	$(RM) $(OBJS)
