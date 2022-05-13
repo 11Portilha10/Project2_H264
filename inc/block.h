@@ -9,6 +9,18 @@
 // std::reference_wrapper is a class template that wraps a reference in a copyable, assignable object. 
 // It is frequently used as a mechanism to store references inside standard containers (like std::vector) which cannot normally hold references. 
 
+class Block2x2 {
+private:
+  std::array<std::reference_wrapper<int>, 4> data;
+
+public:
+  Block2x2(int& e1, int& e2, int &e3, int &e4) : data{{e1, e2, e3, e4}} {}
+
+  int& operator[](int index) { return data[index].get(); }
+  decltype(std::begin(data)) begin() { return std::begin(data); }
+  decltype(std::end(data)) end() { return std::end(data); }
+};
+
 class Block4x4 {
 private:
   std::array<std::reference_wrapper<int>, 16> data;
