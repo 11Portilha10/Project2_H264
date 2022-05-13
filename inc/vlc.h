@@ -22,10 +22,28 @@ const int me[] = {
 	14, 15, 0
 };
 
-Bitstream ue(const unsigned int);
-Bitstream se(const int);
+/**
+ * @brief Unsigned Exponential Golomb Coding
+ * 
+ */
+Bitstream uegc(const unsigned int);
 
+/**
+ * @brief Signed Exponential Golomb Coding
+ * 
+ */
+Bitstream segc(const int);
+
+/**
+ * @brief 
+ * 
+ */
 std::pair<Bitstream, int> cavlc_block2x2(Block2x2, const int, const int);
+
+/**
+ * @brief 
+ * 
+ */
 std::pair<Bitstream, int> cavlc_block4x4(Block4x4, const int, const int);
 
 #endif

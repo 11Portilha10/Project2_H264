@@ -190,220 +190,275 @@ std::string run_vlc_table[15][8] = {
   { "", "", "", "", "", "", "", "00000000001" }
 };
 
-/* Unsigned Exponential Golomb coding
+/**
+ * @brief   Unsigned Exponential Golomb Coding
+ *          Performs unsigned direct mapping between the input word and codenum
+ * 
+ * @return  Bitstream object initialized with the codeword string
  */
-Bitstream ue(const unsigned int codenum) {
-  int x, leading_zeros, nb_bits;
-  x = codenum + 1;
-  leading_zeros = static_cast<int> (log2(x));
-  nb_bits = (leading_zeros << 1) + 1;
+Bitstream uegc(const unsigned int codenum) {
+    int x, leading_zeros, nb_bits;
+    x = codenum + 1;
+    leading_zeros = static_cast<int> (log2(x));   // N of bits of X, minus 1
+    nb_bits = (leading_zeros << 1) + 1;   // codeword size 
 
-  std::string codeword = std::bitset<64>(x).to_string();
-  codeword = codeword.substr(64-nb_bits, nb_bits);
-  return Bitstream(codeword);
+    std::string codeword = std::bitset<64>(x).to_string();
+    codeword = codeword.substr(64-nb_bits, nb_bits);
+    return Bitstream(codeword);
 }
 
-/* Signed Exponential Golomb coding
+/**
+ * @brief   Signed Exponential Golomb Coding
+ *          Performs signed mapping between input word and codenum, then performs UEGC
+ * 
+ * @return  Bitstream object initialized with codeword string
  */
-Bitstream se(const int codenum) {
-  unsigned int _codenum = (codenum > 0) ? 2*codenum-1 : 2*(-codenum);
-  return ue(_codenum);
+Bitstream segc(const int codenum) {
+    unsigned int _codenum = (codenum > 0) ? 2*codenum-1 : 2*(-codenum);
+    return uegc(_codenum);
 }
 
+/**
+ * @brief   Scans a zigzag ordered 4x4 block
+ * 
+ * @return  Sequentially ordered 4x4 block as an int array
+ */
 void scan_zigzag(Block4x4 block, int tblock[]) {
-  for (int i = 0; i < 16; i++)
-    tblock[mat_zigzag4x4[i]] = block[i];
+    for (int i = 0; i < 16; i++)
+        tblock[mat_zigzag4x4[i]] = block[i];
 }
 
+/**
+ * @brief   Scans a zigzag ordered 2x2 block
+ * 
+ * @return  Sequentially ordered 2x2 block as an int array
+ */
 void scan_zigzag(Block2x2 block, int tblock[]) {
-  tblock[0] = block[0];
-  tblock[1] = block[1];
-  tblock[2] = block[2];
-  tblock[3] = block[3];
+    tblock[0] = block[0];
+    tblock[1] = block[1];
+    tblock[2] = block[2];
+    tblock[3] = block[3];
 }
 
+/**
+ * @brief       Performs 4x4 CAVLC encoding
+ * 
+ * @param block Transform coefficients 4x4 input block
+ * @param nC    Number of non-zero coefficients in neighbouring blocks
+ * @param maxNumCoeff 15 or 16?
+ * 
+ * @return  
+ */
 std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int maxNumCoeff) {
-  int mat_x[16];
-  scan_zigzag(block, mat_x);
+    int mat_x[16];  // input coefficients block
+    scan_zigzag(block, mat_x);
 
-  int total_coeff = 0;
-  int total_zeros = 0;
-  int trail_ones = 0;
-  int highest_idx = 0;
+    int total_coeff = 0;    // total number of non-zero coefficients
+    int total_zeros = 0;    // sum of all zeros preceding the highest non-zero coeff
+    int trail_ones = 0;     // number of +-1 in the coeff block (0-3), if there are more than 3 the remaining are considered as a non-zero coeff
+    int highest_idx = 0;    // highest freq non-zero coeff index
 
-  int coeff_table_idx = 5;
-  if (nC >= 0 && nC < 2)
-    coeff_table_idx = 0;
-  else if (nC >= 2 && nC < 4)
-    coeff_table_idx = 1;
-  else if (nC >= 4 && nC < 8)
-    coeff_table_idx = 2;
-  else if (nC >= 8)
-    coeff_table_idx = 3;
-  else if (nC == -1)
-    coeff_table_idx = 4;
+    // Select VLC LUT to encode coeff_token (VLC)
+    int coeff_table_idx = 5;
+    if (nC >= 0 && nC < 2)
+        coeff_table_idx = 0;
+    else if (nC >= 2 && nC < 4)
+        coeff_table_idx = 1;
+    else if (nC >= 4 && nC < 8)
+        coeff_table_idx = 2;
+    else if (nC >= 8)
+        coeff_table_idx = 3;
+    else if (nC == -1)
+        coeff_table_idx = 4;
 
-  // Get the highest frequency coeff
-  for (int i = 15; i >= 0; i--) {
-    if (mat_x[i] != 0) {
-      highest_idx = i;
-      break;
-    }
-  }
-
-  // Count TotalCoeff, TotalZeros
-  for (int i = 0; i <= highest_idx; i++) {
-    if (mat_x[i] != 0)
-      total_coeff++;
-  }
-  total_zeros = highest_idx - total_coeff + 1;
-  if (maxNumCoeff == 15 && total_zeros > 0)
-    total_zeros--;
-
-  // Count trailing ones
-  std::string ones_str;
-  int resume_idx = highest_idx;
-  for (int i = highest_idx; i >= 0; i--) {
-    if (mat_x[i] != 0) {
-      if (mat_x[i] == 1) {
-        trail_ones++;
-        ones_str += "0";
-      }
-      else if (mat_x[i] == -1) {
-        trail_ones++;
-        ones_str += "1";
-      }
-      else {
-        resume_idx = i;
+    // Get the highest frequency non-zero coeff index
+    for (int i = 15; i >= 0; i--) {
+        if (mat_x[i] != 0) {
+        highest_idx = i;
         break;
-      }
-
-      if (trail_ones == 3) {
-        resume_idx = i - 1;
-        break;
-      }
+        }
     }
-  }
-  
-  // Level encoding
-  std::string level_vlc_str = "";
-  int lastCoeff = total_coeff - trail_ones;
-  if (lastCoeff > 0) {
-    int suffix_len = 0;
-    bool pad_this = (trail_ones < 3);
 
-    if (total_coeff > 10 && trail_ones < 3)
-      suffix_len = 1;
+    // Count TotalCoeff, TotalZeros
+    for (int i = 0; i <= highest_idx; i++) 
+    {
+        if (mat_x[i] != 0)
+        total_coeff++;
+    }
+    total_zeros = highest_idx - total_coeff + 1;
+    if (maxNumCoeff == 15 && total_zeros > 0)     // what is maxNumCoeff ? can be either 15 or 16
+        total_zeros--;
 
-    for (int i = resume_idx; i >= 0; i--) {
-      if (mat_x[i] != 0) {
-        lastCoeff--;
-        int level_code = mat_x[i];
-
-        if (pad_this) {
-          if (mat_x[i] > 0)
-            level_code -= 1;
-          else
-            level_code += 1;
-          pad_this = false;
+    // Count trailing ones, store up to 3
+    std::string ones_str;
+    int resume_idx = highest_idx;
+    for (int i = highest_idx; i >= 0; i--) {  // start from the highest frequency coeff
+        if (mat_x[i] != 0) 
+        {
+        if (mat_x[i] == 1) {
+            trail_ones++;
+            ones_str += "0";
+        }
+        else if (mat_x[i] == -1) 
+        {
+            trail_ones++;
+            ones_str += "1";
+        }
+        else 
+        {
+            resume_idx = i;
+            break;
         }
 
-        level_code *= 2;
-        if (level_code >= 0)
-          level_code -= 2;
-        else
-          level_code = 0 - (level_code + 1);
+        if (trail_ones == 3)  // only three +-1 can be encoded as T1s
+        {
+            resume_idx = i - 1;
+            break;
+        }
+        }
+    }
+  
+    // Level encoding (Remaining coeffs after trailing ones in reverse order)
+    std::string level_vlc_str = "";
+    int lastCoeff = total_coeff - trail_ones;
+    if (lastCoeff > 0)  // if there are more coeffs to encode...
+    {
+        int suffix_len = 0;
+        bool pad_this = (trail_ones < 3);   // flag to indicate whether we have less than 3 T1s
 
-        int level_prefix = 0;
-        std::string level_prefix_str = "";
-        bool solution_found = false;
+        // Standard rule
+        if (total_coeff > 10 && trail_ones < 3)
+            suffix_len = 1;
 
-        while (!solution_found) {
-          int level_suffix_len = 0;
-          if (level_prefix == 14 && suffix_len == 0)
-            level_suffix_len = 4;
-          else {
-            if (level_prefix >= 15)
-              level_suffix_len = level_prefix - 3;
-            else
-              level_suffix_len = suffix_len;
-          }
+        for (int i = resume_idx; i >= 0; i--) 
+        {
+            if (mat_x[i] != 0) // coeff is non-zero
+            {
+                lastCoeff--;
+                int level_code = mat_x[i];
 
-          if (level_prefix >= 16)
-            level_code -= (1 << (level_prefix - 3)) - 4096;
+                /*
+                    If there are less than 3 T1s, then the first non-T1 level cannot have a value of +/−1, otherwise it
+                    would have been encoded as a T1. To save bits, this level is incremented if negative, decremented if positive
+                */
+                if (pad_this) 
+                {
+                    if (mat_x[i] > 0)
+                        level_code -= 1;
+                    else
+                        level_code += 1;
+                    pad_this = false;
+                }
 
-          if (level_prefix >= 15 && suffix_len == 0)
-            level_code -= 15;
+                // Standard page 218 8.
+                level_code *= 2;
+                if (level_code >= 0)
+                    level_code -= 2;
+                else
+                    level_code = 0 - (level_code + 1);
 
-          int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
-          int level_suffix = level_code - level_code_prefix;
-          int level_max = pow(2.0, level_suffix_len) - 1;
+                int level_prefix = 0;
+                std::string level_prefix_str = "";
+                bool solution_found = false;
 
-          if (level_suffix <= level_max) {
-            solution_found = true;
-            level_vlc_str += level_prefix_str + "1";
-            if (level_suffix_len != 0) {
-              std::string encoded_str;
-              if (level_suffix != 0) {
-                std::bitset<64> bits(level_suffix);
-                encoded_str = bits.to_string();
-                int first_one_pos = encoded_str.find_first_of("1");
-                encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
-              }
-              else
-                encoded_str = "0";
-              while (encoded_str.length() < (unsigned int)level_suffix_len)
-                encoded_str = "0" + encoded_str;
-              level_vlc_str += encoded_str;
+                while (!solution_found)
+                {
+                    int level_suffix_len = 0;
+                    if (level_prefix == 14 && suffix_len == 0)  // Standard page 218 2.
+                        level_suffix_len = 4;
+                    else 
+                    {
+                        if (level_prefix >= 15)
+                        level_suffix_len = level_prefix - 3;    // Standard page 218 2.
+                        else
+                        level_suffix_len = suffix_len;          // Standard page 218 2.
+                    }
+
+                    if (level_prefix >= 16)
+                        level_code -= ((1 << (level_prefix - 3)) - 4096);     // Standard page 218 6.
+
+                    if (level_prefix >= 15 && suffix_len == 0)
+                        level_code -= 15;                       // Standard page 218 5.
+
+                    // int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
+                    int level_code_prefix = std::min(15, level_prefix) << suffix_len;   // Standard page 218 4.
+                    int level_suffix = level_code - level_code_prefix;
+                    int level_max = pow(2.0, level_suffix_len) - 1;
+
+                    if (level_suffix <= level_max) 
+                    {
+                        solution_found = true;
+                        level_vlc_str += level_prefix_str + "1";
+                        if (level_suffix_len != 0)      // Standard page 218 3.
+                        {
+                            std::string encoded_str;
+                            if (level_suffix != 0)
+                            {
+                                std::bitset<64> bits(level_suffix);
+                                encoded_str = bits.to_string();
+                                int first_one_pos = encoded_str.find_first_of("1");
+                                encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
+                            }
+                            else
+                                encoded_str = "0";
+                            while (encoded_str.length() < (unsigned int)level_suffix_len)   // Standard page 218 3. (uint)
+                                encoded_str = "0" + encoded_str;
+                            level_vlc_str += encoded_str;
+                        }
+
+                        // Standard page 218 10.
+                        if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
+                        suffix_len++;
+                        if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
+                        suffix_len = 2;
+                    }
+                    else 
+                    {
+                        level_prefix++;
+                        level_prefix_str += "0";
+                    }
+                }
+        }
+        }
+    }
+
+    // Calculate run-before
+    std::string run_vlc_str = "";
+    int last_zeros = total_zeros;
+    int coeff_cnt = total_coeff - 1;
+
+    if (total_coeff == maxNumCoeff)
+        last_zeros = 0;
+
+    for (int i = 15; i >= 0; i--) 
+    {
+        if (mat_x[i] != 0) 
+        {
+            int zero_cnt = 0;
+            int j = i - 1;
+            for (; j >= 0; j--) 
+            {
+                if (mat_x[j] != 0)
+                break;
+                zero_cnt++;
             }
 
-            if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
-              suffix_len++;
-            if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
-              suffix_len = 2;
-          }
-          else {
-            level_prefix++;
-            level_prefix_str += "0";
-          }
+            if (j != -1) 
+            {
+                std::string run_str = "";
+                if (last_zeros <= 6)
+                run_str = run_vlc_table[zero_cnt][last_zeros];
+                else
+                run_str = run_vlc_table[zero_cnt][7];
+                last_zeros -= zero_cnt;
+                coeff_cnt--;
+                run_vlc_str += run_str;
+            }
         }
-      }
+
+        if (last_zeros == 0)
+        break;
     }
-  }
-
-  // Calculate run-before
-  std::string run_vlc_str = "";
-  int last_zeros = total_zeros;
-  int coeff_cnt = total_coeff - 1;
-
-  if (total_coeff == maxNumCoeff)
-    last_zeros = 0;
-
-  for (int i = 15; i >= 0; i--) {
-    if (mat_x[i] != 0) {
-      int zero_cnt = 0;
-      int j = i - 1;
-      for (; j >= 0; j--) {
-        if (mat_x[j] != 0)
-          break;
-        zero_cnt++;
-      }
-
-      if (j != -1) {
-        std::string run_str = "";
-        if (last_zeros <= 6)
-          run_str = run_vlc_table[zero_cnt][last_zeros];
-        else
-          run_str = run_vlc_table[zero_cnt][7];
-        last_zeros -= zero_cnt;
-        coeff_cnt--;
-        run_vlc_str += run_str;
-      }
-    }
-
-    if (last_zeros == 0)
-      break;
-  }
 
   std::string final_str = num_vlc_table[coeff_table_idx][total_coeff][trail_ones] + ones_str + level_vlc_str;
   if (total_coeff < maxNumCoeff)
