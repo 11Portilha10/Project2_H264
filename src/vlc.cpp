@@ -138,8 +138,8 @@ std::string num_vlc_table[6][17][4] = {
  *   zero_vlc_table[ TotalZeros ][ TotalCoeff ]
  */
 std::string zero_vlc_table[16][17] = {
-  { "", "1", "111", "0101", "00011", "0101", "000001", "000001", "000001", "000001", "00001", "0000", "0000", "000", "00", "0" },
-  { "", "011", "110", "111", "111", "0100", "00001", "00001", "0001", "000000", "00000", "0001", "0001", "001", "01", "1", "" },
+  { "", "1"   , "111" , "0101", "00011" , "0101", "000001", "000001", "000001", "000001", "00001", "0000", "0000", "000", "00", "0", ""},
+  { "", "011" , "110" , "111" , "111"   , "0100", "00001" , "00001" , "0001"  , "000000", "00000", "0001", "0001", "001", "01", "1", "" },
   { "", "010", "101", "110", "0101", "0011", "111", "101", "00001", "0001", "001", "001", "01", "1", "1", "", "" },
   { "", "0011", "100", "101", "0100", "111", "110", "100", "011", "11", "11", "010", "1", "01", "", "", "" },
   { "", "0010", "011", "0100", "110", "110", "101", "011", "11", "10", "10", "1", "001", "", "", "", "" },
@@ -450,8 +450,8 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
   std::string ones_str;
   int resume_idx = highest_idx;
   for (int i = highest_idx; i >= 0; i--) {  // start from the highest frequency coeff
-      if (mat_x[i] != 0) 
-      {
+    if (mat_x[i] != 0) 
+    {
       if (mat_x[i] == 1) {
           trail_ones++;
           ones_str += "0";
@@ -472,7 +472,7 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
           resume_idx = i - 1;
           break;
       }
-      }
+    }
   }
 
   // (#3) Level encoding (Remaining coeffs after trailing ones in reverse order)
@@ -586,44 +586,48 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
     }
   }
 
-  // Calculate run-before
+  // (#4) Calculate run-before
   std::string run_vlc_str = "";
-  int last_zeros = total_zeros;
-  int coeff_cnt = total_coeff - 1;
+  int last_zeros = total_zeros; // zeros left in the block
+  // int coeff_cnt = total_coeff - 1;
 
-  if (total_coeff == maxNumCoeff)
-      last_zeros = 0;
+  if (total_coeff == maxNumCoeff) // no zeros in the block
+    last_zeros = 0;
 
-  for (int i = 15; i >= 0; i--) 
+  for (int i = 15; i >= 0; i--)   // main loop
   {
-      if (mat_x[i] != 0) 
+    if (mat_x[i] != 0) // run_before is only calculated for non-zero coeffs
+    {
+      int zero_cnt = 0; // number of zeros until next non-zero coeff, in reverse order
+      int j = i - 1;    // start from previous index
+      for (; j >= 0; j--) 
       {
-          int zero_cnt = 0;
-          int j = i - 1;
-          for (; j >= 0; j--) 
-          {
-              if (mat_x[j] != 0)
-              break;
-              zero_cnt++;
-          }
-
-          if (j != -1) 
-          {
-              std::string run_str = "";
-              if (last_zeros <= 6)
-              run_str = run_vlc_table[zero_cnt][last_zeros];
-              else
-              run_str = run_vlc_table[zero_cnt][7];
-              last_zeros -= zero_cnt;
-              coeff_cnt--;
-              run_vlc_str += run_str;
-          }
+        // Count zeros until next coeff in reverse order
+        if(mat_x[j] != 0)
+          break;
+        zero_cnt++;
       }
 
-      if (last_zeros == 0)
+      if(j != -1)   // all iterations except the last coeff (does not need coding)
+      {
+        std::string run_str = "";
+        if (last_zeros <= 6)
+          run_str = run_vlc_table[zero_cnt][last_zeros];
+        else
+          run_str = run_vlc_table[zero_cnt][7];
+
+        last_zeros -= zero_cnt;
+        // coeff_cnt--;
+        run_vlc_str += run_str;
+      }
+    }
+
+    // if no zeros left, break the main loop, no encoding needed
+    if (last_zeros == 0)
       break;
   }
 
+  // (#5) Final vlc string
   std::string final_str = num_vlc_table[coeff_table_idx][total_coeff][trail_ones] + ones_str + level_vlc_str;
   if (total_coeff < maxNumCoeff)
     final_str += zero_vlc_table[total_zeros][total_coeff];
