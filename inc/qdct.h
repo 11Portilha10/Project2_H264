@@ -5,7 +5,8 @@
 #include "block.h"
 
 // MAX QP for luma is 51, MAX QP for chroma is 39
-const int LUMA_QP = 20;
+//const int LUMA_QP = 20;
+const int LUMA_QP = 10;
 const int CHROMA_QP = 12;
 
 const int mat_MF[6][3] = {
