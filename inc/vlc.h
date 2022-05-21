@@ -22,10 +22,38 @@ const int me[] = {
 	14, 15, 0
 };
 
-Bitstream ue(const unsigned int);
-Bitstream se(const int);
+typedef std::string (*level_VLC_encoder)(int);
 
+std::string level_VLC_0(int level_code);
+std::string level_VLC_1(int level_code);
+std::string level_VLC_2(int level_code);
+std::string level_VLC_3(int level_code);
+std::string level_VLC_4(int level_code);
+std::string level_VLC_5(int level_code);
+std::string level_VLC_6(int level_code);
+
+/**
+ * @brief Unsigned Exponential Golomb Coding
+ * 
+ */
+Bitstream uegc(const unsigned int);
+
+/**
+ * @brief Signed Exponential Golomb Coding
+ * 
+ */
+Bitstream segc(const int);
+
+/**
+ * @brief 
+ * 
+ */
 std::pair<Bitstream, int> cavlc_block2x2(Block2x2, const int, const int);
+
+/**
+ * @brief 
+ * 
+ */
 std::pair<Bitstream, int> cavlc_block4x4(Block4x4, const int, const int);
 
 #endif
