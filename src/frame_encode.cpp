@@ -466,4 +466,7 @@ void encode_I_frame(Frame& frame) {
 
   std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
   std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
+
+  // in-loop deblocking filter (MISSES)
+  // deblocking_filter(decoded_blocks, frame);
 }

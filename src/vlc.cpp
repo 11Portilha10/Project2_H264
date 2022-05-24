@@ -402,9 +402,9 @@ void scan_zigzag(Block2x2 block, int tblock[]) {
  * 
  * @param block Transform coefficients 4x4 input block
  * @param nC    Number of non-zero coefficients in neighbouring blocks
- * @param maxNumCoeff 15 or 16?
+ * @param maxNumCoeff Related with whether the DC transform was performed or not
  * 
- * @return  Bitstream object initialized with the final string
+ * @return  Bitstream object initialized with the final string, and total number of non-zero coeffs
  */
 std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int maxNumCoeff) {
   int mat_x[16];  // input coefficients block
