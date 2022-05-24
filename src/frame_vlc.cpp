@@ -1,8 +1,12 @@
 #include "frame_vlc.h"
 
+/**
+ * @brief 
+ * 
+ */
 void vlc_frame(Frame& frame) {
-  std::vector<std::array<int, 16>> nc_Y_table;
-  nc_Y_table.reserve(frame.mbs.size());
+  std::vector<std::array<int, 16>> nc_Y_table;    // vector of nMB arrays of 16 ints 
+  nc_Y_table.reserve(frame.mbs.size());           // each macroblock has an array of 16 ints
   std::vector<std::array<int, 4>> nc_Cb_table;
   nc_Cb_table.reserve(frame.mbs.size());
   std::vector<std::array<int, 4>> nc_Cr_table;
@@ -18,6 +22,7 @@ void vlc_frame(Frame& frame) {
     nc_Cb_table.push_back(current_Cb_table);
     nc_Cr_table.push_back(current_Cr_table);
 
+    // If the MB is not coded, fill YCbCr tables with 16
     if (mb.is_I_PCM) {
       for (int i = 0; i != 16; i++)
         nc_Y_table.at(mb.mb_index)[i] = 16;
@@ -61,9 +66,18 @@ void vlc_frame(Frame& frame) {
   }
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * @param nc_Y_table description
+ * @param frame description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Y_DC(MacroBlock& mb, std::vector<std::array<int, 16>>& nc_Y_table, Frame& frame) {
-  int nA_index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_L);
-  int nB_index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);
+  int nA_index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_L);  // get left MB index
+  int nB_index = frame.get_neighbor_index(mb.mb_index, MB_NEIGHBOR_U);  // get upper MB index
 
   int nC;
   if (nA_index != -1 && nB_index != -1)
@@ -82,6 +96,15 @@ Bitstream vlc_Y_DC(MacroBlock& mb, std::vector<std::array<int, 16>>& nc_Y_table,
   return bitstream;
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * @param nc_Y_table description
+ * @param frame description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Y(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 16>>& nc_Y_table, Frame& frame) {
   int real_pos = MacroBlock::convert_table[cur_pos];
 
@@ -131,6 +154,13 @@ Bitstream vlc_Y(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 16>>& n
   return bitstream;
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Cb_DC(MacroBlock& mb) {
   Bitstream bitstream;
   int non_zero;
@@ -142,6 +172,13 @@ Bitstream vlc_Cb_DC(MacroBlock& mb) {
   return bitstream;
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Cr_DC(MacroBlock& mb) {
   Bitstream bitstream;
   int non_zero;
@@ -153,6 +190,15 @@ Bitstream vlc_Cr_DC(MacroBlock& mb) {
   return bitstream;
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * @param nc_Cb_table description
+ * @param frame description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Cb_AC(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 4>>& nc_Cb_table, Frame& frame) {
   int nA_index, nA_pos;
   if (cur_pos % 2 == 0) {
@@ -193,6 +239,15 @@ Bitstream vlc_Cb_AC(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 4>>
   return bitstream;
 }
 
+/**
+ * @brief 
+ * 
+ * @param mb description
+ * @param nc_Cr_table description
+ * @param frame description
+ * 
+ * @return description of the return value
+ */
 Bitstream vlc_Cr_AC(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 4>>& nc_Cr_table, Frame& frame) {
   int nA_index, nA_pos;
   if (cur_pos % 2 == 0) {

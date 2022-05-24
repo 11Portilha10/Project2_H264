@@ -24,6 +24,7 @@ const int me[] = {
 
 typedef std::string (*level_VLC_encoder)(int);
 
+// Level VLC tables
 std::string level_VLC_0(int level_code);
 std::string level_VLC_1(int level_code);
 std::string level_VLC_2(int level_code);
@@ -45,14 +46,27 @@ Bitstream uegc(const unsigned int);
 Bitstream segc(const int);
 
 /**
- * @brief 
+ * @brief       Performs 4x4 CAVLC encoding
  * 
+ * @param block Transform coefficients 4x4 input block
+ * @param nC    Number of non-zero coefficients in neighbouring blocks
+ * @param maxNumCoeff 15 or 16?
+ * 
+ * @return  Bitstream object initialized with the final string
  */
 std::pair<Bitstream, int> cavlc_block2x2(Block2x2, const int, const int);
 
 /**
- * @brief 
+ * @brief       Performs 2x2 CAVLC encoding
  * 
+ * @param block Transform coefficients 2x2 input block
+ * @param nC    Number of non-zero coefficients in neighbouring blocks (-1 for chroma)
+ * @param maxNumCoeff 4 for 2x2
+ * 
+ * @return  Bitstream object initialized with the final string
+ * 
+ * @note  The procedure is the same as in the 4x4 CAVLC, except for the indexes.
+ *        Comments in 4x4 CAVLC also apply here
  */
 std::pair<Bitstream, int> cavlc_block4x4(Block4x4, const int, const int);
 
