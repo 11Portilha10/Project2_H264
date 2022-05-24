@@ -1,5 +1,5 @@
-#ifndef FRAME_VLC
-#define FRAME_VLC
+#ifndef FRAME_VLC_H
+#define FRAME_VLC_H
 
 #include <array>
 #include <vector>
