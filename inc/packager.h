@@ -18,8 +18,8 @@ class Packager {
 public:
   Packager(std::string);
 
-  void write_sps(const int, const int, const int);
-  void write_pps();
+  void write_SPS(const int, const int, const int);
+  void write_PPS();
   void write_slice(const int, Frame&);
 
 private:

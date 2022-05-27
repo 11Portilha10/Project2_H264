@@ -7,9 +7,10 @@
 *
 */
 int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
-  
+/*============================================== TESTING ============================================*/
   ofstream pred_file ("txt/16x16_Y_pred_mode.txt", ios::app);
   ofstream residual_16x16_file ("txt/16x16_Y_residual.txt", ios::app);
+/*===================================================================================================*/
 
   // Get neighbours MBs pointers (ul, u, l)
   auto get_decoded_Y_block = [&](int direction) {
@@ -35,28 +36,28 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   // Sets 16x16 mode
   mb.intra16x16_Y_mode = mode;
 
+/*============================================== TESTING ============================================*/
   // Print prediction mode to 'pred_mode.txt'
   pred_file << "MB " << mb.mb_index << " ->" << (int)mode << endl;
 
-
   // Print residual 16x16 to "16x16_Y_residual.txt"  -> Tests
-
   residual_16x16_file << "Y_MB Residual " << mb.mb_index << endl;
 
   for(int r=0; r < 256; r+=16)
+  {
+    for(int c=0; c<16; c++)
     {
-      for(int c=0; c<16; c++)
-      {
-        residual_16x16_file << mb.Y[r+c] << ' ';
-      }
-      residual_16x16_file << endl;
+      residual_16x16_file << mb.Y[r+c] << ' ';
     }
     residual_16x16_file << endl;
-
+  }
+  residual_16x16_file << endl;
+/*===================================================================================================*/
+  
   // Perform QDCT
   qdct_luma16x16_intra(mb.Y);
-  
-  // Reconstruct for later prediction (not being done)
+
+  // Reconstruct for later prediction     NECESSARY ???
 
   return error;
 }
@@ -68,16 +69,16 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
 *
 */
 int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_block, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
-  
+/*============================================== TESTING ============================================*/
   ofstream pred_file ("txt/4x4_Y_pred_mode.txt", ios::app);
   ofstream residual_4x4_file ("txt/4x4_Y_residual.txt", ios::app);
-  
+/*===================================================================================================*/
+
   // Convert input position (see macroblock.cpp)
   int temp_pos = MacroBlock::convert_table[cur_pos];    // is this necessary? Two times?
 
   /**
-   * @brief Returns the 4x4 Block of the MB referred by 'index', at the position referred by 'pos'
-   * 
+   * Returns the 4x4 Block of the MB referred by 'index', at the position referred by 'pos'
    */
   auto get_4x4_block = [&](int index, int pos) {
     if (index == -1)
@@ -180,6 +181,7 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   mb.is_intra16x16 = false;
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
 
+/*============================================== TESTING ============================================*/
   // Print residual 4x4 to "4x4_Y_residual.txt"  -> Tests
 
   residual_4x4_file << "Y_MB Residual " << mb.mb_index << endl;
@@ -193,12 +195,12 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
       residual_4x4_file << endl;
     }
     residual_4x4_file << endl;
-  
+/*==================================================================================================*/
+
   // Perform QDCT
   qdct_luma4x4_intra(mb.get_Y_4x4_block(cur_pos));
 
-
-  // Reconstruct for later prediction
+  // Reconstruct for later prediction     NECESSARY ???
 
   return error;
 }
@@ -243,8 +245,11 @@ int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Fram
 *
 */
 int encode_CbCr_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
+/*============================================== TESTING ============================================*/
   ofstream pred_file ("txt/8x8_CbCr_pred_mode.txt", ios::app);
-  ofstream residual_8x8_file ("txt/8x8_CbCr_residual.txt", ios::app);
+  ofstream residual_Cb_file ("txt/Cb_residual.txt", ios::app);
+  ofstream residual_Cr_file ("txt/Cr_residual.txt", ios::app);
+/*===================================================================================================*/
 
   auto get_decoded_Cr_block = [&](int direction) {
     int index = frame.get_neighbor_index(mb.mb_index, direction);
@@ -273,21 +278,36 @@ int encode_CbCr_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_
 
   mb.intra_Cr_Cb_mode = mode;
 
+/*============================================== TESTING ============================================*/
   // Print selected mode to '8x8_CbCr_pred_mode.txt' (must be the same for both)
   pred_file << "MB " << mb.mb_index << " -> " << (int)mode << endl;
 
-  residual_8x8_file << "Y_MB Residual " << mb.mb_index << endl;
+  // Print Cb residuals
+  residual_Cb_file << "Cb_MB Residual " << mb.mb_index << endl;
 
-  for(int r=0; r < 256; r+=16)
+  for(int r=0; r < 64; r+=8)
+  {
+    for(int c=0; c<16; c++)
     {
-      for(int c=0; c<16; c++)
-      {
-        residual_8x8_file << mb.Y[r+c] << ' ';
-      }
-      residual_8x8_file << endl;
+      residual_Cb_file << mb.Cb[r+c] << ' ';
     }
-    residual_8x8_file << endl;
+    residual_Cb_file << endl;
+  }
+  residual_Cb_file << endl;
+  
+  // Print Cr residuals
+  residual_Cr_file << "Cr_MB Residual " << mb.mb_index << endl;
 
+  for(int r=0; r < 64; r+=8)
+  {
+    for(int c=0; c<16; c++)
+    {
+      residual_Cr_file << mb.Cr[r+c] << ' ';
+    }
+    residual_Cr_file << endl;
+  }
+  residual_Cr_file << endl;
+/*===================================================================================================*/
 
   // Perform QDCT (Cr and Cb components)
   qdct_chroma8x8_intra(mb.Cr);
@@ -311,7 +331,7 @@ int encode_CbCr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, F
   return error_intra8x8;
 }
 
-/////////////////////////////////////////////////////////////////////// FRAME ////////////////////////////////
+////////////////////////////// FRAME ////////////////////////////////
 
 
 /*
@@ -467,6 +487,6 @@ void encode_I_frame(Frame& frame) {
   std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
   std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
 
-  // in-loop deblocking filter (MISSES)
+  // in-loop deblocking filter                         ====== NECESSARY ??? =====
   // deblocking_filter(decoded_blocks, frame);
 }

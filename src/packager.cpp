@@ -18,7 +18,7 @@ Packager::Packager(std::string filename) {
  * @param height  Height of the video frames
  * @param num_frames  Number of frames in the stream (PC Range images in this case)
  */
-void Packager::write_sps(const int width, const int height, const int num_frames) {
+void Packager::write_SPS(const int width, const int height, const int num_frames) {
   Bitstream output(start_code, 32);
   Bitstream rbsp = seq_parameter_set_rbsp(width, height, num_frames);   // SPS raw byte sequence payload
   NALUnit nal_unit(NALRefIdc::HIGHEST, NALType::SPS, rbsp.rbsp_to_ebsp());  // construct SPS NAL Unit
@@ -29,7 +29,7 @@ void Packager::write_sps(const int width, const int height, const int num_frames
   file.flush();
 }
 
-void Packager::write_pps() {
+void Packager::write_PPS() {
   Bitstream output(start_code, 32);
   Bitstream rbsp = pic_parameter_set_rbsp();
   NALUnit nal_unit(NALRefIdc::HIGHEST, NALType::PPS, rbsp.rbsp_to_ebsp());
@@ -43,7 +43,7 @@ void Packager::write_pps() {
 /**
  * @brief Writes slice header and data
  * 
- * @param frame_num Frame number
+ * @param frame_num Frame number (starting from zero)
  * @param frame The Frame instance (Range image)
  */
 void Packager::write_slice(const int frame_num, Frame& frame) {
