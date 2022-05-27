@@ -1,5 +1,5 @@
-#ifndef INTRA_H
-#define INTRA_H
+#ifndef INTRA_H_
+#define INTRA_H_
 
 #include <array>
 #include <vector>

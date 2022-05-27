@@ -1,5 +1,5 @@
-#ifndef PACKAGER
-#define PACKAGER
+#ifndef PACKAGER_H_
+#define PACKAGER_H_
 
 #include <string>
 #include <cstdint>
@@ -10,7 +10,7 @@
 
 #include "vlc.h"
 #include "nal_unit.h"
-#include "qdct.h"
+#include "tr_qt.h"
 #include "frame.h"
 #include "bitstream.h"
 

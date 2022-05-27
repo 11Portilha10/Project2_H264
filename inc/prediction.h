@@ -1,5 +1,5 @@
-#ifndef FRAME_ENCODE_H
-#define FRAME_ENCODE_H
+#ifndef PREDICTION_H_
+#define PREDICTION_H_
 
 #include <vector>
 #include <experimental/optional>
@@ -16,7 +16,7 @@
 #include "macroblock.h"
 #include "frame.h"
 #include "intra.h"
-#include "qdct.h"
+#include "tr_qt.h"
 
 using namespace cv;
 using namespace std;

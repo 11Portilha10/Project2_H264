@@ -1,5 +1,5 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef BLOCK_H_
+#define BLOCK_H_
 
 #include <array>
 #include <functional>

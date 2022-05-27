@@ -1,5 +1,5 @@
-#ifndef VLC_H
-#define VLC_H
+#ifndef VLC_H_
+#define VLC_H_
 
 #include <cmath>
 #include <bitset>

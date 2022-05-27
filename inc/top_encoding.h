@@ -1,5 +1,5 @@
-#ifndef FRAME_VLC_H
-#define FRAME_VLC_H
+#ifndef TOP_ENC_H_
+#define TOP_ENC_H_
 
 #include <array>
 #include <vector>

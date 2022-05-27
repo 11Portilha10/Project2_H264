@@ -1,5 +1,5 @@
-#ifndef MACROBLOCK_H
-#define MACROBLOCK_H
+#ifndef MACROBLOCK_H_
+#define MACROBLOCK_H_
 
 #include <array>
 #include <utility>

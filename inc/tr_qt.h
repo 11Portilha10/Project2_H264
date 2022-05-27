@@ -1,5 +1,5 @@
-#ifndef QDCT_H
-#define QDCT_H
+#ifndef TR_QT_H_
+#define TR_QT_H_
 
 #include <cmath>
 #include "block.h"

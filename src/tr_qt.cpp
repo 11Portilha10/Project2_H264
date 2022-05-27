@@ -1,4 +1,4 @@
-#include "qdct.h"
+#include "tr_qt.h"
 
 /**
  * Transform and Quantize block overview

@@ -1,5 +1,5 @@
-#ifndef NAL
-#define NAL
+#ifndef NAL_UNIT_H_
+#define NAL_UNIT_H_
 
 #include <string>
 #include <cstdint>
@@ -9,7 +9,7 @@
 #include <cmath>
 
 #include "vlc.h"
-#include "qdct.h"
+#include "tr_qt.h"
 #include "frame.h"
 #include "bitstream.h"
 

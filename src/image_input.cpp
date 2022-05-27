@@ -5,9 +5,9 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "frame_encode.h"
+#include "prediction.h"
 #include "packager.h"
-#include "frame_vlc.h"
+#include "top_encoding.h"
 
 using namespace cv;
 using namespace std;

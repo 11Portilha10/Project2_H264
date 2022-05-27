@@ -1,5 +1,5 @@
-#ifndef FRAME_H
-#define FRAME_H
+#ifndef FRAME_H_
+#define FRAME_H_
 
 #include <vector>
 #include <opencv2/opencv.hpp>

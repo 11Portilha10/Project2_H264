@@ -1,5 +1,5 @@
-#ifndef BITSTREAM_H
-#define BITSTREAM_H
+#ifndef BITSTREAM_H_
+#define BITSTREAM_H_
 
 #include <cassert>
 #include <cstdint>
