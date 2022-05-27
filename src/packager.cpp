@@ -1,52 +1,27 @@
-#include "nal.h"
+#include "packager.h"
 
-/* Construct NAL unit 
- * given ref, type and RBSP
- */
-NALUnit::NALUnit(const NALRefIdc ref_idc, const NALType type, const Bitstream& rbsp) {
-  forbidden_zero_bit = 0;
-  nal_ref_idc = ref_idc;
-  nal_unit_type = type;
-  buffer = rbsp;
-}
+// Start/stop code prefix to separate NAL Units
+std::uint8_t Packager::start_code[4] = {0x00, 0x00, 0x00, 0x01};
 
-/* Return NAL header 
- * which has 8 bits 
- *          1                2             5
- * |------------------|------------|--------------|
- * 
- *  forbidden_zero_bit  nal_ref_idc  nal_unit_type 
- */
-std::uint8_t NALUnit::nal_header() {
-  return (forbidden_zero_bit << 7) | (static_cast<uint8_t>(nal_ref_idc) << 5) |
-           (static_cast<uint8_t>(nal_unit_type));
-}
-
-/* Return NAL unit bitstream
- */
-Bitstream NALUnit::get() {
-  std::uint8_t header[] = {nal_header()};
-  Bitstream output(header, 8);
-  return output + buffer;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-
-std::uint8_t Writer::stopcode[4] = {0x00, 0x00, 0x00, 0x01};
-
-Writer::Writer(std::string filename) {
+Packager::Packager(std::string filename) {
   // Open the file stream for output file
   file.open(filename, std::ios::out | std::ios::binary);
   if (!file.is_open()) {
-    // logger.log(Level::ERROR, "Cannot open file");
     exit(1);
   }
 }
 
-void Writer::write_sps(const int width, const int height, const int num_frames) {
-  Bitstream output(stopcode, 32);
-  Bitstream rbsp = seq_parameter_set_rbsp(width, height, num_frames);
-  NALUnit nal_unit(NALRefIdc::HIGHEST, NALType::SPS, rbsp.rbsp_to_ebsp());
+/**
+ * @brief Writes the Sequence Parameter Set with data from the sequence of frames
+ * 
+ * @param width   Width of the video frames
+ * @param height  Height of the video frames
+ * @param num_frames  Number of frames in the stream (PC Range images in this case)
+ */
+void Packager::write_sps(const int width, const int height, const int num_frames) {
+  Bitstream output(start_code, 32);
+  Bitstream rbsp = seq_parameter_set_rbsp(width, height, num_frames);   // SPS raw byte sequence payload
+  NALUnit nal_unit(NALRefIdc::HIGHEST, NALType::SPS, rbsp.rbsp_to_ebsp());  // construct SPS NAL Unit
 
   output += nal_unit.get();
 
@@ -54,18 +29,25 @@ void Writer::write_sps(const int width, const int height, const int num_frames) 
   file.flush();
 }
 
-void Writer::write_pps() {
-  Bitstream output(stopcode, 32);
+void Packager::write_pps() {
+  Bitstream output(start_code, 32);
   Bitstream rbsp = pic_parameter_set_rbsp();
   NALUnit nal_unit(NALRefIdc::HIGHEST, NALType::PPS, rbsp.rbsp_to_ebsp());
 
   output += nal_unit.get();
+
   file.write((char*)&output.buffer[0], output.buffer.size());
   file.flush();
 }
 
-void Writer::write_slice(const int frame_num, Frame& frame) {
-  Bitstream output(stopcode, 32);
+/**
+ * @brief Writes slice header and data
+ * 
+ * @param frame_num Frame number
+ * @param frame The Frame instance (Range image)
+ */
+void Packager::write_slice(const int frame_num, Frame& frame) {
+  Bitstream output(start_code, 32);
   Bitstream rbsp = slice_layer_without_partitioning_rbsp(frame_num, frame);
   rbsp += Bitstream((std::uint8_t)0x80, 8);
 
@@ -76,10 +58,20 @@ void Writer::write_slice(const int frame_num, Frame& frame) {
   file.flush();
 }
 
-Bitstream Writer::seq_parameter_set_rbsp(const int width, const int height, const int num_frames) {
+/**
+ * @brief Generates the SPS Raw Byte Sequence Payload
+ * 
+ * @param width   Width of frames in the stream (Range images)
+ * @param height  Height of frames in the stream (Range images)
+ * @param num_frames  Number of frames (Range images) in the stream
+ * 
+ * @return RBSP of the SPS (without NALU header)
+ * 
+ * @note Baseline profile only!
+ */
+Bitstream Packager::seq_parameter_set_rbsp(const int width, const int height, const int num_frames) {
   Bitstream sodb;
-  // only support baseline profile
-  std::uint8_t profile_idc = 66;  // u(8)
+  std::uint8_t profile_idc = 66;  // u(8)   // baseline profile
   bool constraint_set0_flag = false;  // u(1)
   bool constraint_set1_flag = false;  // u(1)
   bool constraint_set2_flag = false;  // u(1)
@@ -139,7 +131,12 @@ Bitstream Writer::seq_parameter_set_rbsp(const int width, const int height, cons
   return sodb.rbsp_trailing_bits();
 }
 
-Bitstream Writer::pic_parameter_set_rbsp() {
+/**
+ * @brief Generates the SPS Raw Byte Sequence Payload
+ * 
+ * @return Bitstream 
+ */
+Bitstream Packager::pic_parameter_set_rbsp() {
   const int QPC2idoffset[] = {
     0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 
     10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -184,14 +181,14 @@ Bitstream Writer::pic_parameter_set_rbsp() {
   return sodb.rbsp_trailing_bits();
 }
 
-Bitstream Writer::slice_layer_without_partitioning_rbsp(const int _frame_num, Frame& frame) {
-  Bitstream sodb = slice_header(_frame_num);
+Bitstream Packager::slice_layer_without_partitioning_rbsp(const int _frame_num, Frame& frame) {
+  Bitstream sodb = slice_header(_frame_num);    // write slice header
   return write_slice_data(frame, sodb).rbsp_trailing_bits();
 }
 
-Bitstream Writer::write_slice_data(Frame& frame, Bitstream& sodb) {
+Bitstream Packager::write_slice_data(Frame& frame, Bitstream& sodb) {
   for (auto& mb : frame.mbs) {
-    if (mb.is_I_PCM) {
+    if (mb.is_I_PCM) {    // MB not intra coded
       sodb += uegc(25);
 
       while(!sodb.byte_align())
@@ -209,6 +206,7 @@ Bitstream Writer::write_slice_data(Frame& frame, Bitstream& sodb) {
       continue;
     }
 
+    // Encode mb_type and pred mode for 16x16 Luma
     if (mb.is_intra16x16) {
       unsigned int type = 1;
       if (mb.coded_block_pattern_luma)
@@ -227,8 +225,9 @@ Bitstream Writer::write_slice_data(Frame& frame, Bitstream& sodb) {
       sodb += uegc(0);
     }
 
-    sodb += mb_pred(mb, frame);
+    sodb += mb_pred(mb, frame);   // encode intra-prediction modes for 4x4 Luma and Chroma
 
+    // Encode coded_block_pattern syntax element for MBs other than 16x16 Luma
     if (!mb.is_intra16x16) {
       unsigned int cbp = 0;
       if (mb.coded_block_pattern_chroma_DC == false && mb.coded_block_pattern_chroma_AC == false)
@@ -245,8 +244,9 @@ Bitstream Writer::write_slice_data(Frame& frame, Bitstream& sodb) {
       sodb += uegc(me[cbp]);
     }
 
+    // Add residual data
     if (mb.coded_block_pattern_luma || mb.coded_block_pattern_chroma_DC || mb.coded_block_pattern_chroma_AC || mb.is_intra16x16) {
-      sodb += segc(0);
+      sodb += segc(0);  // delta_qp
       sodb += mb.bitstream;
     }
   }
@@ -254,7 +254,14 @@ Bitstream Writer::write_slice_data(Frame& frame, Bitstream& sodb) {
   return sodb;
 }
 
-Bitstream Writer::mb_pred(MacroBlock& mb, Frame& frame) {
+/**
+ * @brief Encode intra-prediction modes for each MB
+ * 
+ * @param mb The current MB
+ * @param frame The current frame (range image)
+ * @return Bitstream with the encoded pred modes
+ */
+Bitstream Packager::mb_pred(MacroBlock& mb, Frame& frame) {
   Bitstream sodb;
 
   if (!mb.is_intra16x16) {
@@ -307,7 +314,7 @@ Bitstream Writer::mb_pred(MacroBlock& mb, Frame& frame) {
   return sodb;
 }
 
-Bitstream Writer::slice_header(const int _frame_num) {
+Bitstream Packager::slice_header(const int _frame_num) {
   Bitstream sodb;
 
   unsigned int first_mb_in_slice = 0;  // ue(v)

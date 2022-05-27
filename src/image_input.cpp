@@ -5,8 +5,9 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "frame.h"
 #include "frame_encode.h"
+#include "packager.h"
+#include "frame_vlc.h"
 
 using namespace cv;
 using namespace std;
@@ -28,8 +29,8 @@ int main(int argc, char* argv[])
     // 8-bit 3-channel color image
     Mat image =  imread(argv[1]), paddedImage, yuv;
     // Mat image =  imread("png_test1.png"), paddedImage, yuv;
-    int iHeight = image.size[0];
-    int iWidth = image.size[1];
+    // int iHeight = image.size[0];
+    // int iWidth = image.size[1];
 
     // Padding width and height to multiple of 16
     int hPad = image.cols % 16;
@@ -58,8 +59,14 @@ int main(int argc, char* argv[])
     // at this point we have a Matrix with Luma and Chroma components
 
     Frame yuvFrame(yuv);
+    Packager packager("/home/manuale97/Documents/University/ESRG_2nd/Projects/PI/H264_Simple_encoder/output_bitstream/out.h264");
+
+    packager.write_sps(yuv.cols, yuv.rows, 1);  // 1 frame for testing
+    packager.write_pps();
 
     encode_I_frame(yuvFrame);
+    vlc_frame(yuvFrame);
+    packager.write_slice(0, yuvFrame);
 
     /*
         The output YUV image has ONE channel and a number of rows equivalent to 
@@ -71,15 +78,15 @@ int main(int argc, char* argv[])
             The last 1/6*nrows rows represent the V component, and are divided the same way.
     */
 
-    int bufLen = iWidth * iHeight * 3 / 2;  // number of pixels
-    unsigned char* pYuvBuf = new unsigned char[bufLen];
-    FILE * pFileYuv = fopen("yuv_test.yuv", "wb");
-    // fopen_s(&pFileYuv, "0001.yuv", "wb");
-    fwrite(yuv.data, sizeof(unsigned char), bufLen, pFileYuv);
-    fclose(pFileYuv);
-    pFileYuv = NULL;
+    // int bufLen = iWidth * iHeight * 3 / 2;  // number of pixels
+    // unsigned char* pYuvBuf = new unsigned char[bufLen];
+    // FILE * pFileYuv = fopen("yuv_test.yuv", "wb");
+    // // fopen_s(&pFileYuv, "0001.yuv", "wb");
+    // fwrite(yuv.data, sizeof(unsigned char), bufLen, pFileYuv);
+    // fclose(pFileYuv);
+    // pFileYuv = NULL;
     
-    delete [] pYuvBuf;
+    // delete [] pYuvBuf;
 
     return 0;
 }

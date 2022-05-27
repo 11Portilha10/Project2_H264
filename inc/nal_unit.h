@@ -9,7 +9,6 @@
 #include <cmath>
 
 #include "vlc.h"
-#include "nal.h"
 #include "qdct.h"
 #include "frame.h"
 #include "bitstream.h"
@@ -42,9 +41,17 @@ enum class NALRefIdc {
  DISPOSABLE  = 0
 };
 
+/**
+ * Coded or transmitted H.264 data is stored or transmitted as a series of packets
+ * known as Network Abstraction Layer Units (NAL Units).
+ * 
+ * | 1 byte NALU header     | byte stream |
+ * | NALU Type | Importance | byte stream |
+ * 
+ */
 class NALUnit {
 public:
-  Bitstream buffer;
+  Bitstream buffer;   // the byte stream of the NAL Unit
 
   NALUnit(const NALRefIdc, const NALType, const Bitstream&);
   std::uint8_t nal_header();
@@ -52,31 +59,8 @@ public:
 
 private:
   int forbidden_zero_bit; // Always be zero
-  NALRefIdc nal_ref_idc;
-  NALType nal_unit_type;
-};
-
-class Writer {
-public:
-  Writer(std::string);
-
-  void write_sps(const int, const int, const int);
-  void write_pps();
-  void write_slice(const int, Frame&);
-
-private:
-  // Log logger;
-  std::fstream file;
-  static std::uint8_t stopcode[4];
-  unsigned int log2_max_frame_num;
-  unsigned int log2_max_pic_order_cnt_lsb;
-
-  Bitstream seq_parameter_set_rbsp(const int, const int, const int);
-  Bitstream pic_parameter_set_rbsp();
-  Bitstream write_slice_data(Frame&, Bitstream&);
-  Bitstream mb_pred(MacroBlock&, Frame&);
-  Bitstream slice_layer_without_partitioning_rbsp(const int, Frame&);
-  Bitstream slice_header(const int);
+  NALRefIdc nal_ref_idc;  // Importance for the decoder
+  NALType nal_unit_type;  // NAL Unit type
 };
 
 #endif

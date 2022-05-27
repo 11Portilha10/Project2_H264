@@ -3,6 +3,12 @@
 
 Bitstream::Bitstream(): nb_bits(0) {}
 
+/**
+ * @brief Stores a bool value into as an uint8_t value (in the MSb).
+ *        nb_bits is set to 1.
+ * 
+ * @param flag Bool value to be saved
+ */
 Bitstream::Bitstream(const bool& flag) {
   nb_bits = 1;
   if (flag) {
@@ -13,6 +19,15 @@ Bitstream::Bitstream(const bool& flag) {
   }
 }
 
+/**
+ * @brief Stores an array of uint8_t values in the stream vector.
+ *        
+ * 
+ * @param bits  Array of bytes to be stored
+ * @param digit Number of bits to be saved
+ * 
+ * @note Does NOT consider the case where 'digit' is not multiple of 8
+ */
 Bitstream::Bitstream(std::uint8_t bits[], int digit) {
   nb_bits = digit;
 
@@ -21,11 +36,21 @@ Bitstream::Bitstream(std::uint8_t bits[], int digit) {
     buffer.push_back(bits[i]);
 }
 
+/**
+ * @brief Construct a new Bitstream from other Bitstream
+ * 
+ * @param a The bitstream to be copied
+ */
 Bitstream::Bitstream(const Bitstream& a) {
   nb_bits = a.nb_bits;
   buffer.insert(buffer.end(), a.buffer.begin(), a.buffer.end());
 }
 
+/**
+ * @brief Construct a variable sized bitstream from a string bitset
+ * 
+ * @param s The string to be converted to a Bitstream object
+ */
 Bitstream::Bitstream(const std::string& s) {
   nb_bits = s.size();
   int nb_int = nb_bits % 8 == 0 ? nb_bits/8: nb_bits/8 + 1;
@@ -40,11 +65,23 @@ Bitstream::Bitstream(const std::string& s) {
     buffer.push_back( (std::bitset<8>(s.substr((nb_int-1)*8, 8)).to_ulong()) );
 }
 
+/**
+ * @brief Construct a bitstream object from a single uint8_t
+ * 
+ * @param u The byte to construct the bitstream
+ * @param digit The number of bits
+ */
 Bitstream::Bitstream(const std::uint8_t u, int digit) {
   nb_bits = digit;
   buffer.push_back(u << (8-digit));
 }
 
+/**
+ * @brief Decompose a 32bit value into 4 uint8_t, and store in a bitstream object
+ * 
+ * @param cui   The input word
+ * @param digit The number of representative bits in the word
+ */
 Bitstream::Bitstream(const unsigned int cui, int digit) {
   nb_bits = digit;
   unsigned int ui = cui << (32 - digit);
@@ -133,10 +170,22 @@ Bitstream Bitstream::operator+(const Bitstream& a) {
   return c;
 }
 
+/**
+ * @brief 
+ * 
+ * @return true if the number of bits is multiple of 8
+ * @return false if the number of bits is NOT multiple of 8
+ */
 bool Bitstream::byte_align() {
   return (nb_bits % 8 == 0) ? true : false;
 }
 
+/**
+ * @brief This function adds a stop one bit, and adds some trailing zeros
+ *        if the resulting number of bits is not multiple of 8
+ * 
+ * @return Bitstream with a stop one appended, and trailing zeros (if nb_bits % 8 != 0)
+ */
 Bitstream Bitstream::rbsp_trailing_bits() {
   // rbsp_stop_one_bit
   Bitstream rbsp = (*this) + Bitstream(static_cast<std::uint8_t>(1), 1);
@@ -182,6 +231,13 @@ Bitstream Bitstream::rbsp_to_ebsp() {
   return ebsp;
 }
 
+/**
+ * @brief Converts the bitstream to string
+ * 
+ * @return std::string containing the set of bits
+ * 
+ * @note Introduces a space between bytes
+ */
 std::string Bitstream::to_string() {
   int nb_full_digit = nb_bits / 8;
   int trail_bits = nb_bits % 8;
@@ -189,7 +245,7 @@ std::string Bitstream::to_string() {
   std::string s;
   for (int i = 0; i < nb_full_digit; i++) {
     std::bitset<8> bits(buffer[i]);
-    s += bits.to_string() + " ";
+    s += bits.to_string() + " ";    // WHY THE SPACE ???
   }
 
   if (trail_bits != 0) {

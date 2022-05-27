@@ -9,8 +9,8 @@
 
 class Bitstream {
 public:
-  int nb_bits;
-  std::vector<std::uint8_t> buffer;
+  int nb_bits;    // total number of bits in the stream
+  std::vector<std::uint8_t> buffer;   // store bits as unsigned chars in a vector
 
   Bitstream();
   Bitstream(const bool&);
