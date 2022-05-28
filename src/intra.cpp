@@ -243,12 +243,12 @@ Down-Left Prediction -> 0 = (A+2B+C+2)/4
 void intra4x4_downleft(CopyBlock4x4& pred, const Predictor& predictor) {
   const std::vector<int>& p = predictor.pred_pel;
 
-  pred[0]  = ((p[1] + (p[2] << 1)+ p[3] + 2) >> 2);
-  pred[1]  = pred[4]  = ((p[2] + (p[3] << 1) + p[4] + 2) >> 2);
-  pred[2]  = pred[5]  = pred[8]  = ((p[3] + (p[4] << 1) + p[5] + 2) >> 2);
-  pred[3]  = pred[6]  = pred[9]  = pred[12] = ((p[4] + (p[5] << 1) + p[6] + 2) >> 2);
-  pred[7]  = pred[10] = pred[13] = ((p[5] + (p[6] << 1) + p[7] + 2) >> 2);
-  pred[11] = pred[14] = ((p[6] + (p[7] << 1) + p[8] + 2) >> 2);
+  pred[0]  = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
+  pred[1]  = pred[4]  = ((p[2] + p[4] + (p[3] << 1) + 2) >> 2);
+  pred[2]  = pred[5]  = pred[8]  = ((p[3] + p[5] + (p[4] << 1) + 2) >> 2);
+  pred[3]  = pred[6]  = pred[9]  = pred[12] = ((p[4] + p[6] + (p[5] << 1) + 2) >> 2);
+  pred[7]  = pred[10] = pred[13] = ((p[5] + p[7] + (p[6] << 1) + 2) >> 2);
+  pred[11] = pred[14] = ((p[6] + p[8] + (p[7] << 1) + 2) >> 2);
   pred[15] = ((p[7] + 3 * p[8] + 2) >> 2);
 }
 
@@ -264,13 +264,13 @@ Down-Right Prediction -> 0,5,10,15 = (I+2Q+A+2)/4
 void intra4x4_downright(CopyBlock4x4& pred, const Predictor& predictor) {
   const std::vector<int>& p = predictor.pred_pel;
 
-  pred[0]  = pred[5]  = pred[10] = pred[15] = (((p[0] << 1) + p[1] + p[9] + 2) >> 2);
-  pred[1]  = pred[6]  = pred[11] = ((p[0] + (p[1] << 1) + p[2] + 2) >> 2);
+  pred[12] = ((p[12] + p[10] + (p[11] << 1) + 2) >> 2);
+  pred[8]  = pred[13] = ((p[11] + p[9] + (p[10] << 1) + 2) >> 2);
+  pred[4]  = pred[9]  = pred[14] = ((p[10] + p[1] + (p[9] << 1) + 2) >> 2);
+  pred[0]  = pred[5]  = pred[10] = pred[15] = ((p[0] + p[9] + (p[1] << 1) + 2) >> 2);
+  pred[1]  = pred[6]  = pred[11] = ((p[0] + p[2] + (p[1] << 1) + 2) >> 2);
   pred[2]  = pred[7]  = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
-  pred[3]  = ((p[2] + (p[3] << 1) + p[4] + 2) >> 2);
-  pred[4]  = pred[9]  = pred[14] = ((p[0] + (p[9] << 1) + p[10] + 2) >> 2);
-  pred[8]  = pred[13] = ((p[9] + (p[10] << 1) + p[11] + 2) >> 2); 
-  pred[12] = ((p[10] + (p[11] << 1) + p[12] + 2) >> 2); 
+  pred[3]  = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
 }
 
 
@@ -293,12 +293,12 @@ void intra4x4_verticalleft(CopyBlock4x4& pred, const Predictor& predictor) {
   pred[1]  = pred[8]  = ((p[2] + p[3] + 1) >> 1);
   pred[2]  = pred[9]  = ((p[3] + p[4] + 1) >> 1);
   pred[3]  = pred[10] = ((p[4] + p[5] + 1) >> 1);
-  pred[4]  = ((p[1] + (p[2] << 1) + p[3] + 2) >> 2);
-  pred[5]  = pred[12] = ((p[2] + (p[3] << 1) + p[4] + 2) >> 2);
-  pred[6]  = pred[13] = ((p[3] + (p[4] << 1) + p[5] + 2) >> 2);
-  pred[7]  = pred[14] = ((p[4] + (p[5] << 1) + p[6] + 2) >> 2);
   pred[11] = ((p[5] + p[6] + 1) >> 1);
-  pred[15] = ((p[5] + (p[6] << 1) + p[7] + 2) >> 2);
+  pred[4]  = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
+  pred[5]  = pred[12] = ((p[2] + p[4] + (p[3] << 1) + 2) >> 2);
+  pred[6]  = pred[13] = ((p[3] + p[5] + (p[4] << 1) + 2) >> 2);
+  pred[7]  = pred[14] = ((p[4] + p[6] + (p[5] << 1) + 2) >> 2);
+  pred[15] = ((p[5] + p[7] + (p[6] << 1) + 2) >> 2);
 }
 
 
@@ -320,13 +320,13 @@ void intra4x4_verticalright(CopyBlock4x4& pred, const Predictor& predictor) {
   pred[0]  = pred[9]  = ((p[0] + p[1] + 1) >> 1);
   pred[1]  = pred[10] = ((p[1] + p[2] + 1) >> 1);
   pred[2]  = pred[11] = ((p[2] + p[3] + 1) >> 1);
-  pred[3]  = ((p[3] + p[4] + 1) >> 1); 
-  pred[4]  = pred[13] = (((p[0] << 1) + p[1] + p[9] + 2) >> 2);
-  pred[5]  = pred[14] = ((p[0] + (p[1] << 1) + p[2] + 2) >> 2);
-  pred[6]  = pred[15] = ((p[1] + (p[2] << 1) + p[3] + 2) >> 2);
-  pred[7]  = ((p[2] + (p[3] << 1) + p[4] + 2) >> 2);
-  pred[8]  = ((p[0] + (p[9] << 1) + p[10] + 2) >> 2); 
-  pred[12] = ((p[9] + (p[10] << 1) + p[11] + 2) >> 2);
+  pred[3]  = ((p[3] + p[4] + 1) >> 1);
+  pred[4]  = pred[13] = ((p[1] + p[9] + (p[0] << 1) + 2) >> 2);
+  pred[5]  = pred[14] = ((p[0] + p[2] + (p[1] << 1) + 2) >> 2);
+  pred[6]  = pred[15] = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
+  pred[7]  = ((p[2] + p[4] + (p[3] << 1) + 2) >> 2);
+  pred[8]  = ((p[0] + p[10] + (p[9] << 1) + 2) >> 2);
+  pred[12] = ((p[9] + p[11] + (p[10] << 1) + 2) >> 2);
 }
 
 
@@ -346,15 +346,15 @@ void intra4x4_horizontaldown(CopyBlock4x4& pred, const Predictor& predictor) {
   const std::vector<int>& p = predictor.pred_pel;
 
   pred[0]  = pred[6]  = ((p[0] + p[9] + 1) >> 1);
-  pred[1]  = pred[7]  = (((p[0] << 1) + p[1] + p[9] +  + 2) >> 2);
-  pred[2]  = ((p[0] + (p[1] << 1) + p[2] + 2) >> 2);
-  pred[3]  = ((p[1] + (p[2] << 1) + p[3] + 2) >> 2);
+  pred[1]  = pred[7]  = ((p[1] + p[9] + (p[0] << 1) + 2) >> 2);
+  pred[2]  = ((p[0] + p[2] + (p[1] << 1) + 2) >> 2);
+  pred[3]  = ((p[1] + p[3] + (p[2] << 1) + 2) >> 2);
   pred[4]  = pred[10] = ((p[9] + p[10] + 1) >> 1);
-  pred[5]  = pred[11] = ((p[0] + (p[9] << 1) + p[10] + 2) >> 2);
+  pred[5]  = pred[11] = ((p[0] + p[11] + (p[10] << 1) + 2) >> 2);
   pred[8]  = pred[14] = ((p[10] + p[11] + 1) >> 1);
-  pred[9]  = pred[15] = ((p[9] + (p[10] << 1) + p[11] + 2) >> 2);
+  pred[9]  = pred[15] = ((p[9] + p[11] + (p[10] << 1) + 2) >> 2);
   pred[12] = ((p[11] + p[12] + 1) >> 1);
-  pred[13] = ((p[10] + (p[11] << 1) + p[12] + 2) >> 2);
+  pred[13] = ((p[10] + p[12] + (p[11] << 1) + 2) >> 2);
 }
 
 
@@ -371,12 +371,13 @@ void intra4x4_horizontalup(CopyBlock4x4& pred, const Predictor& predictor) {
   const std::vector<int>& p = predictor.pred_pel;
 
   pred[0]  = ((p[9] + p[10] + 1) >> 1);
-  pred[1]  = ((p[9] + (p[10] << 1) + p[11] + 2) >> 2);
+  pred[1]  = ((p[9] + p[11] + (p[10] << 1) + 2) >> 2);
   pred[2]  = pred[4]  = ((p[10] + p[11] + 1) >> 1);
-  pred[3]  = pred[5]  = ((p[10] + (p[11] << 1) + p[12] + 2) >> 2);
+  pred[3]  = pred[5]  = ((p[10] + p[12] + (p[11] << 1) + 2) >> 2);
   pred[6]  = pred[8] = ((p[11] + p[12] + 1) >> 1);
   pred[7]  = pred[9] = ((p[11] + (3 * p[12]) + 2) >> 2);
-  pred[10] = pred[11] = pred[12] = pred[13] = pred[14] = pred[15] = p[12];
+  pred[12] = pred[10] = pred[11] =
+  pred[13] = pred[14] = pred[15] = p[12];
 }
 
 
@@ -545,50 +546,7 @@ void get_intra16x16(Block16x16& pred, const Predictor& p, const Intra16x16Mode m
   }
 }
 
-/* Get intra16x16 predictors from neighbors
- * [0]: downmost and rightmost pixel of ul
- * [1..16]: downmost row of u
- * [17..32]: rightmost column of l
- */
-Predictor get_intra16x16_predictor(
-  std::experimental::optional<std::reference_wrapper<Block16x16>> ul,
-  std::experimental::optional<std::reference_wrapper<Block16x16>> u,
-  std::experimental::optional<std::reference_wrapper<Block16x16>> l) {
 
-  Predictor predictor(16);
-  std::vector<int>& p = predictor.pred_pel;
-  // Check whether neighbors are available
-  if (u) {
-    Block16x16& tmp = *u;
-    std::copy_n(tmp.begin()+16*15, 16, p.begin()+1);
-    predictor.up_available = true;
-  }
-  else {
-    std::fill_n(p.begin()+1, 16, 128);
-  }
-
-  if (l) {
-    Block16x16& tmp = *l;
-    for (int i = 0; i < 16; i++) {
-      p[17+i] = tmp[i*16+15];
-    }
-    predictor.left_available = true;
-  }
-  else {
-    std::fill_n(p.begin()+17, 16, 128);
-  }
-
-  if (predictor.up_available && predictor.left_available) {
-    Block16x16& tmp = *ul;
-    p[0] = tmp.back();
-    predictor.all_available = true;
-  }
-  else {
-    p[0] = 128;
-  }
-
-  return predictor;
-}
 
 /*
       H
@@ -687,6 +645,51 @@ void intra16x16_plane(Block16x16& pred, const Predictor& predictor) {
 }
 
 
+/* Get intra16x16 predictors from neighbors
+ * [0]: downmost and rightmost pixel of ul
+ * [1..16]: downmost row of u
+ * [17..32]: rightmost column of l
+ */
+Predictor get_intra16x16_predictor(
+  std::experimental::optional<std::reference_wrapper<Block16x16>> ul,
+  std::experimental::optional<std::reference_wrapper<Block16x16>> u,
+  std::experimental::optional<std::reference_wrapper<Block16x16>> l) {
+
+  Predictor predictor(16);
+  std::vector<int>& p = predictor.pred_pel;
+  // Check whether neighbors are available
+  if (u) {
+    Block16x16& tmp = *u;
+    std::copy_n(tmp.begin()+16*15, 16, p.begin()+1);
+    predictor.up_available = true;
+  }
+  else {
+    std::fill_n(p.begin()+1, 16, 128);
+  }
+
+  if (l) {
+    Block16x16& tmp = *l;
+    for (int i = 0; i < 16; i++) {
+      p[17+i] = tmp[i*16+15];
+    }
+    predictor.left_available = true;
+  }
+  else {
+    std::fill_n(p.begin()+17, 16, 128);
+  }
+
+  if (predictor.up_available && predictor.left_available) {
+    Block16x16& tmp = *ul;
+    p[0] = tmp.back();
+    predictor.all_available = true;
+  }
+  else {
+    p[0] = 128;
+  }
+
+  return predictor;
+}
+
 ////////////////////////////////////////// 8 x 8 MODES /////////////////////////////////////////////////////////////
 
 /*
@@ -762,66 +765,18 @@ std::tuple<int, IntraChromaMode> intra8x8_chroma(Block8x8& cr_block, std::experi
   }
   
   // copy best pred to original block (TESTING !!!)
-  std::copy(cr_best_pred.begin(), cr_best_pred.end(), cr_block.begin());
-  std::copy(cb_best_pred.begin(), cb_best_pred.end(), cb_block.begin());
+  // std::copy(cr_best_pred.begin(), cr_best_pred.end(), cr_block.begin());
+  // std::copy(cb_best_pred.begin(), cb_best_pred.end(), cb_block.begin());
 
-  // copy best residual to original block (TESTING !!!)
-  // std::copy(cr_best_residual.begin(), cr_best_residual.end(), cr_block.begin());
-  // std::copy(cb_best_residual.begin(), cb_best_residual.end(), cb_block.begin());
+  // copy best residual to original block
+  std::copy(cr_best_residual.begin(), cr_best_residual.end(), cr_block.begin());
+  std::copy(cb_best_residual.begin(), cb_best_residual.end(), cb_block.begin());
 
   return std::make_tuple(min_sad, best_mode);
 }
 
 
-/* Get intra8x8 chroma predictors from neighbors
- * [0]: downmost and rightmost pixel of ul
- * [1..8]: downmost row of u
- * [9..16]: rightmost column of l
- */
-Predictor get_intra8x8_chroma_predictor(std::experimental::optional<std::reference_wrapper<Block8x8>> ul,
-                                        std::experimental::optional<std::reference_wrapper<Block8x8>> u,
-                                        std::experimental::optional<std::reference_wrapper<Block8x8>> l) {
-
-  Predictor predictor(8);
-  std::vector<int>& p = predictor.pred_pel;
-  
-  // Check whether neighbors are available
-  if (u) {
-    Block8x8& tmp = *u;
-    std::copy_n(tmp.begin()+8*7, 8, p.begin()+1);
-    predictor.up_available = true;
-  }
-  else {
-    std::fill_n(p.begin()+1, 8, 128);
-  }
-
-  if (l) {
-    Block8x8& tmp = *l;
-    for (int i = 0; i < 8; i++) {
-      p[9+i] = tmp[i*8+7];
-    }
-    predictor.left_available = true;
-  }
-  else {
-    std::fill_n(p.begin()+9, 8, 128);
-  }
-
-  if (predictor.up_available && predictor.left_available) {
-    Block8x8& tmp = *ul;
-    p[0] = tmp.back();
-    predictor.all_available = true;
-  }
-  else {
-    p[0] = 128;
-  }
-
-  return predictor;
-}
-
-
-
 // Input predictors and mode 
-
 void get_intra8x8_chroma(Block8x8& pred, const Predictor& p, const IntraChromaMode mode) {
   switch (mode) {
     case IntraChromaMode::DC:
@@ -935,4 +890,49 @@ void intra8x8_chroma_plane(Block8x8& pred, const Predictor& predictor) {
       pred[i*8+j] = clip((a + b * (j-3) + c * (i-3) + 16) >> 5, 0, 255);
     }
   }
+}
+
+/* Get intra8x8 chroma predictors from neighbors
+ * [0]: downmost and rightmost pixel of ul
+ * [1..8]: downmost row of u
+ * [9..16]: rightmost column of l
+ */
+Predictor get_intra8x8_chroma_predictor(std::experimental::optional<std::reference_wrapper<Block8x8>> ul,
+                                        std::experimental::optional<std::reference_wrapper<Block8x8>> u,
+                                        std::experimental::optional<std::reference_wrapper<Block8x8>> l) {
+
+  Predictor predictor(8);
+  std::vector<int>& p = predictor.pred_pel;
+  
+  // Check whether neighbors are available
+  if (u) {
+    Block8x8& tmp = *u;
+    std::copy_n(tmp.begin()+8*7, 8, p.begin()+1);
+    predictor.up_available = true;
+  }
+  else {
+    std::fill_n(p.begin()+1, 8, 128);
+  }
+
+  if (l) {
+    Block8x8& tmp = *l;
+    for (int i = 0; i < 8; i++) {
+      p[9+i] = tmp[i*8+7];
+    }
+    predictor.left_available = true;
+  }
+  else {
+    std::fill_n(p.begin()+9, 8, 128);
+  }
+
+  if (predictor.up_available && predictor.left_available) {
+    Block8x8& tmp = *ul;
+    p[0] = tmp.back();
+    predictor.all_available = true;
+  }
+  else {
+    p[0] = 128;
+  }
+
+  return predictor;
 }

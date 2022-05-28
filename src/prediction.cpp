@@ -1,5 +1,198 @@
 #include "prediction.h"
 
+////////////////////////////// FRAME ////////////////////////////////
+
+
+/*
+*   Function to encode all frame (composed by Y, Cr and Cb)
+*
+*/
+
+void encode_I_frame(Frame& frame) {
+
+  int cnt16x16 = 0, cnt4x4 = 0;
+  // decoded Y blocks for intra prediction
+  std::vector<MacroBlock> decoded_blocks;
+  decoded_blocks.reserve(frame.mbs.size());
+
+  /////////////////////////////// TESTS /////////////////////////////////
+  ofstream error_file ("txt/errors.txt", ios::out);
+  ofstream mb_Y_input_file ("txt/mb_Y_input.txt", ios::out);
+  ofstream mb_Y_output_file ("txt/mb_Y_output.txt", ios::out);
+  ofstream mb_Cb_input_file ("txt/mb_Cb_input.txt", ios::out);
+  ofstream mb_Cb_output_file ("txt/mb_Cb_output.txt", ios::out);
+  ofstream mb_Cr_input_file ("txt/mb_Cr_input.txt", ios::out);
+  ofstream mb_Cr_output_file ("txt/mb_Cr_output.txt", ios::out);
+
+  cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
+  ///////////////////////////////////////////////////////////////////////
+
+  // Loops through all MB
+  for (auto& mb : frame.mbs) {
+
+    MacroBlock origin_block = mb;
+
+    decoded_blocks.push_back(mb);   // vector to reconstruct macroblocks
+    if(mb.mb_index < ((int)frame.mbs.size() - 1))
+      decoded_blocks.push_back(*(&mb + 1));   // next mb to predict UR (except for the last one)
+
+  /////////////////////////////// TESTS /////////////////////////////////
+    // Print all 703 Macroblock Y (16x16) component to 'mb_Y_input.txt' 
+    mb_Y_input_file << "Y_MB input " << mb.mb_index << endl; 
+    for(int rows=0; rows < 256; rows+=16)
+    {
+      for(int cols=0; cols<16; cols++)
+      {
+        mb_Y_input_file << mb.Y[rows+cols] << ' ';
+      }
+      mb_Y_input_file << endl;
+    }
+    mb_Y_input_file << endl;
+  /////////////////////////////////////////////////////////////////////
+
+    // Encode Luma component, output is in 'mb.Y vector'
+    int error_luma = encode_Y_block(mb, decoded_blocks, frame);
+
+    // Pop aditional mb
+    if(mb.mb_index < ((int)frame.mbs.size() - 1))
+      decoded_blocks.pop_back();
+
+    //////////////////////////////// TESTS /////////////////////////////////
+    // Print all Macroblock Y (16x16) component after prediction, transform and quantization to 'mb_Y_output.txt' 
+    mb_Y_output_file << "Y_MB output " << mb.mb_index << "(";
+    if(mb.is_intra16x16)
+    {
+      mb_Y_output_file << "16x16)" << endl;
+      cnt16x16++;
+    }
+    else
+    {
+      mb_Y_output_file << "4x4)" << endl;
+      cnt4x4++;
+    }
+    for(int r=0; r < 256; r+=16)
+    {
+      for(int c=0; c<16; c++)
+      {
+        mb_Y_output_file << mb.Y[r+c] << ' ';
+      }
+      mb_Y_output_file << endl;
+    }
+    mb_Y_output_file << endl;
+
+
+    // Print all 703 Macroblock Cb (8x8) component to 'mb_Cb_input.txt' 
+    mb_Cb_input_file << "Cb MB input " << mb.mb_index << endl; 
+    for(int rows=0; rows < 64; rows+=8)
+    {
+      for(int cols=0; cols<8; cols++)
+      {
+        mb_Cb_input_file << mb.Cb[rows+cols] << ' ';
+      }
+      mb_Cb_input_file << endl;
+    }
+    mb_Cb_input_file << endl;
+
+    // Print all 703 Macroblock Cr (8x8) component to 'mb_Cr_input.txt' 
+    mb_Cr_input_file << "Cr MB input " << mb.mb_index << endl; 
+    for(int rows=0; rows < 64; rows+=8)
+    {
+      for(int cols=0; cols<8; cols++)
+      {
+        mb_Cr_input_file << mb.Cr[rows+cols] << ' ';
+      }
+      mb_Cr_input_file << endl;
+    }
+    mb_Cr_input_file << endl;
+    ////////////////////////////////////////////////////////////////////////
+
+    // Encoding Chroma component function
+    int error_chroma = encode_CbCr_block(mb, decoded_blocks, frame);
+
+    //////////////////////////////// TESTS /////////////////////////////////
+    // Print all 703 Macroblock Cb (8x8) component after prediction, transform and quantization to 'mb_Cb_output.txt' 
+    mb_Cb_output_file << "Cb MB output " << mb.mb_index << endl; 
+    for(int rows=0; rows < 64; rows+=8)
+    {
+      for(int cols=0; cols<8; cols++)
+      {
+        mb_Cb_output_file << mb.Cb[rows+cols] << ' ';
+      }
+      mb_Cb_output_file << endl;
+    }
+    mb_Cb_output_file << endl;
+
+
+    // Print all 703 Macroblock Cr (8x8) component after prediction, transform and quantization to 'mb_Cr_output.txt' 
+    mb_Cr_output_file << "Cr MB output " << mb.mb_index << endl; 
+    for(int rows=0; rows < 64; rows+=8)
+    {
+      for(int cols=0; cols<8; cols++)
+      {
+        mb_Cr_output_file << mb.Cr[rows+cols] << ' ';
+      }
+      mb_Cr_output_file << endl;
+    }
+    mb_Cr_output_file << endl;
+
+
+    // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
+    error_file << "MB " << mb.mb_index;
+    if(!mb.is_intra16x16)
+      error_file << " (4x4) ";
+    else
+      error_file << " (16x16) ";
+    error_file << "-> Y = " << error_luma << " | ";
+    error_file << "CbCr = " << error_chroma << endl;
+    ////////////////////////////////////////////////////////////////////////
+
+    // Defined threshold for bad predictions, if SAD is greater MB remains the same
+    if (error_luma > 2000 || error_chroma > 1000) {
+      mb = origin_block;
+      decoded_blocks.back() = origin_block;
+      mb.is_I_PCM = true;   // not predicted
+    }
+  }
+
+  std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
+  std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
+
+  // in-loop deblocking filter                         ====== NECESSARY ??? =====
+  // deblocking_filter(decoded_blocks, frame);
+}
+
+/*
+*   Function to encode 16x16 Y block, comparing 4x4 and 16x16 prediction errors
+*
+*/
+int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
+
+  // Temp marcoblock for choosing two predicitons
+  MacroBlock temp_block = mb;
+  MacroBlock temp_decoded_block = mb;
+
+  // Perform intra16x16 prediction
+  int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
+
+  // Perform intra4x4 prediction
+  int error_intra4x4 = 0;
+  for (int i = 0; i < 16; i++)
+    error_intra4x4 += encode_Y_intra4x4_block(i, temp_block, temp_decoded_block, decoded_blocks, frame);
+
+  // compare the error of two predictions
+  if (false && error_intra4x4 < error_intra16x16){
+    mb = temp_block;
+    decoded_blocks.at(mb.mb_index) = temp_decoded_block;
+
+    return error_intra4x4;
+  }
+  else 
+  {
+    return error_intra16x16;
+  }
+}
+
+
 ///////////////////////////////////////////////// 16X16 ///////////////////////////////////////////7
 
 /*
@@ -56,8 +249,6 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   
   // Perform QDCT
   qdct_luma16x16_intra(mb.Y);
-
-  // Reconstruct for later prediction     NECESSARY ???
 
   return error;
 }
@@ -205,40 +396,18 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
   return error;
 }
 
-
-/*
-*   Function to encode 16x16 Y block, comparing 4x4 and 16x16 prediction errors
-*
-*/
-int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
-
-  // Temp marcoblock for choosing two predicitons
-  MacroBlock temp_block = mb;
-  MacroBlock temp_decoded_block = mb;
-
-  // Perform intra16x16 prediction
-  int error_intra16x16 = encode_Y_intra16x16_block(mb, decoded_blocks, frame);
-
-  // Perform intra4x4 prediction
-  int error_intra4x4 = 0;
-  for (int i = 0; i < 16; i++)
-    error_intra4x4 += encode_Y_intra4x4_block(i, temp_block, temp_decoded_block, decoded_blocks, frame);
-
-  // compare the error of two predictions
-  if (error_intra4x4 < error_intra16x16){
-    mb = temp_block;
-    decoded_blocks.at(mb.mb_index) = temp_decoded_block;
-
-    return error_intra4x4;
-  }
-  else 
-  {
-    return error_intra16x16;
-  }
-}
-
 //////////////////////////////////////////////// 8X8 ////////////////////////////////////////////////7
 
+/*
+*   Function to encode 8x8 Cr and Cb blocks
+*
+*/
+int encode_CbCr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
+  
+  int error_intra8x8 = encode_CbCr_intra8x8_block(mb, decoded_blocks, frame);
+ 
+  return error_intra8x8;
+}
 
 /*
 *   Function to apply 8x8 prediction and get the error
@@ -312,181 +481,7 @@ int encode_CbCr_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_
   // Perform QDCT (Cr and Cb components)
   qdct_chroma8x8_intra(mb.Cr);
   qdct_chroma8x8_intra(mb.Cb);
-
-
-  // Reconstruct for later prediction
   
   return error;
 }
 
-
-/*
-*   Function to encode 8x8 Cr and Cb blocks
-*
-*/
-int encode_CbCr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
-  
-  int error_intra8x8 = encode_CbCr_intra8x8_block(mb, decoded_blocks, frame);
- 
-  return error_intra8x8;
-}
-
-////////////////////////////// FRAME ////////////////////////////////
-
-
-/*
-*   Function to encode all frame (composed by Y, Cr and Cb)
-*
-*/
-
-void encode_I_frame(Frame& frame) {
-
-  int cnt16x16 = 0, cnt4x4 = 0;
-  // decoded Y blocks for intra prediction
-  std::vector<MacroBlock> decoded_blocks;
-  decoded_blocks.reserve(frame.mbs.size());
-
-  /////////////////////////////// TESTS /////////////////////////////////
-  ofstream error_file ("txt/errors.txt", ios::out);
-  ofstream mb_Y_input_file ("txt/mb_Y_input.txt", ios::out);
-  ofstream mb_Y_output_file ("txt/mb_Y_output.txt", ios::out);
-  ofstream mb_Cb_input_file ("txt/mb_Cb_input.txt", ios::out);
-  ofstream mb_Cb_output_file ("txt/mb_Cb_output.txt", ios::out);
-  ofstream mb_Cr_input_file ("txt/mb_Cr_input.txt", ios::out);
-  ofstream mb_Cr_output_file ("txt/mb_Cr_output.txt", ios::out);
-
-  cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
-  ///////////////////////////////////////////////////////////////////////
-
-  // Loops through all MB
-  for (auto& mb : frame.mbs) {
-
-    MacroBlock origin_block = mb;
-
-    decoded_blocks.push_back(mb);   // vector to reconstruct macroblocks
-    if(mb.mb_index < ((int)frame.mbs.size() - 1))
-      decoded_blocks.push_back(*(&mb + 1));   // next mb to predict UR (except for the last one)
-
-  /////////////////////////////// TESTS /////////////////////////////////
-    // Print all 703 Macroblock Y (16x16) component to 'mb_Y_input.txt' 
-    mb_Y_input_file << "Y_MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 256; rows+=16)
-    {
-      for(int cols=0; cols<16; cols++)
-      {
-        mb_Y_input_file << mb.Y[rows+cols] << ' ';
-      }
-      mb_Y_input_file << endl;
-    }
-    mb_Y_input_file << endl;
-  /////////////////////////////////////////////////////////////////////
-
-    // Encode Luma component, output is in 'mb.Y vector'
-    int error_luma = encode_Y_block(mb, decoded_blocks, frame);
-
-    // Pop aditional mb
-    decoded_blocks.pop_back();
-
-    //////////////////////////////// TESTS /////////////////////////////////
-    // Print all Macroblock Y (16x16) component after prediction, transform and quantization to 'mb_Y_output.txt' 
-    mb_Y_output_file << "Y_MB output " << mb.mb_index << "(";
-    if(mb.is_intra16x16)
-    {
-      mb_Y_output_file << "16x16)" << endl;
-      cnt16x16++;
-    }
-    else
-    {
-      mb_Y_output_file << "4x4)" << endl;
-      cnt4x4++;
-    }
-    for(int r=0; r < 256; r+=16)
-    {
-      for(int c=0; c<16; c++)
-      {
-        mb_Y_output_file << mb.Y[r+c] << ' ';
-      }
-      mb_Y_output_file << endl;
-    }
-    mb_Y_output_file << endl;
-
-
-    // Print all 703 Macroblock Cb (8x8) component to 'mb_Cb_input.txt' 
-    mb_Cb_input_file << "Cb MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cb_input_file << mb.Cb[rows+cols] << ' ';
-      }
-      mb_Cb_input_file << endl;
-    }
-    mb_Cb_input_file << endl;
-
-    // Print all 703 Macroblock Cr (8x8) component to 'mb_Cr_input.txt' 
-    mb_Cr_input_file << "Cr MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cr_input_file << mb.Cr[rows+cols] << ' ';
-      }
-      mb_Cr_input_file << endl;
-    }
-    mb_Cr_input_file << endl;
-    ////////////////////////////////////////////////////////////////////////
-
-    // Encoding Chroma component function
-    int error_chroma = encode_CbCr_block(mb, decoded_blocks, frame);
-
-    //////////////////////////////// TESTS /////////////////////////////////
-    // Print all 703 Macroblock Cb (8x8) component after prediction, transform and quantization to 'mb_Cb_output.txt' 
-    mb_Cb_output_file << "Cb MB output " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cb_output_file << mb.Cb[rows+cols] << ' ';
-      }
-      mb_Cb_output_file << endl;
-    }
-    mb_Cb_output_file << endl;
-
-
-    // Print all 703 Macroblock Cr (8x8) component after prediction, transform and quantization to 'mb_Cr_output.txt' 
-    mb_Cr_output_file << "Cr MB output " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cr_output_file << mb.Cr[rows+cols] << ' ';
-      }
-      mb_Cr_output_file << endl;
-    }
-    mb_Cr_output_file << endl;
-
-
-    // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
-    error_file << "MB " << mb.mb_index;
-    if(!mb.is_intra16x16)
-      error_file << " (4x4) ";
-    else
-      error_file << " (16x16) ";
-    error_file << "-> Y = " << error_luma << " | ";
-    error_file << "CbCr = " << error_chroma << endl;
-    ////////////////////////////////////////////////////////////////////////
-
-    // Defined threshold for bad predictions, if SAD is greater MB remains the same
-    if (error_luma > 2000 || error_chroma > 1000) {
-      mb = origin_block;
-      decoded_blocks.back() = origin_block;
-      mb.is_I_PCM = true;   // not predicted
-    }
-  }
-
-  std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
-  std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
-
-  // in-loop deblocking filter                         ====== NECESSARY ??? =====
-  // deblocking_filter(decoded_blocks, frame);
-}

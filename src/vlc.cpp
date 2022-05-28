@@ -517,85 +517,85 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
         }
 
         //////////////////////////////////////////////////////////////////////////
-        //  Encode level code with corresponding VLC
-        level_vlc_str = level_VLC_table[suffix_len](level_code);
+        // //  Encode level code with corresponding VLC
+        // level_vlc_str += level_VLC_table[suffix_len](level_code);
 
-        // Increment suffix length by one if larger than a threshold, max 6
-        if(suffix_len < 6)
-          if(abs(level_code) > suffix_len_thld[suffix_len])
-            suffix_len++;
+        // // Increment suffix length by one if larger than a threshold, max 6
+        // if(suffix_len < 6)
+        //   if(abs(level_code) > suffix_len_thld[suffix_len])
+        //     suffix_len++;
 
         //////////////////////////////////////////////////////////////////////////
 
-        // // Standard page 218 8.
-        // level_code <<= 2;
-        // if (level_code >= 0)
-        //     level_code -= 2;
-        // else
-        //     level_code = 0 - (level_code + 1);
+        // Standard page 218 8.
+        level_code <<= 1;
+        if (level_code >= 0)
+            level_code -= 2;
+        else
+            level_code = 0 - (level_code + 1);
 
-        // // Initialize level prefix
-        // int level_prefix = 0;
-        // std::string level_prefix_str = "";
-        // bool solution_found = false;
+        // Initialize level prefix
+        int level_prefix = 0;
+        std::string level_prefix_str = "";
+        bool solution_found = false;
 
-        // while (!solution_found)
-        // {
-        //     int level_suffix_len = 0;
-        //     if (level_prefix == 14 && suffix_len == 0)  // Standard page 218 2.
-        //         level_suffix_len = 4;
-        //     else 
-        //     {
-        //         if (level_prefix >= 15)
-        //         level_suffix_len = level_prefix - 3;    // Standard page 218 2.
-        //         else
-        //         level_suffix_len = suffix_len;          // Standard page 218 2.
-        //     }
+        while (!solution_found)
+        {
+            int level_suffix_len = 0;
+            if (level_prefix == 14 && suffix_len == 0)  // Standard page 218 2.
+                level_suffix_len = 4;
+            else 
+            {
+                if (level_prefix >= 15)
+                level_suffix_len = level_prefix - 3;    // Standard page 218 2.
+                else
+                level_suffix_len = suffix_len;          // Standard page 218 2.
+            }
 
-        //     if (level_prefix >= 16)
-        //         level_code -= ((1 << (level_prefix - 3)) - 4096);     // Standard page 218 6.
+            if (level_prefix >= 16)
+                level_code -= (1 << (level_prefix - 3)) - 4096;     // Standard page 218 6.
 
-        //     if (level_prefix >= 15 && suffix_len == 0)
-        //         level_code -= 15;                       // Standard page 218 5.
+            if (level_prefix >= 15 && suffix_len == 0)
+                level_code -= 15;                       // Standard page 218 5.
 
-        //     // int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
-        //     int level_code_prefix = std::min(15, level_prefix) << suffix_len;   // Standard page 218 4.
-        //     int level_suffix = level_code - level_code_prefix;
-        //     int level_max = pow(2.0, level_suffix_len) - 1;
+            // int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
+            int level_code_prefix = std::min(15, level_prefix) << suffix_len;   // Standard page 218 4.
+            int level_suffix = level_code - level_code_prefix;
+            int level_max = pow(2.0, level_suffix_len) - 1;
 
-        //     if (level_suffix <= level_max) 
-        //     {
-        //         solution_found = true;
-        //         level_vlc_str += level_prefix_str + "1";
-        //         if (level_suffix_len != 0)      // Standard page 218 3.
-        //         {
-        //             std::string encoded_str;
-        //             if (level_suffix != 0)
-        //             {
-        //                 std::bitset<64> bits(level_suffix);
-        //                 encoded_str = bits.to_string();
-        //                 int first_one_pos = encoded_str.find_first_of("1");
-        //                 encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
-        //             }
-        //             else
-        //                 encoded_str = "0";
-        //             while (encoded_str.length() < (unsigned int)level_suffix_len)   // Standard page 218 3. (uint)
-        //                 encoded_str = "0" + encoded_str;
-        //             level_vlc_str += encoded_str;
-        //         }
+            if (level_suffix <= level_max) 
+            {
+                solution_found = true;
+                level_vlc_str += level_prefix_str + "1";
+                if (level_suffix_len != 0)      // Standard page 218 3.
+                {
+                    std::string encoded_str;
+                    if (level_suffix != 0)
+                    {
+                        std::bitset<64> bits(level_suffix);
+                        encoded_str = bits.to_string();
+                        int first_one_pos = encoded_str.find_first_of("1");
+                        encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
+                    }
+                    else
+                        encoded_str = "0";
+                    while (encoded_str.length() < (unsigned int)level_suffix_len)   // Standard page 218 3. (uint)
+                        encoded_str = "0" + encoded_str;
+                    level_vlc_str += encoded_str;
+                }
 
-        //         // Standard page 218 10.
-        //         if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
-        //         suffix_len++;
-        //         if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
-        //         suffix_len = 2;
-        //     }
-        //     else 
-        //     {
-        //         level_prefix++;
-        //         level_prefix_str += "0";
-        //     }
-        // }
+                // Standard page 218 10.
+                if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
+                suffix_len++;
+                if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
+                suffix_len = 2;
+            }
+            else 
+            {
+                level_prefix++;
+                level_prefix_str += "0";
+            }
+        }
       }
     }
   }
@@ -655,7 +655,7 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
   //  std::cout << "  level       = " << level_vlc_str << std::endl;
   //  std::cout << "  zeros       = " << zero_vlc_table[total_zeros][total_coeff] << std::endl;
   //  std::cout << "  run         = " << run_vlc_str << std::endl;
-    // std::cout << Bitstream(final_str).to_string() << std::endl;
+  //   std::cout << Bitstream(final_str).to_string() << std::endl;
   // }
 
   return std::make_pair(Bitstream(final_str), total_coeff);
@@ -762,75 +762,76 @@ std::pair<Bitstream, int> cavlc_block2x2(Block2x2 block, const int nC, const int
         }
 
         ////////////////////////////////////////////////////////
-        //  Encode level code with corresponding VLC
-        level_vlc_str = level_VLC_table[suffix_len](level_code);
+        // //  Encode level code with corresponding VLC
+        // level_vlc_str += level_VLC_table[suffix_len](level_code);
 
-        // Increment suffix length by one if larger than a threshold, max 6
-        if(suffix_len < 6)
-          if(abs(level_code) > suffix_len_thld[suffix_len])
-            suffix_len++;
+        // // Increment suffix length by one if larger than a threshold, max 6
+        // if(suffix_len < 6)
+        //   if(abs(level_code) > suffix_len_thld[suffix_len])
+        //     suffix_len++;
 
         ////////////////////////////////////////////////////////
 
-        // level_code *= 2;
-        // if (level_code >= 0)
-        //   level_code -= 2;
-        // else
-        //   level_code = 0 - (level_code + 1);
+        level_code <<= 1;
+        if (level_code >= 0)
+          level_code -= 2;
+        else
+          level_code = 0 - (level_code + 1);
 
-        // int level_prefix = 0;
-        // std::string level_prefix_str = "";
-        // bool solution_found = false;
+        int level_prefix = 0;
+        std::string level_prefix_str = "";
+        bool solution_found = false;
 
-        // while (!solution_found) {
-        //   int level_suffix_len = 0;
-        //   if (level_prefix == 14 && suffix_len == 0)
-        //     level_suffix_len = 4;
-        //   else {
-        //     if (level_prefix >= 15)
-        //       level_suffix_len = level_prefix - 3;
-        //     else
-        //       level_suffix_len = suffix_len;
-        //   }
+        while (!solution_found) {
+          int level_suffix_len = 0;
+          if (level_prefix == 14 && suffix_len == 0)
+            level_suffix_len = 4;
+          else {
+            if (level_prefix >= 15)
+              level_suffix_len = level_prefix - 3;
+            else
+              level_suffix_len = suffix_len;
+          }
 
-        //   if (level_prefix >= 16)
-        //     level_code -= (1 << (level_prefix - 3)) - 4096;
+          if (level_prefix >= 16)
+            level_code -= (1 << (level_prefix - 3)) - 4096;
 
-        //   if (level_prefix >= 15 && suffix_len == 0)
-        //     level_code -= 15;
+          if (level_prefix >= 15 && suffix_len == 0)
+            level_code -= 15;
 
-        //   int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
-        //   int level_suffix = level_code - level_code_prefix;
-        //   int level_max = pow(2.0, level_suffix_len) - 1;
+          // int level_code_prefix = std::min(15, level_prefix) * pow(2.0, suffix_len);
+          int level_code_prefix = std::min(15, level_prefix) << suffix_len;
+          int level_suffix = level_code - level_code_prefix;
+          int level_max = pow(2.0, level_suffix_len) - 1;
 
-        //   if (level_suffix <= level_max) {
-        //     solution_found = true;
-        //     level_vlc_str += level_prefix_str + "1";
-        //     if (level_suffix_len != 0) {
-        //       std::string encoded_str;
-        //       if (level_suffix != 0) {
-        //         std::bitset<64> bits(level_suffix);
-        //         encoded_str = bits.to_string();
-        //         int first_one_pos = encoded_str.find_first_of("1");
-        //         encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
-        //       }
-        //       else
-        //         encoded_str = "0";
-        //       while (encoded_str.length() < (unsigned int)level_suffix_len)
-        //         encoded_str = "0" + encoded_str;
-        //       level_vlc_str += encoded_str;
-        //     }
+          if (level_suffix <= level_max) {
+            solution_found = true;
+            level_vlc_str += level_prefix_str + "1";
+            if (level_suffix_len != 0) {
+              std::string encoded_str;
+              if (level_suffix != 0) {
+                std::bitset<64> bits(level_suffix);
+                encoded_str = bits.to_string();
+                int first_one_pos = encoded_str.find_first_of("1");
+                encoded_str = encoded_str.substr(first_one_pos, 64 - first_one_pos);
+              }
+              else
+                encoded_str = "0";
+              while (encoded_str.length() < (unsigned int)level_suffix_len)
+                encoded_str = "0" + encoded_str;
+              level_vlc_str += encoded_str;
+            }
 
-        //     if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
-        //       suffix_len++;
-        //     if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
-        //       suffix_len = 2;
-        //   }
-        //   else {
-        //     level_prefix++;
-        //     level_prefix_str += "0";
-        //   }
-        // }
+            if (std::abs(mat_x[i]) > (3 << (suffix_len - 1)) && suffix_len < 6)
+              suffix_len++;
+            if (lastCoeff == total_coeff - 1 - trail_ones && std::abs(mat_x[i]) > 3)
+              suffix_len = 2;
+          }
+          else {
+            level_prefix++;
+            level_prefix_str += "0";
+          }
+        }
       }
     }
   }

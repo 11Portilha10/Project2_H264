@@ -75,7 +75,9 @@ Bitstream Packager::seq_parameter_set_rbsp(const int width, const int height, co
   bool constraint_set0_flag = false;  // u(1)
   bool constraint_set1_flag = false;  // u(1)
   bool constraint_set2_flag = false;  // u(1)
-  std::uint8_t reserved_zero_5bits = 0x00;  // u(5)
+  bool constraint_set3_flag = false;  // u(1)   <------ ADDED
+  // std::uint8_t reserved_zero_5bits = 0x00;  // u(5)
+  std::uint8_t reserved_zero_4bits = 0x00;  // u(4)   <------ MODIFIED
   std::uint8_t level_idc = 10;  // u(8)
   unsigned int seq_parameter_set_id = 0;  // ue(v)
   unsigned int log2_max_frame_num_minus4 = std::max(0, (int)log2(num_frames) - 4); // ue(v)
@@ -105,7 +107,9 @@ Bitstream Packager::seq_parameter_set_rbsp(const int width, const int height, co
   sodb += Bitstream(constraint_set0_flag);
   sodb += Bitstream(constraint_set1_flag); 
   sodb += Bitstream(constraint_set2_flag);
-  sodb += Bitstream(reserved_zero_5bits, 5); 
+  sodb += Bitstream(constraint_set3_flag);    // ADDED
+  // sodb += Bitstream(reserved_zero_5bits, 5);
+  sodb += Bitstream(reserved_zero_4bits, 4);  // MODIFIED
   sodb += Bitstream(level_idc, 8);
   sodb += uegc(seq_parameter_set_id);
   sodb += uegc(log2_max_frame_num_minus4);

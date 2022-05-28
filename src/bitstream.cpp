@@ -245,7 +245,7 @@ std::string Bitstream::to_string() {
   std::string s;
   for (int i = 0; i < nb_full_digit; i++) {
     std::bitset<8> bits(buffer[i]);
-    s += bits.to_string() + " ";    // WHY THE SPACE ???
+    s += bits.to_string() + " ";
   }
 
   if (trail_bits != 0) {

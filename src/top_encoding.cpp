@@ -15,10 +15,7 @@ void vlc_frame(Frame& frame) {
   std::vector<std::array<int, 4>> nc_Cr_table;
   nc_Cr_table.reserve(frame.mbs.size());
 
-  // int mb_no = 0;
   for (auto& mb : frame.mbs) {
-    // f_logger.log(Level::DEBUG, "mb #" + std::to_string(mb_no++));
-
     // Fill current tables
     std::array<int, 16> current_Y_table;  // 16x16 Y => 16 4x4 T. blocks
     std::array<int, 4> current_Cb_table;  // 8x8 Cb => 4 4x4 T. blocks
@@ -162,7 +159,13 @@ Bitstream vlc_Y(int cur_pos, MacroBlock& mb, std::vector<std::array<int, 16>>& n
     std::tie(bitstream, non_zero) = cavlc_block4x4(mb.get_Y_AC_block(cur_pos), nC, 15);
   else                    // if not, only default 4x4 transform was applied
     std::tie(bitstream, non_zero) = cavlc_block4x4(mb.get_Y_4x4_block(cur_pos), nC, 16);
-  
+
+  /*================ TESTING ===================*/
+  // if(mb.mb_index == 67)
+  // {
+  //   cout << bitstream.to_string() << endl;
+  // }
+  /*============================================*/
   // Save number of non-zero coeffs for further nC choices
   nc_Y_table.at(mb.mb_index)[cur_pos] = non_zero;
 
