@@ -57,14 +57,16 @@ int main(int argc, char* argv[])
     // at this point we have a Matrix with Luma and Chroma components
 
     Frame yuvFrame(yuv);
-    Packager packager("/home/manuale97/Documents/University/ESRG_2nd/Projects/PI/H264_Simple_encoder/output_bitstream/out.264");
+    Packager packager("/home/manuale97/Documents/University/ESRG_2nd/Projects/PI/H264_Simple_encoder/output_bitstream/out.mpg");
 
-    packager.write_SPS(yuvFrame.width, yuvFrame.width, 1);  // 1 frame for testing
+    packager.write_SPS(yuvFrame.width, yuvFrame.width, 20);  // 1 frame for testing
     packager.write_PPS();   // 1 PPS for the whole slice
 
     encode_I_frame(yuvFrame);
-    // vlc_frame(yuvFrame);
-    // packager.write_slice(0, yuvFrame);
+    vlc_frame(yuvFrame);
+
+    for(int i = 0; i < 20; i++)
+        packager.write_slice(i, yuvFrame);
 
     /*
         The output YUV image has ONE channel and a number of rows equivalent to 

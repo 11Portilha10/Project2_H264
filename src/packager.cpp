@@ -41,7 +41,7 @@ void Packager::write_PPS() {
 }
 
 /**
- * @brief Writes slice header and data
+ * @brief Writes slice header and data (unique slice)
  * 
  * @param frame_num Frame number (starting from zero)
  * @param frame The Frame instance (Range image)

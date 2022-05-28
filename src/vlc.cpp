@@ -10,6 +10,14 @@ const int mat_zigzag4x4[16] = {
   9, 10, 14, 15
 };
 
+/**
+ * Suffix length thresholds table
+ * 
+ */
+const int suffix_len_thld[6] = {
+  0, 3, 6, 12, 24, 48
+};
+
 /* Num-VLC table
  *
  * look-up table for "coeff_token" encoding
@@ -201,8 +209,8 @@ std::string level_VLC_0(int level_code)
   std::string VLC_str = "";
 
   int num_zeros = (level_code > 0) ? (level_code-1) << 1 : ((0-level_code) << 1) - 1;
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + "1";
+  std::bitset<1024> zeros;
+  VLC_str = zeros.to_string().substr(1024-num_zeros-1, num_zeros) + "1";
 
   return VLC_str;
 }
@@ -221,8 +229,8 @@ std::string level_VLC_1(int level_code)
     suffix = "10";
 
   int num_zeros = level_code - 1;
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<1024> zeros;
+  VLC_str = zeros.to_string().substr(1024-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -245,8 +253,8 @@ std::string level_VLC_2(int level_code)
   }
 
   int num_zeros = (level_code - 1) >> 1;  // (level_code-1)/2
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<512> zeros;
+  VLC_str = zeros.to_string().substr(512-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -269,8 +277,8 @@ std::string level_VLC_3(int level_code)
   }
 
   int num_zeros = (level_code - 1) >> 2;  // (level_code-1)/4
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<512> zeros;
+  VLC_str = zeros.to_string().substr(512-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -293,8 +301,8 @@ std::string level_VLC_4(int level_code)
   }
 
   int num_zeros = (level_code - 1) >> 3;  // (level_code-1)/8
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<512> zeros;
+  VLC_str = zeros.to_string().substr(512-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -317,8 +325,8 @@ std::string level_VLC_5(int level_code)
   }
 
   int num_zeros = (level_code - 1) >> 4;  // (level_code-1)/16
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<512> zeros;
+  VLC_str = zeros.to_string().substr(512-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -341,8 +349,8 @@ std::string level_VLC_6(int level_code)
   }
 
   int num_zeros = (level_code - 1) >> 5;  // (level_code-1)/32
-  std::bitset<64> zeros;
-  VLC_str = zeros.to_string().substr(64-num_zeros-1, num_zeros) + suffix;
+  std::bitset<512> zeros;
+  VLC_str = zeros.to_string().substr(512-num_zeros-1, num_zeros) + suffix;
 
   return VLC_str;
 }
@@ -511,6 +519,11 @@ std::pair<Bitstream, int> cavlc_block4x4(Block4x4 block, const int nC, const int
         //////////////////////////////////////////////////////////////////////////
         //  Encode level code with corresponding VLC
         level_vlc_str = level_VLC_table[suffix_len](level_code);
+
+        // Increment suffix length by one if larger than a threshold, max 6
+        if(suffix_len < 6)
+          if(abs(level_code) > suffix_len_thld[suffix_len])
+            suffix_len++;
 
         //////////////////////////////////////////////////////////////////////////
 
@@ -751,6 +764,11 @@ std::pair<Bitstream, int> cavlc_block2x2(Block2x2 block, const int nC, const int
         ////////////////////////////////////////////////////////
         //  Encode level code with corresponding VLC
         level_vlc_str = level_VLC_table[suffix_len](level_code);
+
+        // Increment suffix length by one if larger than a threshold, max 6
+        if(suffix_len < 6)
+          if(abs(level_code) > suffix_len_thld[suffix_len])
+            suffix_len++;
 
         ////////////////////////////////////////////////////////
 
