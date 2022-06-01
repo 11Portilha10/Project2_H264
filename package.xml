@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>h264</name>
-  <version>0.0.0</version>
-  <description>The h264 package</description>
+  <name>pointcloud_h264</name>
+  <version>0.1.0</version>
+  <description>The pointcloud_h264 package</description>
 
-  <maintainer email="portilha@todo.todo">portilha</maintainer>
+  <maintainer email="manuel.cederog@gmail.com">Manuel</maintainer>
 
   <license>TODO</license>
 

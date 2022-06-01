@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(h264)
+project(pointcloud_h264)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -135,13 +135,15 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
-include_directories(lib/ src/)
+include_directories(include/pointcloud_h264/ src/)
 
-set(PROJECT_SOURCES image_process.cpp
+set(PROJECT_SOURCES main.cpp
     src/bitstream.cpp src/block.cpp src/frame.cpp src/intra.cpp src/macroblock.cpp src/nal_unit.cpp
     src/packager.cpp src/prediction.cpp src/top_encoding.cpp src/tr_qt.cpp src/vlc.cpp
-    lib/bitstream.h lib/block.h lib/frame.h lib/intra.h lib/macroblock.h lib/nal_unit.h
-    lib/packager.h lib/prediction.h lib/top_encoding.h lib/tr_qt.h lib/vlc.h)
+    include/pointcloud_h264/bitstream.h include/pointcloud_h264/block.h include/pointcloud_h264/frame.h 
+    include/pointcloud_h264/intra.h include/pointcloud_h264/macroblock.h include/pointcloud_h264/nal_unit.h
+    include/pointcloud_h264/packager.h include/pointcloud_h264/prediction.h include/pointcloud_h264/top_encoding.h 
+    include/pointcloud_h264/tr_qt.h include/pointcloud_h264/vlc.h)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -157,10 +159,12 @@ set(PROJECT_SOURCES image_process.cpp
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/h264_node.cpp)
-add_executable(image_process_node src/image_process.cpp src/bitstream.cpp src/frame.cpp src/intra.cpp src/macroblock.cpp 
+add_executable(pointcloud_h264_node src/main.cpp src/bitstream.cpp src/frame.cpp src/intra.cpp src/macroblock.cpp 
                                   src/nal_unit.cpp src/packager.cpp src/prediction.cpp src/top_encoding.cpp src/tr_qt.cpp src/vlc.cpp
-                                  lib/bitstream.h lib/block.h lib/frame.h lib/intra.h lib/macroblock.h lib/nal_unit.h
-                                  lib/packager.h lib/prediction.h lib/top_encoding.h lib/tr_qt.h lib/vlc.h)
+                                  include/pointcloud_h264/bitstream.h include/pointcloud_h264/block.h include/pointcloud_h264/frame.h 
+                                  include/pointcloud_h264/intra.h include/pointcloud_h264/macroblock.h include/pointcloud_h264/nal_unit.h
+                                  include/pointcloud_h264/packager.h include/pointcloud_h264/prediction.h 
+                                  include/pointcloud_h264/top_encoding.h include/pointcloud_h264/tr_qt.h include/pointcloud_h264/vlc.h)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -171,7 +175,7 @@ add_executable(image_process_node src/image_process.cpp src/bitstream.cpp src/fr
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(image_process_node ${catkin_LIBRARIES} pcl_visualization ${OpenCV_LIBRARIES})
+target_link_libraries(pointcloud_h264_node ${catkin_LIBRARIES} pcl_visualization ${OpenCV_LIBRARIES})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node

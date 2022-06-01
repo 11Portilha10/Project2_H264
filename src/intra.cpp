@@ -47,14 +47,17 @@ std::tuple<int, Intra4x4Mode> intra4x4(Block4x4 block, std::experimental::option
   // Get predictors
   Predictor predictor = get_intra4x4_predictor(ul, u, ur, l);
 
-  // Print predictors to '16x16predictors.txt'
-  myfile << "MB " << predictor_cnt/16 << " (" << predictor_cnt%16 << ") ->";
-  for (int i = 0; i < 13; i++)
-  {
-    myfile << predictor.pred_pel[i] << ' ';
-  }
-  myfile << endl;
-  predictor_cnt++;
+  /*==================================== TESTING =========================================*/
+  // // Print predictors to '16x16predictors.txt'
+  // myfile << "MB " << predictor_cnt/16 << " (" << predictor_cnt%16 << ") ->";
+  // for (int i = 0; i < 13; i++)
+  // {
+  //   myfile << predictor.pred_pel[i] << ' ';
+  // }
+  // myfile << endl;
+  // predictor_cnt++;
+  /*======================================================================================*/
+
 
   int mode;
   Intra4x4Mode best_mode;
@@ -474,22 +477,24 @@ std::tuple<int, Intra16x16Mode> intra16x16(Block16x16& block, std::experimental:
   // Get predictors
   Predictor predictor = get_intra16x16_predictor(ul, u, l);
 
-  // Print predictors to '16x16predictors.txt'
-  myfile << "MB " << predictor_cnt << " ->";
-  if(predictor.up_available)
-    myfile << "Up_aval "; 
-  if (predictor.left_available)
-    myfile << "Left_aval ";
-  if (predictor.up_right_available)
-    myfile << "Up_right_aval ";
-  if (predictor.all_available)
-    myfile << "All_aval ";
-  for (int i = 0; i < 33; i++)
-  {
-    myfile << predictor.pred_pel[i] << ' ';
-  }
-  myfile << endl;
-  predictor_cnt++;
+  /*=============================== TESTING ==============================*/
+  // // Print predictors to '16x16predictors.txt'
+  // myfile << "MB " << predictor_cnt << " ->";
+  // if(predictor.up_available)
+  //   myfile << "Up_aval "; 
+  // if (predictor.left_available)
+  //   myfile << "Left_aval ";
+  // if (predictor.up_right_available)
+  //   myfile << "Up_right_aval ";
+  // if (predictor.all_available)
+  //   myfile << "All_aval ";
+  // for (int i = 0; i < 33; i++)
+  // {
+  //   myfile << predictor.pred_pel[i] << ' ';
+  // }
+  // myfile << endl;
+  // predictor_cnt++;
+  /*======================================================================*/
 
   int mode;
   Intra16x16Mode best_mode;
@@ -715,23 +720,25 @@ std::tuple<int, IntraChromaMode> intra8x8_chroma(Block8x8& cr_block, std::experi
   Predictor cr_predictor = get_intra8x8_chroma_predictor(cr_ul, cr_u, cr_l);
   Predictor cb_predictor = get_intra8x8_chroma_predictor(cb_ul, cb_u, cb_l);
 
-  // Print Cb predictors to '8x8_Cb_predictors.txt'
-  Cb_pred_file << "MB " << predictor_cnt << " -> ";
-  for (int i = 0; i < 17; i++)
-  {
-    Cb_pred_file << cb_predictor.pred_pel[i] << ' ';
-  }
-  Cb_pred_file << endl;
+  /*=============================== TESTING ===================================*/
+  // // Print Cb predictors to '8x8_Cb_predictors.txt'
+  // Cb_pred_file << "MB " << predictor_cnt << " -> ";
+  // for (int i = 0; i < 17; i++)
+  // {
+  //   Cb_pred_file << cb_predictor.pred_pel[i] << ' ';
+  // }
+  // Cb_pred_file << endl;
 
-  // Print Cr predictors to '8x8_Cr_predictors.txt'
-  Cr_pred_file << "MB " << predictor_cnt << " -> ";
-  for (int i = 0; i < 17; i++)
-  {
-    Cr_pred_file << cr_predictor.pred_pel[i] << ' ';
-  }
-  Cr_pred_file << endl;
+  // // Print Cr predictors to '8x8_Cr_predictors.txt'
+  // Cr_pred_file << "MB " << predictor_cnt << " -> ";
+  // for (int i = 0; i < 17; i++)
+  // {
+  //   Cr_pred_file << cr_predictor.pred_pel[i] << ' ';
+  // }
+  // Cr_pred_file << endl;
 
-  predictor_cnt++;
+  // predictor_cnt++;
+  /*=======================================================================*/
 
   int mode;
   IntraChromaMode best_mode;

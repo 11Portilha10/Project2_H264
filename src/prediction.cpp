@@ -16,15 +16,15 @@ void encode_I_frame(Frame& frame) {
   decoded_blocks.reserve(frame.mbs.size());
 
   /////////////////////////////// TESTS /////////////////////////////////
-  ofstream error_file ("txt/errors.txt", ios::out);
-  ofstream mb_Y_input_file ("txt/mb_Y_input.txt", ios::out);
-  ofstream mb_Y_output_file ("txt/mb_Y_output.txt", ios::out);
-  ofstream mb_Cb_input_file ("txt/mb_Cb_input.txt", ios::out);
-  ofstream mb_Cb_output_file ("txt/mb_Cb_output.txt", ios::out);
-  ofstream mb_Cr_input_file ("txt/mb_Cr_input.txt", ios::out);
-  ofstream mb_Cr_output_file ("txt/mb_Cr_output.txt", ios::out);
+  // ofstream error_file ("txt/errors.txt", ios::out);
+  // ofstream mb_Y_input_file ("txt/mb_Y_input.txt", ios::out);
+  // ofstream mb_Y_output_file ("txt/mb_Y_output.txt", ios::out);
+  // ofstream mb_Cb_input_file ("txt/mb_Cb_input.txt", ios::out);
+  // ofstream mb_Cb_output_file ("txt/mb_Cb_output.txt", ios::out);
+  // ofstream mb_Cr_input_file ("txt/mb_Cr_input.txt", ios::out);
+  // ofstream mb_Cr_output_file ("txt/mb_Cr_output.txt", ios::out);
 
-  cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
+  // cout << "Number of Macroblocks:" << frame.mbs.size() << endl;
   ///////////////////////////////////////////////////////////////////////
 
   // Loops through all MB
@@ -37,17 +37,17 @@ void encode_I_frame(Frame& frame) {
       decoded_blocks.push_back(*(&mb + 1));   // next mb to predict UR (except for the last one)
 
   /////////////////////////////// TESTS /////////////////////////////////
-    // Print all 703 Macroblock Y (16x16) component to 'mb_Y_input.txt' 
-    mb_Y_input_file << "Y_MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 256; rows+=16)
-    {
-      for(int cols=0; cols<16; cols++)
-      {
-        mb_Y_input_file << mb.Y[rows+cols] << ' ';
-      }
-      mb_Y_input_file << endl;
-    }
-    mb_Y_input_file << endl;
+    // // Print all 703 Macroblock Y (16x16) component to 'mb_Y_input.txt' 
+    // mb_Y_input_file << "Y_MB input " << mb.mb_index << endl; 
+    // for(int rows=0; rows < 256; rows+=16)
+    // {
+    //   for(int cols=0; cols<16; cols++)
+    //   {
+    //     mb_Y_input_file << mb.Y[rows+cols] << ' ';
+    //   }
+    //   mb_Y_input_file << endl;
+    // }
+    // mb_Y_input_file << endl;
   /////////////////////////////////////////////////////////////////////
 
     // Encode Luma component, output is in 'mb.Y vector'
@@ -59,91 +59,91 @@ void encode_I_frame(Frame& frame) {
 
     //////////////////////////////// TESTS /////////////////////////////////
     // Print all Macroblock Y (16x16) component after prediction, transform and quantization to 'mb_Y_output.txt' 
-    mb_Y_output_file << "Y_MB output " << mb.mb_index << "(";
-    if(mb.is_intra16x16)
-    {
-      mb_Y_output_file << "16x16)" << endl;
-      cnt16x16++;
-    }
-    else
-    {
-      mb_Y_output_file << "4x4)" << endl;
-      cnt4x4++;
-    }
-    for(int r=0; r < 256; r+=16)
-    {
-      for(int c=0; c<16; c++)
-      {
-        mb_Y_output_file << mb.Y[r+c] << ' ';
-      }
-      mb_Y_output_file << endl;
-    }
-    mb_Y_output_file << endl;
+    // mb_Y_output_file << "Y_MB output " << mb.mb_index << "(";
+    // if(mb.is_intra16x16)
+    // {
+    //   mb_Y_output_file << "16x16)" << endl;
+    //   cnt16x16++;
+    // }
+    // else
+    // {
+    //   mb_Y_output_file << "4x4)" << endl;
+    //   cnt4x4++;
+    // }
+    // for(int r=0; r < 256; r+=16)
+    // {
+    //   for(int c=0; c<16; c++)
+    //   {
+    //     mb_Y_output_file << mb.Y[r+c] << ' ';
+    //   }
+    //   mb_Y_output_file << endl;
+    // }
+    // mb_Y_output_file << endl;
 
 
-    // Print all 703 Macroblock Cb (8x8) component to 'mb_Cb_input.txt' 
-    mb_Cb_input_file << "Cb MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cb_input_file << mb.Cb[rows+cols] << ' ';
-      }
-      mb_Cb_input_file << endl;
-    }
-    mb_Cb_input_file << endl;
+    // // Print all 703 Macroblock Cb (8x8) component to 'mb_Cb_input.txt' 
+    // mb_Cb_input_file << "Cb MB input " << mb.mb_index << endl; 
+    // for(int rows=0; rows < 64; rows+=8)
+    // {
+    //   for(int cols=0; cols<8; cols++)
+    //   {
+    //     mb_Cb_input_file << mb.Cb[rows+cols] << ' ';
+    //   }
+    //   mb_Cb_input_file << endl;
+    // }
+    // mb_Cb_input_file << endl;
 
-    // Print all 703 Macroblock Cr (8x8) component to 'mb_Cr_input.txt' 
-    mb_Cr_input_file << "Cr MB input " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cr_input_file << mb.Cr[rows+cols] << ' ';
-      }
-      mb_Cr_input_file << endl;
-    }
-    mb_Cr_input_file << endl;
+    // // Print all 703 Macroblock Cr (8x8) component to 'mb_Cr_input.txt' 
+    // mb_Cr_input_file << "Cr MB input " << mb.mb_index << endl; 
+    // for(int rows=0; rows < 64; rows+=8)
+    // {
+    //   for(int cols=0; cols<8; cols++)
+    //   {
+    //     mb_Cr_input_file << mb.Cr[rows+cols] << ' ';
+    //   }
+    //   mb_Cr_input_file << endl;
+    // }
+    // mb_Cr_input_file << endl;
     ////////////////////////////////////////////////////////////////////////
 
     // Encoding Chroma component function
     int error_chroma = encode_CbCr_block(mb, decoded_blocks, frame);
 
     //////////////////////////////// TESTS /////////////////////////////////
-    // Print all 703 Macroblock Cb (8x8) component after prediction, transform and quantization to 'mb_Cb_output.txt' 
-    mb_Cb_output_file << "Cb MB output " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cb_output_file << mb.Cb[rows+cols] << ' ';
-      }
-      mb_Cb_output_file << endl;
-    }
-    mb_Cb_output_file << endl;
+    // // Print all 703 Macroblock Cb (8x8) component after prediction, transform and quantization to 'mb_Cb_output.txt' 
+    // mb_Cb_output_file << "Cb MB output " << mb.mb_index << endl; 
+    // for(int rows=0; rows < 64; rows+=8)
+    // {
+    //   for(int cols=0; cols<8; cols++)
+    //   {
+    //     mb_Cb_output_file << mb.Cb[rows+cols] << ' ';
+    //   }
+    //   mb_Cb_output_file << endl;
+    // }
+    // mb_Cb_output_file << endl;
 
 
-    // Print all 703 Macroblock Cr (8x8) component after prediction, transform and quantization to 'mb_Cr_output.txt' 
-    mb_Cr_output_file << "Cr MB output " << mb.mb_index << endl; 
-    for(int rows=0; rows < 64; rows+=8)
-    {
-      for(int cols=0; cols<8; cols++)
-      {
-        mb_Cr_output_file << mb.Cr[rows+cols] << ' ';
-      }
-      mb_Cr_output_file << endl;
-    }
-    mb_Cr_output_file << endl;
+    // // Print all 703 Macroblock Cr (8x8) component after prediction, transform and quantization to 'mb_Cr_output.txt' 
+    // mb_Cr_output_file << "Cr MB output " << mb.mb_index << endl; 
+    // for(int rows=0; rows < 64; rows+=8)
+    // {
+    //   for(int cols=0; cols<8; cols++)
+    //   {
+    //     mb_Cr_output_file << mb.Cr[rows+cols] << ' ';
+    //   }
+    //   mb_Cr_output_file << endl;
+    // }
+    // mb_Cr_output_file << endl;
 
 
-    // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
-    error_file << "MB " << mb.mb_index;
-    if(!mb.is_intra16x16)
-      error_file << " (4x4) ";
-    else
-      error_file << " (16x16) ";
-    error_file << "-> Y = " << error_luma << " | ";
-    error_file << "CbCr = " << error_chroma << endl;
+    // // Print to 'errors.txt' the prediction block size (4x4 or 16x16), luma and chroma errors (SADs)
+    // error_file << "MB " << mb.mb_index;
+    // if(!mb.is_intra16x16)
+    //   error_file << " (4x4) ";
+    // else
+    //   error_file << " (16x16) ";
+    // error_file << "-> Y = " << error_luma << " | ";
+    // error_file << "CbCr = " << error_chroma << endl;
     ////////////////////////////////////////////////////////////////////////
 
     // Defined threshold for bad predictions, if SAD is greater MB remains the same
@@ -154,8 +154,8 @@ void encode_I_frame(Frame& frame) {
     }
   }
 
-  std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
-  std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
+  // std::cout << "Total MBs 16x16: " << cnt16x16 << endl;
+  // std::cout << "Total MBs 4x4: " << cnt4x4 << endl;
 
   // in-loop deblocking filter                         ====== NECESSARY ??? =====
   // deblocking_filter(decoded_blocks, frame);
@@ -201,8 +201,8 @@ int encode_Y_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Fram
 */
 int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
 /*============================================== TESTING ============================================*/
-  ofstream pred_file ("txt/16x16_Y_pred_mode.txt", ios::app);
-  ofstream residual_16x16_file ("txt/16x16_Y_residual.txt", ios::app);
+  // ofstream pred_file ("txt/16x16_Y_pred_mode.txt", ios::app);
+  // ofstream residual_16x16_file ("txt/16x16_Y_residual.txt", ios::app);
 /*===================================================================================================*/
 
   // Get neighbours MBs pointers (ul, u, l)
@@ -230,21 +230,21 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
   mb.intra16x16_Y_mode = mode;
 
 /*============================================== TESTING ============================================*/
-  // Print prediction mode to 'pred_mode.txt'
-  pred_file << "MB " << mb.mb_index << " ->" << (int)mode << endl;
+  // // Print prediction mode to 'pred_mode.txt'
+  // pred_file << "MB " << mb.mb_index << " ->" << (int)mode << endl;
 
-  // Print residual 16x16 to "16x16_Y_residual.txt"  -> Tests
-  residual_16x16_file << "Y_MB Residual " << mb.mb_index << endl;
+  // // Print residual 16x16 to "16x16_Y_residual.txt"  -> Tests
+  // residual_16x16_file << "Y_MB Residual " << mb.mb_index << endl;
 
-  for(int r=0; r < 256; r+=16)
-  {
-    for(int c=0; c<16; c++)
-    {
-      residual_16x16_file << mb.Y[r+c] << ' ';
-    }
-    residual_16x16_file << endl;
-  }
-  residual_16x16_file << endl;
+  // for(int r=0; r < 256; r+=16)
+  // {
+  //   for(int c=0; c<16; c++)
+  //   {
+  //     residual_16x16_file << mb.Y[r+c] << ' ';
+  //   }
+  //   residual_16x16_file << endl;
+  // }
+  // residual_16x16_file << endl;
 /*===================================================================================================*/
   
   // Perform QDCT
@@ -261,8 +261,8 @@ int encode_Y_intra16x16_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_b
 */
 int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_block, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
 /*============================================== TESTING ============================================*/
-  ofstream pred_file ("txt/4x4_Y_pred_mode.txt", ios::app);
-  ofstream residual_4x4_file ("txt/4x4_Y_residual.txt", ios::app);
+  // ofstream pred_file ("txt/4x4_Y_pred_mode.txt", ios::app);
+  // ofstream residual_4x4_file ("txt/4x4_Y_residual.txt", ios::app);
 /*===================================================================================================*/
 
   // Convert input position (see macroblock.cpp)
@@ -366,26 +366,28 @@ int encode_Y_intra4x4_block(int cur_pos, MacroBlock& mb, MacroBlock& decoded_blo
                                    get_UR_4x4_block(),
                                    get_L_4x4_block());
 
-  // Print prediction mode to 'pred_mode.txt'
-  pred_file << "MB " << mb.mb_index << " (" << cur_pos << ") ->" << (int)mode << endl;
+  /* ================================== TESTING ======================================*/
+  // // Print prediction mode to 'pred_mode.txt'
+  // pred_file << "MB " << mb.mb_index << " (" << cur_pos << ") ->" << (int)mode << endl;
+  /*==================================================================================*/
 
   mb.is_intra16x16 = false;
   mb.intra4x4_Y_mode.at(cur_pos) = mode;
 
 /*============================================== TESTING ============================================*/
-  // Print residual 4x4 to "4x4_Y_residual.txt"  -> Tests
+  // // Print residual 4x4 to "4x4_Y_residual.txt"  -> Tests
 
-  residual_4x4_file << "Y_MB Residual " << mb.mb_index << endl;
+  // residual_4x4_file << "Y_MB Residual " << mb.mb_index << endl;
 
-  for(int r=0; r < 256; r+=16)
-    {
-      for(int c=0; c<16; c++)
-      {
-        residual_4x4_file << mb.Y[r+c] << ' ';
-      }
-      residual_4x4_file << endl;
-    }
-    residual_4x4_file << endl;
+  // for(int r=0; r < 256; r+=16)
+  //   {
+  //     for(int c=0; c<16; c++)
+  //     {
+  //       residual_4x4_file << mb.Y[r+c] << ' ';
+  //     }
+  //     residual_4x4_file << endl;
+  //   }
+  //   residual_4x4_file << endl;
 /*==================================================================================================*/
 
   // Perform QDCT
@@ -415,9 +417,9 @@ int encode_CbCr_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, F
 */
 int encode_CbCr_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_blocks, Frame& frame) {
 /*============================================== TESTING ============================================*/
-  ofstream pred_file ("txt/8x8_CbCr_pred_mode.txt", ios::app);
-  ofstream residual_Cb_file ("txt/Cb_residual.txt", ios::app);
-  ofstream residual_Cr_file ("txt/Cr_residual.txt", ios::app);
+  // ofstream pred_file ("txt/8x8_CbCr_pred_mode.txt", ios::app);
+  // ofstream residual_Cb_file ("txt/Cb_residual.txt", ios::app);
+  // ofstream residual_Cr_file ("txt/Cr_residual.txt", ios::app);
 /*===================================================================================================*/
 
   auto get_decoded_Cr_block = [&](int direction) {
@@ -448,34 +450,34 @@ int encode_CbCr_intra8x8_block(MacroBlock& mb, std::vector<MacroBlock>& decoded_
   mb.intra_Cr_Cb_mode = mode;
 
 /*============================================== TESTING ============================================*/
-  // Print selected mode to '8x8_CbCr_pred_mode.txt' (must be the same for both)
-  pred_file << "MB " << mb.mb_index << " -> " << (int)mode << endl;
+  // // Print selected mode to '8x8_CbCr_pred_mode.txt' (must be the same for both)
+  // pred_file << "MB " << mb.mb_index << " -> " << (int)mode << endl;
 
-  // Print Cb residuals
-  residual_Cb_file << "Cb_MB Residual " << mb.mb_index << endl;
+  // // Print Cb residuals
+  // residual_Cb_file << "Cb_MB Residual " << mb.mb_index << endl;
 
-  for(int r=0; r < 64; r+=8)
-  {
-    for(int c=0; c<16; c++)
-    {
-      residual_Cb_file << mb.Cb[r+c] << ' ';
-    }
-    residual_Cb_file << endl;
-  }
-  residual_Cb_file << endl;
+  // for(int r=0; r < 64; r+=8)
+  // {
+  //   for(int c=0; c<16; c++)
+  //   {
+  //     residual_Cb_file << mb.Cb[r+c] << ' ';
+  //   }
+  //   residual_Cb_file << endl;
+  // }
+  // residual_Cb_file << endl;
   
-  // Print Cr residuals
-  residual_Cr_file << "Cr_MB Residual " << mb.mb_index << endl;
+  // // Print Cr residuals
+  // residual_Cr_file << "Cr_MB Residual " << mb.mb_index << endl;
 
-  for(int r=0; r < 64; r+=8)
-  {
-    for(int c=0; c<16; c++)
-    {
-      residual_Cr_file << mb.Cr[r+c] << ' ';
-    }
-    residual_Cr_file << endl;
-  }
-  residual_Cr_file << endl;
+  // for(int r=0; r < 64; r+=8)
+  // {
+  //   for(int c=0; c<16; c++)
+  //   {
+  //     residual_Cr_file << mb.Cr[r+c] << ' ';
+  //   }
+  //   residual_Cr_file << endl;
+  // }
+  // residual_Cr_file << endl;
 /*===================================================================================================*/
 
   // Perform QDCT (Cr and Cb components)
