@@ -38,6 +38,7 @@ ofstream rimage_file("txt/rimage_time.txt", ios::out);
 ofstream png_file("txt/png_time.txt", ios::out);
 ofstream mb_file("txt/mb_time.txt", ios::out);
 ofstream pred_file("txt/pred_time.txt", ios::out);
+ofstream transf_file("txt/trf_time.txt", ios::app);
 ofstream code_file("txt/code_time.txt", ios::out);
 ofstream pack_file("txt/pack_time.txt", ios::out);
 
@@ -141,7 +142,7 @@ void receiver_cb(const sensor_msgs::PointCloud2ConstPtr& input)
         printf("SPS and PPS done\n");
     }
    
-    
+    transf_file << "Start frame " << frame_cnt << endl;
     auto start_3 = high_resolution_clock::now(); 
     encode_I_frame(yuvFrame);
     auto stop_3 = high_resolution_clock::now();
@@ -155,6 +156,8 @@ void receiver_cb(const sensor_msgs::PointCloud2ConstPtr& input)
     auto stop_4 = high_resolution_clock::now();
     auto duration_4 = duration_cast<microseconds>(stop_4 - start_4);
     code_file << duration_4.count() << endl;
+    transf_file << "End frame " <<  frame_cnt << endl;
+
     
     printf("Entropy coding %d\n",counter);
 
